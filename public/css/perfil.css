@@ -1,0 +1,10 @@
+.img-profile{
+	width: 200px;
+	height: 200px;
+	background: url('../media/fotos/user-default.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 50%;
+	position: relative;
+	left: 170px;
+}
