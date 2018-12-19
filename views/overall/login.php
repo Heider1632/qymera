@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Qymera</title>
     <!-- Sweet Alert: alertas JavaScript presentables para el usuario (más bonitas que el alert) -->
-    <link rel="stylesheet" href="vistas/css/sweetalert.css">
+    <link rel="stylesheet" href="public/css/sweetalert.css">
 	<!--===============================================================================================-->
 		<link rel="stylesheet" type="text/css" href="public/css/util.css">
 		<link rel="stylesheet" type="text/css" href="public/css/main-login.css">
