@@ -1,0 +1,4 @@
+//files to ignore
+core/model/conexion.php
+.htaccess
+README.md
