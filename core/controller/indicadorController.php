@@ -36,10 +36,10 @@
       case 'mod':
         if($_POST){
           $id_indicador = $_POST['id_indicador'];
-          $indicador = $_POST['edit_indicador'];
+          $edit_indicador = $_POST['edit_indicador'];
           $n_indicador = $_POST['edit_n'];
-          if(!empty($indicador)){
-            $teacher->edit_indicador($id_indicador, $n_indicador, $indicador);
+          if(!empty($id_indicador) && !empty($edit_indicador)){
+            $teacher->edit_indicador($id_indicador, $edit_indicador);
           }else{
             echo 2;
           }

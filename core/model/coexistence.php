@@ -102,7 +102,7 @@
 
             $db->close();
         }
-        
+
 				public function getGrados()
 				{
 						$db = new Conexion();
@@ -155,4 +155,39 @@
 
 						$db->cerrar();
 				}
+
+        public function uploadAreaPlane($fileName, $fileType, $file, $grade, $id_grade, $id_matter)
+        {
+          if ($fileName!=""){
+              //Limitar el tipo de archivo y el tamaño
+              if (!((strpos($fileType, "docx") || strpos($fileType, "pdf")))){
+                  echo 3;
+              }else{
+              $db = new Conexion();
+
+                  $res = explode(".", $fileName);
+                  $extension = $res[count($res)-1];
+                  $nombre= date("YmdHis")."." . $extension; //renombrarlo como nosotros queremos
+                  $dirtemp = "public/upload/temp/".$nombre."";//Directorio temporaral para subir el fichero
+
+                  if (is_uploaded_file($file)) {
+                    //mueve el archivo a una ruta temporal
+                    move_uploaded_file($file, $dirtemp);
+                    // Estructura de la carpeta deseada
+                    mkdir("public/media/areaplanes/".$grade."");
+                    // directorio especifico de el archivo de area planes
+                    $dir = "public/media/areaplanes/".$grade."/".$nombre."";
+                    copy($dirtemp, $dir);
+                    $db->query('INSERT INTO planes_area (name, id_grade, id_matter) VALUES ("'.$dir.'", "'.$id_grade.'", "'.$id_matter.'")');
+                    unlink($dirtemp); //Borrar el fichero temporal
+                    echo 5;
+                    $db->close();
+                  }else{
+                    echo 4;
+                  }
+              }
+          } else {
+            echo 2;
+          }
+        }
     }

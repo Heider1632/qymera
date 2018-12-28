@@ -14,7 +14,9 @@
 
 <!-- main instance -->
 <script src="public/js/main.js"></script>
-
+<!-- CUSTOM CODE -->
+<script src="public/js/uploadFile.js"></script>
+<script src="public/js/uploadImage.js"></script>
 <!-- calendar js -->
 <script src="public/js/calendar.js"></script>
 </body>

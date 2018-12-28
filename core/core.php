@@ -6,9 +6,9 @@
 date_default_timezone_set('America/Bogota');
 
 //const app
-define('HTML_DIR', 'html/');
+define('PUBLIC_DIR', 'public/');
 define('APP_TITLE', 'Sistema de notas académicas');
-define('APP_URL', 'http://localhost/app-colegio/');
+define('APP_URL', 'http://localhost:8888/qymera/');
 
 //cons of PHPMAILER
 define('PHPMAILER_HOTS', '');

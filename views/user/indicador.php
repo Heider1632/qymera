@@ -19,56 +19,49 @@
               </p>
               <?php endif; ?>
 
-              <div class="tabs is-centered m-b-20">
-                <ul>
-                  <?php foreach($materias as $m): ?>
-                      <form id="handleMater_<?php echo $m['materia_id']; ?>" action="#" method="post">
-                      <input type="hidden" name="id_m" value="<?php echo $m['materia_id']; ?>"/>
-                      <li><a href="javascript:{}" onclick="document.getElementById('handleMater_<?php echo $m['materia_id']; ?>').submit(); return false;"><?php echo $m['materia_nombre']; ?></a></li>
-                      </form>
-                  <?php endforeach; ?>
-                </ul>
-              </div>
+            <?php foreach($materias as $m): ?>
 
-          <!-- main indicator -->
-          <?php if(isset($_POST['id_m'])):
-          $id_materia = $_POST['id_m'];
+            <div class="tabs is-centered m-b-20">
+              <ul>
+                <li><a href="#"><?php echo $m['materia_nombre']; ?></a></li>
+              </ul>
+            </div>
 
-          $indicadores = ($teacher->getIndicadores($id_docente, $id_materia, $id_periodo));
+            <!-- main indicator -->
+            <?php
+            $id_materia = $m['materia_id'];
+            $indicadores = ($teacher->getIndicadores($id_docente, $id_materia, $id_periodo));
 
-          if(!empty($indicadores)): ?>
-              <table class="table is-hoverable is-narrow is-fullwidth">
-               <thead>
-                  <tr>
-                   <th>#</th>
-                   <th>Indicador</th>
-                   <th>Grado</th>
-                   <th>Acciones</th>
-                  </tr>
-               </thead>
-              <tbody>
-               <?php
-               foreach ($indicadores as $ind): ?>
-                  <tr>
-                   <td><?php echo $ind['n']; ?> </td>
-                   <td><?php echo $ind['nombre']; ?></td>
-                   <td><?php echo $ind['grado_nombre']; ?></td>
-                   <td>
-                     <a class="button is-small is-link" href="editInd&id_indicador=<?php echo $ind['id']; ?>"><i class="fas fa-edit"></i></a>
-                     <a class="button is-small is-danger" href="delInd&id_indicador=<?php echo $ind['id']; ?>"><i class="fas fa-trash"></i></a>
-                   </td>
-                  </tr>
-               <?php endforeach; ?>
-               </tbody>
-              </table>
-              <?php else: ?>
-              <p class="notification is-warning" >No hay inidicadores de logros disponibles para este grado!</p>
-            <?php endif; ?>
-          <?php else: ?>
-            <p class="notification is-primary">Esperando...</p>
-          <?php endif; ?>
+            if(!empty($indicadores)): ?>
+                <table class="table is-hoverable is-narrow is-fullwidth">
+                 <thead>
+                    <tr>
+                     <th>#</th>
+                     <th>Indicador</th>
+                     <th>Grado</th>
+                     <th>Acciones</th>
+                    </tr>
+                 </thead>
+                <tbody>
+                 <?php
+                 foreach ($indicadores as $ind): ?>
+                    <tr>
+                     <td><?php echo $ind['n']; ?> </td>
+                     <td><?php echo $ind['nombre']; ?></td>
+                     <td><?php echo $ind['grado_nombre']; ?></td>
+                     <td>
+                       <a class="button is-small is-link" href="edit_ind&id_indicador=<?php echo $ind['id']; ?>"><i class="fas fa-edit"></i></a>
+                       <a class="button is-small is-danger" href="del_ind&id_indicador=<?php echo $ind['id']; ?>"><i class="fas fa-trash"></i></a>
+                     </td>
+                    </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                </table>
+                <?php else: ?>
+                <p class="notification is-warning" >No hay inidicadores de logros disponibles para este grado!</p>
+              <?php endif; endforeach; ?>
 
-          <div id="add_ind_modal" class="modal modal-fx-fadeInScale modal-pos-bottom">
+            <div id="add_ind_modal" class="modal modal-fx-fadeInScale modal-pos-bottom">
             <div class="modal-background"></div>
               <div class="modal-content is-tiny">
                 <header class="modal-card-head">
@@ -118,8 +111,6 @@
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
           </div>
-
       </div>
-      <?php include 'views/user/grado.php'; ?>
-      </div>
-    </div>
+  </div>
+</div>

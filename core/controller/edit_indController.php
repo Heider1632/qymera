@@ -22,7 +22,7 @@ if (!isset($_SESSION['id'])){
           <div class="column">
             <form id="form" class="form">
 
-              <input type="hidden" name="edit_id_indicador" value="<?php echo $_GET['id_indicador']; ?>"/>
+              <input type="hidden" id="edit_id_indicador" value="<?php echo $_GET['id_indicador']; ?>"/>
 
               <div class="field">
                 <label class="label">Materia</label>
@@ -40,14 +40,14 @@ if (!isset($_SESSION['id'])){
               <div class="field">
                 <label class="label">Numero</label>
                 <div class="control">
-                    <input class="input is-primary" type="num" min="1" max="5" name="edit_n" value="<?php echo $i['n']; ?>"/>
+                    <input class="input is-primary" type="num" min="1" max="5" name="edit_n" value="<?php echo $i['n']; ?>" readonly/>
                 </div>
               </div>
 
               <div class="field">
                 <label class="label">Nombre de indicador</label>
                 <div class="control">
-                  <textarea class="textarea" name="edit_indicador" placeholder="Textarea"><?php echo $i['nombre']; ?></textarea>
+                  <textarea class="textarea" id="edit_indicador" placeholder="Textarea"><?php echo $i['nombre']; ?></textarea>
                 </div>
               </div>
 
@@ -56,7 +56,7 @@ if (!isset($_SESSION['id'])){
                   <button id="btnModInd" class="button is-success is-normal is-fullwidth"><i class="fab fa-telegram-plane"></i></button>
                 </div>
                 <div class="control">
-                  <button class="button is-text is-normal ">Cancel</button>
+                  <button class="button is-text is-normal" id="btnCancelEdit">Cancel</button>
                 </div>
               </div>
             </form>

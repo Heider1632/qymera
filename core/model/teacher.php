@@ -242,14 +242,11 @@
 				$db->close();
     }
 
-		public function edit_indicador($id_indicador, $n_indicador, $indicador){
+		public function edit_indicador($id_indicador, $edit_indicador){
 			$db = new Conexion();
-
-			$db->query('UPDATE indicadores SET (id, n, nombre)
-							VALUES(".$id_indicador.", "'.$n_indicador.'", ".$indicador.")
-							WHERE indicadores.id = "'.$id_indicador.'"');
-
-			echo 4;
+			$sql = 'UPDATE indicadores SET nombre = "'.$edit_indicador.'" WHERE indicadores.id = "'.$id_indicador.'"';
+			$db->query($sql);
+			echo 3;
 
 			$db->close();
 		}
@@ -284,6 +281,63 @@
 			return $notas;
 
 			$db->close();
+		}
+
+		public function uploadImageProfile($fileName, $fileType, $file){
+			if ($fileName!="")
+			{
+					//Limitar el tipo de archivo y el tamaño
+					if (!((strpos($fileType, "gif") || strpos($fileType, "jpeg") || strpos($fileType, "png") || strpos($fileType, "jpg"))))
+					{
+							echo 2;
+					}
+					else
+					{
+							$res = explode(".", $fileName);
+							$extension = $res[count($res)-1];
+							$nombre= date("YmdHis")."." . $extension; //renombrarlo como nosotros queremos
+							$dirtemp = "public/upload/temp/".$nombre."";//Directorio temporaral para subir el fichero
+
+							if (is_uploaded_file($file)) {
+									copy($file, $dirtemp);
+
+									echo 4;
+
+									//unlink($dirtemp); //Borrar el fichero temporal
+								 }
+							else
+							{
+									echo 3;
+							}
+
+					}
+			} else {
+				echo 2;
+			}
+		}
+
+		public function updateInfTeacher($name, $lastname, $email, $password){
+			$db = new Conexion();
+
+			$sql = 'UPDATE usuario SET email = "'.$email.'", clave = "'.$password.'" WHERE id = "'.$_SESSION['id'].'"';
+
+			$db->query($sql);
+
+			$db->close();
+
+			echo 2;
+
+		}
+
+		public function updateUser(){
+			$db = new Conexion();
+
+			$db->query('UPDATE docentes SET nombre = "'.$name.'", apellido = "'.$lastname.'" WHERE id = "'.$_SESSION['id'].'"');
+
+			$db->close();
+
+			echo 3;
+
 		}
 
 	}

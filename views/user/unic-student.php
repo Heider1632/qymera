@@ -9,29 +9,22 @@
         <?php include 'views/overall/nav-aside.php'; ?>
       </div>
       <div class="column">
-        <!-- serach a student -->
-        <form>
-        <input class="input" type="text" placeholder="search">
-        <span class="icon is-small is-left">
-          <i class="fas fa-search" aria-hidden="true"></i>
-        </span>
-        </form>
         <!-- card to student information -->
-      <?php if($_POST['id_student'] || $_POST['student_name']):
+        <?php if($_POST['id_student'] || $_POST['student_name']):
         $id_student = $_POST['id_student'];
         $students = ($teacher->studentDesc($id_student));
         $ind = ($teacher->getIndicadores($id_docente, $id_materia, $id_periodo));
-      ?>
-      <div class="field is-horizontal m-r-20">
-        <div class="field-body">
-          <div class="field">
+        ?>
+        <div class="field is-horizontal m-r-20">
+          <div class="field-body">
+            <div class="field">
               <?php foreach($students as $f): ?>
               <?php if(!empty($f['foto'])): ?>
                 <td><img src="public/media/fotos/<?php echo $f['foto']; ?>" class="student-img" width="100" height="100"></td>
               <?php else: ?>
                 <td><img src="public/media/fotos/user-default.png" class="student-img" width="100" height="100"></td>
               <?php endif; endforeach; ?>
-          </div>
+            </div>
             <div class="form-student">
             <div class="field">
             <?php foreach($students as $e): ?>

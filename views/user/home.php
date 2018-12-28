@@ -20,21 +20,42 @@
                 </h2>
             </div>
           </section>
-          <div class="block is-hidden-mobile">
-            <h1 class="title">Progreso de notas</h1>
-            <progress class="progress is-success is-large" value="40" max="100"></progress>
-          </div>
-          <div class="tabs is-centered m-b-20 is-hidden-tablet is-hidden-desktop">
+          <!-- view for tablet and desktop -->
+          <!-- view for mobile -->
+          <?php foreach($materias as $matter): ?>
+          <div class="tabs is-centered m-b-20 is-hidden-desktop is-hidden-tablet">
             <ul>
-              <?php foreach ($materias as $m): ?>
-                  <form id="handleMater_<?php echo $m['materia_id']; ?>" action="#" method="post">
-                  <input type="hidden" name="materia_id" value="<?php echo $m['materia_id']?>"/>
-                  <li><a href="javascript:{}" onclick="document.getElementById('handleMater_<?php echo $m['materia_id']; ?>').submit(); return false;"><?php echo $m['materia_nombre']; ?></a></li>
-                  </form>
-              <?php endforeach; ?>
+                <li><a><?php echo $matter['materia_nombre']; ?></a></li>
             </ul>
           </div>
-          <?php include 'html/user/grado.php'; ?>
+          <?php $grado = ($teacher->getGrado($matter['materia_id'])); ?>
+          <table class="table is-hoverable is-narrow is-fullwidth is-hidden-desktop is-hidden-tablet">
+              <thead>
+                  <tr>
+                      <th>Grado</th>
+                      <th>Grupo</th>
+                      <th>Accion</th>
+                    </tr>
+              </thead>
+              <tbody>
+                      <?php foreach($grado as $g): ?>
+                        <tr>
+                        <td><?php echo $g['nombre_grado']?></td>
+                        <td><?php echo $g['nombre_grupo']?></td>
+                        <td>
+                          <button class="button is-info is-medium">
+                            <a href="unicStudent&action=view&id_grado=<?php echo $g['id_grado']?>&id_grupo=<?php echo $g['id_grupo'] ?>"><i class="fas fa-user f-3x"></i></a>
+                          </button>
+
+                          <button class="button is-info is-medium">
+                            <a href="groupStudent&action=view&id_grado=<?php echo $g['id_grado']?>&id_grupo=<?php echo $g['id_grupo'] ?>"><i class="fas fa-users f-3x"></i></a>
+                          </button>
+                        </td>
+                        </tr>
+                      <?php endforeach; ?>
+                </tbody>
+            </table>
+          <?php endforeach; ?>
       </div>
     </div>
   </div>

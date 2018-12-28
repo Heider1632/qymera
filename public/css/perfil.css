@@ -5,6 +5,6 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	border-radius: 50%;
-	position: relative;
-	left: 170px;
+	display:block;
+	margin:auto;
 }

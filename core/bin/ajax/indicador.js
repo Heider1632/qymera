@@ -43,18 +43,18 @@ $('#btnAddInd').click(function(){
 
 });
 
-$('#btnModInd').click(function(){
+$('#btnModInd').click(function(e){
+
+  e.preventDefault();
 
   var id_indicador = $('#edit_id_indicador').val();
-
-  var edit_n = $('#edit_n').val();
 
   var edit_indicador = $('#edit_indicador').val();
 
   $.ajax({
     method: 'POST',
     url: 'indicador&action=mod',
-    data: {id_indicador: id_indicador, edit_n: edit_n, edit_indicador: edit_indicador},
+    data: {id_indicador: id_indicador, edit_indicador: edit_indicador},
     success: function(response){
       if(response == 1){
         swal('Error', 'error al solicitar la información', 'error');
@@ -64,7 +64,6 @@ $('#btnModInd').click(function(){
         swal('Exito', 'Indicadir editado', 'success');
         location.href="indicador";
       }else{
-        location.href="indicador";
         console.log(response);
       }
     }

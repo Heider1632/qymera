@@ -6,20 +6,57 @@
 		require 'core/model/teacher.php';
 		$teacher = new Teacher();
 
-	/* home view */
-		/* header */
-		include 'views/overall/header.php';
+		$action = isset($_GET['action']) ? $_GET['action'] : 'view';
 
-		?>
-		<div id="app">
-		<?php
-		/* template home */
-		include 'views/user/profile.php';
+		switch ($action) {
+			case 'upload':
+				if(!empty($_FILES)){
 
-		/* scripts*/
-		include 'views/overall/scripts.php';
-		?>
-		</div>
-		<?php
+					$file = $_FILES['file']['tmp_name'];
+					$fileName = $_FILES['file']['name'];
+					$fileType = $_FILES['file']['type'];
+
+					$teacher->uploadImageProfile($fileName, $fileType, $file);
+
+				}else{
+					echo 1;
+				}
+				break;
+			case 'updateTeacher':
+				if($_POST){
+					$name = $_POST['name'];
+					$lastname = $_POST['lastname'];
+					$teacher->updateTeacher($name, $lastname);
+				}else {
+					echo 1;
+				}
+				break;
+			case 'updateUser':
+				if($_POST){
+					$email = $_POST['email'];
+					$password = $_POST['password'];
+					$password_2 = $_POST['$password_2'];
+
+					if($password === $password_2){
+						$teacher->updateUser($email, $password);
+					}else{
+						echo 2;
+					}
+				}else {
+					echo 1;
+				}
+				break;
+			default:
+			/* profile view */
+				/* header */
+				include 'views/overall/header.php';
+
+				/* template profile */
+				include 'views/user/profile.php';
+
+				/* scripts*/
+				include 'views/overall/scripts.php';
+				break;
+		}
 	endif;
 ?>
