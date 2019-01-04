@@ -8,3 +8,8 @@
 	display:block;
 	margin:auto;
 }
+
+.thumbnail{
+	border-radius: 50%;
+	display:block;
+}

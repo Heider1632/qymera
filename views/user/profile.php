@@ -9,8 +9,14 @@
         <?php include 'views/overall/nav-aside.php'; ?>
       </div>
       <div class="column">
+        <?php $userphoto = ($user->getPhoto()); ?>
         <!-- form pick user -->
+        <!-- img profile -->
+        <?php if(!empty($userphoto['photo'])): ?>
+          <img src="<?php echo $userphoto['photo'] ?>" class="img-profile"  alt="<?php echo $_SESSION['nombre']; ?>"/>
+        <?php else: ?>
         <img src="public/media/user-default.png" class="img-profile"  alt="<?php echo $_SESSION['nombre']; ?>"/>
+        <?php endif; ?>
         <div class="file has-name is-info is-right">
           <label class="file-label">
             <input class="file-input" type="file" id="image-profile">

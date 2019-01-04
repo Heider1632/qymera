@@ -22,7 +22,7 @@ include 'views/overall/header.php';
 				<div class="column">
 					<div class="box">
 						<p class="title is-1 is-spaced fs-15">Escuelas asociadas</p>
-						<p class="subtitle">I.E. Auguto espinoza</p>
+						<p class="subtitle">I.E. Augusto espinoza</p>
 						<button class="button is-primary is-fullwidth" href="">Ir</button>
 					</div>
 				</div>

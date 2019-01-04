@@ -28,13 +28,12 @@
             <div class="control">
               <div class="select is-info is-rounded is-fullwidth">
                 <select id="id_grade">
-                  <option>Select dropdown</option>
-                  <option values="1">6</option>
-                  <option values="2">7</option>
-                  <option values="3">8</option>
-                  <option values="4">9</option>
-                  <option values="5">10</option>
-                  <option values="6">11</option>
+                  <option value="1">6</option>
+                  <option value="2">7</option>
+                  <option value="3">8</option>
+                  <option value="4">9</option>
+                  <option value="5">10</option>
+                  <option value="6">11</option>
                 </select>
               </div>
             </div>

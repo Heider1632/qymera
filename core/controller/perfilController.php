@@ -4,7 +4,9 @@
 	else:
 	/*  schema that allow callback the functions */
 		require 'core/model/teacher.php';
+		require 'core/model/usuario.php';
 		$teacher = new Teacher();
+		$user = new Usuario();
 
 		$action = isset($_GET['action']) ? $_GET['action'] : 'view';
 
@@ -12,11 +14,11 @@
 			case 'upload':
 				if(!empty($_FILES)){
 
-					$file = $_FILES['file']['tmp_name'];
-					$fileName = $_FILES['file']['name'];
-					$fileType = $_FILES['file']['type'];
+					$file = $_FILES['image-profile']['tmp_name'];
+					$fileName = $_FILES['image-profile']['name'];
+					$fileType = $_FILES['image-profile']['type'];
 
-					$teacher->uploadImageProfile($fileName, $fileType, $file);
+					$user->uploadImageProfile($fileName, $fileType, $file);
 
 				}else{
 					echo 1;

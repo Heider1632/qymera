@@ -33,6 +33,17 @@
 		$db->close();
 	}
 
+	public function updateInfTeacher($name, $lastname){
+		$db = new Conexion();
+
+		$db->query('UPDATE docentes SET nombre = "'.$name.'", apellido = "'.$lastname.'" WHERE id = "'.$_SESSION['id'].'"');
+
+		$db->close();
+
+		echo 3;
+
+	}
+
 	public function studentDesc($id_student){
 		$db = new Conexion();
 
@@ -263,81 +274,29 @@
 			$db->close();
 		}
 
-		public function getNota(){
+		public function getNotes($id_materia, $id_grado, $id_grupo, $indicadores){
 			$db = new Conexion();
 
-			$sql = '';
+			for ($i=0; $i < count($indicadores); $i++) {
+				$id = $indicadores[$i]['id'];
+				 $array_subquery[$i] = '(SELECT nota FROM notas WHERE id_indicador = "'.$id.'" AND id_periodo = "1" AND id_materia = "'.$id_materia.'"
+ 					AND id_grado = "'.$id_grado.'" AND id_grupo = "'.$id_grupo.'" AND id_docente = "'.$_SESSION['id'].'") as nota'.$i.'';
+			}
+
+			$subquery = implode(',', $array_subquery);
+
+			$sql = 'SELECT * FROM
+				'.$subquery.'';
 
 			$results = $db->query($sql);
 
 			while($f = $db->consultaArreglo($results)){
-				$notas[] = array(
-					'nombre_estudiante' => $f['nombre'],
-					'nombre_indicador' => $f['nombre'],
-					'nota' => $f['nota'],
-				);
+				$notas[] = $f;
 			}
 
 			return $notas;
 
 			$db->close();
-		}
-
-		public function uploadImageProfile($fileName, $fileType, $file){
-			if ($fileName!="")
-			{
-					//Limitar el tipo de archivo y el tamaño
-					if (!((strpos($fileType, "gif") || strpos($fileType, "jpeg") || strpos($fileType, "png") || strpos($fileType, "jpg"))))
-					{
-							echo 2;
-					}
-					else
-					{
-							$res = explode(".", $fileName);
-							$extension = $res[count($res)-1];
-							$nombre= date("YmdHis")."." . $extension; //renombrarlo como nosotros queremos
-							$dirtemp = "public/upload/temp/".$nombre."";//Directorio temporaral para subir el fichero
-
-							if (is_uploaded_file($file)) {
-									copy($file, $dirtemp);
-
-									echo 4;
-
-									//unlink($dirtemp); //Borrar el fichero temporal
-								 }
-							else
-							{
-									echo 3;
-							}
-
-					}
-			} else {
-				echo 2;
-			}
-		}
-
-		public function updateInfTeacher($name, $lastname, $email, $password){
-			$db = new Conexion();
-
-			$sql = 'UPDATE usuario SET email = "'.$email.'", clave = "'.$password.'" WHERE id = "'.$_SESSION['id'].'"';
-
-			$db->query($sql);
-
-			$db->close();
-
-			echo 2;
-
-		}
-
-		public function updateUser(){
-			$db = new Conexion();
-
-			$db->query('UPDATE docentes SET nombre = "'.$name.'", apellido = "'.$lastname.'" WHERE id = "'.$_SESSION['id'].'"');
-
-			$db->close();
-
-			echo 3;
-
 		}
 
 	}

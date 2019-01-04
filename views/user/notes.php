@@ -52,11 +52,11 @@
             </tbody>
           </table>
         <?php else: ?>
-        <div class="notification is-danger">
+        <div class="notification is-danger m-t-20">
           Error al solicitar los datos, porfavor comuniquese con la administración
         </div>
         <?php endif; else:?>
-          <div class="notification is-danger">error al enviar los datos</div>
+          <div class="notification is-danger m-t-20">error al enviar los datos</div>
         <?php endif; ?>
         </div>
       </div>

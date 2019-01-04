@@ -1,8 +1,11 @@
 <?php
 require_once('core/model/coexistence.php');
+require_once('core/model/usuario.php');
 $coexistence = new Coexistence();
+$user = new Usuario();
 $fecha = DATE;
 $periodo = $coexistence->periodo($fecha);
+$userphoto = ($user->getPhoto());
 $_SESSION['id_periodo'] = $periodo[0]['id_periodo'];
 ?>
 <aside class="menu is-hidden-mobile">
@@ -16,7 +19,17 @@ $_SESSION['id_periodo'] = $periodo[0]['id_periodo'];
 
       </a>
     </li>
-    <li><a><?php echo $_SESSION['nombre']; ?></a></li>
+    <li>
+      <a>
+        <p class="lead"><?php echo $_SESSION['nombre']; ?></p>
+        <span><?php if(!empty($userphoto['photo'])): ?>
+          <img class="thumbnail" width="40" height="40" src="<?php echo $userphoto['photo'] ?>" alt="<?php $_SESION['nombre'] ?>" />
+              <?php else: ?>
+          <img class="thumbnail" width="40" height="40" src="public/media/user-default.png" alt="<?php $_SESION['nombre'] ?>" />
+              <?php endif; ?>
+        </span>
+      </a>
+    </li>
   </ul>
   <p class="menu-label">
     Acciones

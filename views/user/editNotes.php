@@ -18,11 +18,11 @@
         $id_docente = $_SESSION['id'];
         $id_periodo = $_SESSION['id_periodo'];
         $estudiantes = ($coexistence->getEstudiantes($id_grado, $id_grupo));
-
         $indicadores = ($teacher->getIndicadores($id_docente, $id_materia, $id_periodo));
+        $notes = ($teacher->getNotes($id_materia, $id_grado, $id_grupo, $indicadores));
         ?>
-          <?php if(!empty($notas)): ?>
-          <form action="addNotes&id_grado=<?php echo urlencode($id_grado); ?>&id_grupo=<?php echo urlencode($id_grupo); ?>" method="POST">
+          <?php if(!empty($notes)): ?>
+          <form action="editNotes&id_grado=<?php echo urlencode($id_grado); ?>&id_grupo=<?php echo urlencode($id_grupo); ?>" method="POST">
           <input type="hidden" name="id_materia" value="<?php echo $id_materia; ?>" />
           <table class="table is-hoverable is-narrow is-fullwidth">
             <thead>
@@ -53,9 +53,9 @@
                 <td><?php echo $s['segundo_nombre']; ?></td>
                 <td><?php echo $s['primer_apellido']; ?></td>
                 <td><?php echo $s['segundo_nombre']; ?></td>
-                <?php if(!empty($indicadores)): foreach($indicadores as $i): ?>
-                <td><input class="input is-focused" type="num" min="0" max="10" name="note[<?php echo $s['id']; ?>][<?php echo $i['n']; ?>]"/></td>
-                <?php endforeach; endif; ?>
+                <?php //if(!empty($notes)): foreach($notes as $n): ?>
+                  <!--<td><input class="input is-focused" type="num" min="0" max="10" name="note[<?php //echo $s['id']; ?>][<?php //echo $i['n']; ?>]" value="<?php //echo $n['nota'] ?>"/></td>-->
+                <?php //endforeach; endif; ?>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -65,11 +65,11 @@
           <button type="button" class="button is-danger is-medium is-fullwidth" onclick="refresh()">Cancelar</button>
           </form>
         <?php else: ?>
-        <div class="notification is-danger">
+        <div class="notification is-danger m-t-20">
           Todavía no se han asignado notas para este grado y grupo
         </div>
         <?php endif; else:  ?>
-          <div class="notification is-danger">error al enviar los datos</div>
+          <div class="notification is-danger m-t-20">error al enviar los datos</div>
         <?php endif; ?>
 
         </div>

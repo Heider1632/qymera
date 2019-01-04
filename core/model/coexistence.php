@@ -156,7 +156,7 @@
 						$db->cerrar();
 				}
 
-        public function uploadAreaPlane($fileName, $fileType, $file, $grade, $id_grade, $id_matter)
+        public function uploadAreaPlane($fileName, $fileType, $file, $id_grade, $id_matter)
         {
           if ($fileName!=""){
               //Limitar el tipo de archivo y el tamaño
@@ -174,9 +174,9 @@
                     //mueve el archivo a una ruta temporal
                     move_uploaded_file($file, $dirtemp);
                     // Estructura de la carpeta deseada
-                    mkdir("public/media/areaplanes/".$grade."");
+                    mkdir("public/media/areaplanes/".$id_grade."");
                     // directorio especifico de el archivo de area planes
-                    $dir = "public/media/areaplanes/".$grade."/".$nombre."";
+                    $dir = "public/media/areaplanes/".$id_grade."/".$nombre."";
                     copy($dirtemp, $dir);
                     $db->query('INSERT INTO planes_area (name, id_grade, id_matter) VALUES ("'.$dir.'", "'.$id_grade.'", "'.$id_matter.'")');
                     unlink($dirtemp); //Borrar el fichero temporal

@@ -114,18 +114,14 @@
       $db->close();
     }
 
-    public function register($email, $clave)
-    {
+    public function register($email, $clave){
       $db = new Conexion();
-
 
       $email = $db->filtrar($email);
       $clave = $db->filtrar($clave);
 
-
       // validar que el correo no exito
       $verificarCorreo = $db->rows('select id from usuarios where email="'.$email.'" LIMIT 1');
-
 
       if($verificarCorreo > 0){
 
@@ -152,5 +148,61 @@
 
       $db->close();
     }
+
+    public function uploadImageProfile($fileName, $fileType, $file){
+      if ($fileName!="")
+      {
+          //Limitar el tipo de archivo y el tamaño
+          if (!((strpos($fileType, "jpeg") || strpos($fileType, "png")))){
+              echo 2;
+          }else{
+          $db = new Conexion();
+              $res = explode(".", $fileName);
+              $extension = $res[count($res)-1];
+              $nombre= mb_strtolower($_SESSION['nombre'])."." . $extension; //renombrarlo como nosotros queremos
+              $dirtemp = "public/upload/temp/".$nombre."";//Directorio temporaral para subir el fichero
+
+              if (is_uploaded_file($file)) {
+                  move_uploaded_file($file, $dirtemp);
+                  mkdir("public/media/teachers/".$_SESSION['id']."");
+                  $dir = "public/media/teachers/".$_SESSION['id']."/".$nombre."";
+                  $db->query('UPDATE usuario SET photo = "'.$dir.'" WHERE id = "'.$_SESSION['id'].'"');
+                  copy($dirtemp, $dir);
+                  unlink($dirtemp); //Borrar el fichero temporal
+                  echo 4;
+                  $db->close();
+                  }else{
+                  echo 3;
+                }
+              }
+      }else {
+        echo 2;
+      }
+    }
+
+    public function getPhoto(){
+      $db = new Conexion();
+
+      $query = $db->query('SELECT photo FROM usuario WHERE id = "'.$_SESSION['id'].'"');
+
+      $userphoto = $db->consultaArreglo($query);
+
+      return $userphoto;
+      
+      $db->close();
+    }
+
+    /*public function updateUser($name, $lastname){
+      $db = new Conexion();
+
+      $sql = 'UPDATE usuario SET email = "'.$email.'", clave = "'.$password.'" WHERE id = "'.$_SESSION['id'].'"';
+
+      $db->query($sql);
+
+      $db->close();
+
+      echo 2;
+
+    }*/
   }
 ?>

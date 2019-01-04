@@ -13,20 +13,19 @@
 
 	switch ($action) {
 		case 'upload':
-			if(!empty($_FILES)){
-				$file = $_FILES['file']['tmp_name'];
-				$fileName = $_FILES['file']['name'];
-				$fileType = $_FILES['file']['type'];
-				$fileError = $_FILES['file']['error'];
-				$grade = $_POST['grade'];
-				$id_grade = $_POST['id_grade'];
-				$id_matter = $_POST['id_matter'];
+		if($_POST){
+			  $file = $_FILES['file']['tmp_name'];
+			  $fileName = $_FILES['file']['name'];
+			  $fileType = $_FILES['file']['type'];
+			  $fileError = $_FILES['file']['error'];
+			  $id_grade = $_POST['id_grade'];
+			  $id_matter = $_POST['id_matter'];
 
-				$coexistence->uploadAreaPlane($fileName, $fileType, $file, $grade, $id_grade, $id_matter);
-			}else{
-				echo 1;
-			}
-			break;
+			  $coexistence->uploadAreaPlane($fileName, $fileType, $file, $id_grade, $id_matter);
+		}else{
+			echo 1;
+		}
+		break;
 
 		default:
 		/* areaplanes view */

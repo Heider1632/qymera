@@ -1,3 +1,9 @@
+<?php
+  require_once('core/model/usuario.php');
+  $user = new Usuario();
+
+  $userphoto = ($user->getPhoto());
+?>
 <!-- START NAV -->
 <nav class="navbar">
   <div class="container">
@@ -41,7 +47,13 @@
                             <?php echo $_SESSION['nombre']; ?>
                         </a>
                           <a class="navbar-item" href="perfil">
-                              Perfil
+                              <p class="lead">Perfil</p>
+                              <span><?php if(!empty($userphoto['photo'])): ?>
+                                <img class="thumbnail" width="30" height="30" src="<?php echo $userphoto['photo'] ?>" alt="<?php $_SESION['nombre'] ?>" />
+                                    <?php else: ?>
+                                <img class="thumbnail" width="30" height="30" src="public/media/user-default.png" alt="<?php $_SESION['nombre'] ?>" />
+                                    <?php endif; ?>
+                              </span>
                           </a>
                           <a class="navbar-item">
                               Configuraciones

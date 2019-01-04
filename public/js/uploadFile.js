@@ -25,14 +25,12 @@ Upload.prototype.getName = function() {
 };
 Upload.prototype.doUpload = function () {
     var that = this;
-    var grade = $('#id_grade').text();
     var id_grade = $('#id_grade').val();
     var id_matter = $('#id_matter').val();
     var formData = new FormData();
 
     // add assoc key values, this will be posts values
     formData.append("file", this.file, this.getName());
-    formData.append("grade", grade);
     formData.append("id_grade", id_grade);
     formData.append("id_matter", id_matter);
     formData.append("upload_file", true);
@@ -72,7 +70,7 @@ Upload.prototype.doUpload = function () {
         cache: false,
         contentType: false,
         processData: false,
-        timeout: 5000
+        timeout: 7000
     });
 
 };
