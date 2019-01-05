@@ -5,7 +5,7 @@
 	/*  schema that allow callback the functions */
 		require 'core/model/teacher.php';
     require 'core/model/coexistence.php';
-    
+
 		$teacher = new Teacher();
     $coexistence = new Coexistence();
 
@@ -35,11 +35,11 @@
           ?>
           <div class="container is-fluid">
             <div class="columns is-2">
-              <div class="column is-one-third">
+              <div class="column is-one-quarter">
                 <?php include 'views/overall/nav-aside.php'; ?>
               </div>
               <div class="column">
-                <div class="tabs is-centered m-t-20">
+                <div class="tabs is-centered m-t-20 is-large">
                   <ul>
                     <?php foreach ($materias as $m): ?>
                         <form id="handleMater_<?php echo $m['materia_id']; ?>" action="#" method="post">
@@ -57,7 +57,7 @@
                 <div class="block">
                   <?php foreach($grados as $g): ?>
                     <p class="notification is-info">
-                          <?php echo "grado: " . $g['nombre_grado'] . " grupo: " . $g['nombre_grupo']; ?>
+                          <?php echo "GRADO: " . $g['nombre_grado'] . " GRUPO: " . $g['nombre_grupo']; ?>
 
                           <span class="icon m-l-20">
                             <a class="button is-primary" href="groupStudent&action=view&id_grado=<?php echo urlencode($g['id_grado']); ?>&id_grupo=<?php echo urlencode($g['id_grupo']); ?>">

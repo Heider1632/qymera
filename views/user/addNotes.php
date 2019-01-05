@@ -5,7 +5,7 @@
 ?>
   <div class="container is-fluid">
     <div class="columns is-2">
-      <div class="column is-one-third">
+      <div class="column is-one-quarter">
         <?php include 'views/overall/nav-aside.php'; ?>
       </div>
       <div class="column">
@@ -54,7 +54,7 @@
                 <td><?php echo $s['primer_apellido']; ?></td>
                 <td><?php echo $s['segundo_nombre']; ?></td>
                 <?php if(!empty($indicadores)): foreach($indicadores as $i): ?>
-                <td><input class="input is-focused" type="num" min="0" max="10" name="note[<?php echo $s['id']; ?>][<?php echo $i['n']; ?>]"/></td>
+                <td><input class="input is-focused" type="num" min="0" max="10" name="note[<?php echo $s['id']; ?>][<?php echo $i['n']; ?>]" required/></td>
                 <?php endforeach; endif; ?>
                 </tr>
               <?php endforeach; ?>

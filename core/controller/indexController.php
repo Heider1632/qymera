@@ -17,17 +17,16 @@ include 'views/overall/header.php';
            </div>
       </div>
     </nav>
-		<div class="container m-t-20">
+		<div class="container">
 			<div class="columns is-2">
 				<div class="column">
-					<div class="box">
+					<div class="box m-t-20">
 						<p class="title is-1 is-spaced fs-15">Escuelas asociadas</p>
-						<p class="subtitle">I.E. Augusto espinoza</p>
-						<button class="button is-primary is-fullwidth" href="">Ir</button>
+						<h5 class="title"><a href="">I.E. Augusto espinoza</a></h5>
 					</div>
 				</div>
-				<div class="column is-hidden-mobile">
-					<img src="public/images/school.jpg" alt="publish"/>
+				<div class="column is-hidden-mobile m-t-20">
+					<img src="public/images/advisement.png" alt="publish"/>
 				</div>
 			</div>
 		</div>

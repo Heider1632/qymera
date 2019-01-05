@@ -5,11 +5,11 @@
 ?>
   <div class="container is-fluid">
     <div class="columns is-2">
-      <div class="column is-one-third">
+      <div class="column is-one-quarter">
         <?php include 'views/overall/nav-aside.php'; ?>
       </div>
       <div class="column">
-        <div class="tabs is-centered m-t-20">
+        <div class="tabs is-centered m-t-20 is-large">
           <ul>
             <?php foreach ($materias as $m): ?>
                 <form id="handleMater_<?php echo $m['materia_id']; ?>" action="#" method="post">

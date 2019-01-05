@@ -20,13 +20,6 @@ html, body {
   background-color: #fff;
 }
 
-li>a {
-  font-family: 'new times roman';
-  font-size: 30px;
-  text: uppercase;
-  color: #fff;
-}
-
 .box-information {
   width: auto;
   height: auto;

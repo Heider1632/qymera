@@ -21,7 +21,7 @@
 
             <?php foreach($materias as $m): ?>
 
-            <div class="tabs is-centered m-b-20">
+            <div class="tabs is-centered m-b-20 is-large">
               <ul>
                 <li><a href="#"><?php echo $m['materia_nombre']; ?></a></li>
               </ul>

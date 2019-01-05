@@ -48,12 +48,6 @@
                         </a>
                           <a class="navbar-item" href="perfil">
                               <p class="lead">Perfil</p>
-                              <span><?php if(!empty($userphoto['photo'])): ?>
-                                <img class="thumbnail" width="30" height="30" src="<?php echo $userphoto['photo'] ?>" alt="<?php $_SESION['nombre'] ?>" />
-                                    <?php else: ?>
-                                <img class="thumbnail" width="30" height="30" src="public/media/user-default.png" alt="<?php $_SESION['nombre'] ?>" />
-                                    <?php endif; ?>
-                              </span>
                           </a>
                           <a class="navbar-item">
                               Configuraciones
@@ -64,6 +58,14 @@
                           </a>
                         </div>
                       </div>
+                      <a class="m-t-5">
+                        <span><?php if(!empty($userphoto['photo'])): ?>
+                          <img class="thumbnail" width="50" height="50" src="<?php echo $userphoto['photo'] ?>" alt="<?php $_SESION['nombre'] ?>" />
+                              <?php else: ?>
+                          <img class="thumbnail" width="50" height="50" src="public/media/user-default.png" alt="<?php $_SESION['nombre'] ?>" />
+                              <?php endif; ?>
+                        </span>
+                      </a>
                   </div>
               </div>
         </div>
