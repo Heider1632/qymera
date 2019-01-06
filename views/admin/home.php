@@ -1,6 +1,4 @@
 <?php
-  //header//
-  include 'html/overall/header.php';
   //navigaton to//
   include 'html/overall/nav-admin.php';
 ?>

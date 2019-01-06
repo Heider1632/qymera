@@ -4,7 +4,7 @@ class Conexion extends mysqli{
     # Funcion que permite conectarnos a la base de datos
     public function __construct()
     {
-      parent::__construct('sql157.main-hosting.eu', 'u233172193_user', 'fLXKHDGRrq4k', 'u233172193_inst');
+      parent::__construct('localhost', 'root', 'root', 'database-qymera');
       $this->connect_errno ? die('ERROR: existe un problema al conectarse a la base de datos') : null;
     }
 

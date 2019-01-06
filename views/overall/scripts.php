@@ -1,7 +1,7 @@
 <!-- bulma css -->
 <script src="public/js/bulma.js"></script>
 <!-- sweetalert -->
-<script src="public/js/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
 <!-- hora js -->
 <script src="public/js/hora.js"></script>
 <!-- ajax -->

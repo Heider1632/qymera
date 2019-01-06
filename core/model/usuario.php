@@ -24,9 +24,7 @@
 
         $datos = $db->consultaArreglo($inf);
 
-        session_start();
-
-        $_SESSION['id']     = $user['id'];
+        $_SESSION['id'] = $user['id'];
         $_SESSION['cargo']  = $user['cargo'];
         $_SESSION['nombre'] = $datos['nombre'];
         $_SESSION['apellido'] = $datos['apellido'];
@@ -39,7 +37,7 @@
 
         }else if($_SESSION['cargo'] == 2){
 
-          echo "home";
+          echo "perfil";
 
           $consulta = 'SELECT director_grupo FROM docentes WHERE id = "'.$_SESSION['id'].'"';
 
@@ -78,7 +76,7 @@
 
         $datos = $db->consultaArreglo($inf);
 
-        session_start();
+        sesssion_start();
 
         $_SESSION['id']     = $user['id'];
         $_SESSION['cargo']  = $user['cargo'];
@@ -115,13 +113,11 @@
     }
 
     public function register($email, $clave){
+
       $db = new Conexion();
 
-      $email = $db->filtrar($email);
-      $clave = $db->filtrar($clave);
-
-      // validar que el correo no exito
-      $verificarCorreo = $db->rows('select id from usuarios where email="'.$email.'" LIMIT 1');
+      // validar que el correo no existe
+      $verificarCorreo = $db->rows('SELECT id FROM usuarios WHERE email="'.$email.'" LIMIT 1');
 
       if($verificarCorreo > 0){
 
@@ -129,20 +125,11 @@
 
       }else{
 
-        $keyreg = md5(time());
+        $token = md5(time());
 
-        $link  = APP_URL . '?view=activar&key=' . $keyreg;
+        $db->query('INSERT INTO usuario (correo, clave, token) VALUES ("'.$email.'", MD5("'.$clave.'"), "'.$token.'")');
 
-        $db->query('insert into usuarios(email, clave, keyregister) values("'.$email.'", MD5("'.$clave.'"), "'.$keyreg.'")');
-
-        $_SESSION['nombre'] = $nombre;
-        $_SESSION['apellido'] = $apellido;
-
-        $sql_cargo = $db->query('select cargo from usuario where nombre = "'.$nombre.'" and apellido = "'.$apellido.'" LIMIT 1');
-
-        $cargo = $db->consultaArreglo($sql_cargo);
-
-        $_SESSION['cargo']  = $cargo[0];
+        echo "login";
 
       }
 
@@ -188,7 +175,7 @@
       $userphoto = $db->consultaArreglo($query);
 
       return $userphoto;
-      
+
       $db->close();
     }
 

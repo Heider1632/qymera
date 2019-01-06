@@ -38,21 +38,31 @@
         <!-- Formulario Login -->
       <div class="form">
         <form class="register-form">
-
-          <input type="text" id="email-reg" placeholder="email address"/>
-          <input type="password" id="pass-reg" placeholder="password"/>
-          <input type="password" id="pass_reg_2" placeholder="repeat password"/>
+          <div class="field">
+          <input type="input" class="input is-medium" id="name" placeholder="nombres" required/>
+          <br />&nbsp;
+          <input type="input" class="input is-medium" id="lastname" placeholder="apellidos" required/>
+          <br />&nbsp;
+          </div>
+          <input type="text" class="input is-medium" id="email_reg" placeholder="email address"/>
+          <br />&nbsp;
+          <input type="password" class="input is-medium" id="pass_reg" placeholder="password"/>
+          <br />&nbsp;
+          <input type="password" class="input is-medium" id="pass_reg_2" placeholder="repeat password"/>
 
           <button id="register">Registrarse</button>
           <p class="message">Ya estas registrado? <a href="#">Iniciar Sesión</a></p>
         </form>
 
         <form class="login-form">
-          <input type="email" id="email" placeholder="username"/>
-          <input type="password" id="password" placeholder="password"/>
+          <input type="email" class="input is-medium" id="email" placeholder="username"/>
+          <br />&nbsp;
+          <input type="password" class="input is-medium" id="password" placeholder="password"/>
+          <br />&nbsp;
           <button type="button" id="login">Iniciar Sesión</button>
           <hr />
-          <input type="text" id="token" placeholder="token" />
+          <input type="text" class="input is-medium" id="token" placeholder="token" />
+          <br />&nbsp;
           <button type="button" id="tempLogin">Token</button>
           <p class="message">No registrado? <a href="#">Crear una cuenta</a></p>
         </form>
@@ -69,7 +79,8 @@
   <script src="core/bin/ajax/register.js"></script>
   <script src="public/js/animate-login.js"></script>
   <!-- SweetAlert js -->
-  <script src="public/js/sweetalert.min.js"></script>
+  <!-- sweetalert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.33.1/dist/sweetalert2.all.min.js"></script>
   </body>
 
 </html>
