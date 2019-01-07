@@ -4,9 +4,7 @@
 	else:
 	/*  schema that allow callback the functions */
 		require 'core/model/teacher.php';
-		require 'core/model/usuario.php';
 		$teacher = new Teacher();
-		$user = new Usuario();
 
 		$action = isset($_GET['action']) ? $_GET['action'] : 'view';
 

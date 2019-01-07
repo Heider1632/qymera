@@ -5,10 +5,13 @@
 ?>
   <div class="container is-fluid">
     <div class="columns is-2">
-      <div class="column is-one-third">
+      <div class="column is-one-quarter">
         <?php include 'views/overall/nav-aside.php'; ?>
       </div>
       <div class="column">
+          <div class="box m-t-10">
+
+          </div>
           <!-- bar to actions -->
             <?php if(3 > 5): ?>
               <p class="notification is-warning">El tiempo estimado para ver los indicador se ha acabado, porfavor pongase en contacto con administracion para cambiar la hora </p>
@@ -50,13 +53,30 @@
                      <td><?php echo $ind['nombre']; ?></td>
                      <td><?php echo $ind['grado_nombre']; ?></td>
                      <td>
-                       <a class="button is-small is-link" href="edit_ind&id_indicador=<?php echo $ind['id']; ?>"><i class="fas fa-edit"></i></a>
-                       <a class="button is-small is-danger" href="del_ind&id_indicador=<?php echo $ind['id']; ?>"><i class="fas fa-trash"></i></a>
+                       <a class="button is-small is-link" id="btnEditToggle"><i class="fas fa-edit"></i></a>
+                       <a class="button is-small is-danger" id="btnDelToggle"><i class="fas fa-trash"></i></a>
                      </td>
                     </tr>
                  <?php endforeach; ?>
                  </tbody>
                 </table>
+
+                <!-- form edit -->
+
+                <!-- form del -->
+                <form id="form-del">
+                  <?php $id_indicador = $_GET['id_indicador']; ?>
+                  <article class="message is-warning m-t-50">
+                    <div class="message-header">
+                      <p>Deseas Eliminar este indicador?</p>
+                      <button class="delete" aria-label="delete"></button>
+                    </div>
+                    <div class="message-body">
+                      <input type="hidden" id="id_indicador_to_del" value="<?php echo $_GET['id_indicador']?>"/>
+                      <button class="button is-danger is-fullwidth" id="btnDelInd"><i class="fas fa-trash"></i></button>
+                    </div>
+                  </article>
+                </form>
                 <?php else: ?>
                 <p class="notification is-warning" >No hay inidicadores de logros disponibles para este grado!</p>
               <?php endif; endforeach; ?>
@@ -71,6 +91,17 @@
                     <div class="field">
                       <div class="control">
                         <div class="select is-primary">
+                          <select id="id_materia">
+                            <?php foreach($materias as $mt): ?>
+                              <option value="<?php echo $mt['materia_id']; ?>"><?php echo $mt['materia_nombre']; ?></option>
+                            <?php endforeach; ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="control">
+                        <div class="select is-primary">
                           <select id="id_grado">
                             <?php foreach($grados as $g): ?>
                             <option value="<?php echo $g['id_grado']; ?>"><?php echo $g['grado_nombre']; ?></option>
@@ -82,22 +113,17 @@
                     <div class="field">
                       <div class="control">
                         <div class="select is-primary">
-                          <select id="id_materia">
-                            <?php foreach($materias as $mt): ?>
-                            <option value="<?php echo $mt['materia_id']; ?>"><?php echo $mt['materia_nombre']; ?></option>
+                          <select id="id_grupo">
+                            <?php foreach($grupos as $grupo): ?>
+                            <option value="<?php echo $grupo['id_grupo']; ?>"><?php echo $grupo['grupo_nombre']; ?></option>
                             <?php endforeach; ?>
                           </select>
                         </div>
                       </div>
                     </div>
-                    <div class="field">
-                      <div class="control">
-                        <input type="num" id="n" class="input"/>
-                      </div>
-                    </div>
-                    <!-- token -->
+
                 		<div class="field">
-              			<label class="label">Nombre de indicador</label>
+              			<label class="label">Descripción</label>
                       <div class="control">
               			       <textarea class="form-control" id="new_indicador" rows="3" placeholder="Porfavor no usar caracteres especiales, ni acentuaciones" required=""></textarea>
                       </div>

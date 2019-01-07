@@ -5,8 +5,7 @@
   class Usuario{
   //functiones del usuario...//
 
-    public function login($email, $clave)
-    {
+    public function login($email, $clave){
       # Nos conectamos a la base de datos
       $db = new Conexion();
 
@@ -20,34 +19,38 @@
 
         $user = $db->consultaArreglo($query);
 
-        $inf = $db->query('SELECT nombre, apellido, foto from docentes where id = "'.$user['id'].'"');
+        $inf = $db->query('SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, foto from docente where id = "'.$user['id'].'"');
 
         $datos = $db->consultaArreglo($inf);
 
+        session_start();
+
         $_SESSION['id'] = $user['id'];
         $_SESSION['cargo']  = $user['cargo'];
-        $_SESSION['nombre'] = $datos['nombre'];
-        $_SESSION['apellido'] = $datos['apellido'];
+        $_SESSION['nombre'] = $datos['primer_nombre'] . " " . $datos['segundo_nombre'];
+        $_SESSION['apellido'] = $datos['primer_apellido'] . " " . $datos['segundo_apellido'];
         $_SESSION['foto'] = $datos['foto'];
 
         // Verificamos que cargo tiene l usuario y asi mismo dar la respuesta a ajax para que redireccione
         if($_SESSION['cargo'] == 1){
-
-          echo "admin";
+          //redirec
+          echo "admin/";
 
         }else if($_SESSION['cargo'] == 2){
 
-          echo "perfil";
-
-          $consulta = 'SELECT director_grupo FROM docentes WHERE id = "'.$_SESSION['id'].'"';
+          $consulta = 'SELECT director FROM docente WHERE id = "'.$_SESSION['id'].'"';
 
           $results = $db->query($consulta);
 
-          while ($fila = $db->consultaArreglo($results)) {
+          while ($fila = $db->consultaArreglo($results)){
 
-            $_SESSION['director_grupo'] = $fila['director_grupo'];
+            $_SESSION['director_grupo'] = $fila['director'];
 
-            }
+          }
+          //redirec
+          echo "home/";
+          }else{
+            echo 'error';
           }
 
       }else{
@@ -72,27 +75,28 @@
 
         $user = $db->consultaArreglo($query);
 
-        $inf = $db->query('SELECT nombre, apellido from docentes where id = "'.$user['id'].'"');
+        $inf = $db->query('SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, foto from docente where id = "'.$user['id'].'"');
 
         $datos = $db->consultaArreglo($inf);
 
-        sesssion_start();
+        session_start();
 
-        $_SESSION['id']     = $user['id'];
+        $_SESSION['id'] = $user['id'];
         $_SESSION['cargo']  = $user['cargo'];
-        $_SESSION['nombre'] = $datos['nombre'];
-        $_SESSION['apellido'] = $datos['apellido'];
+        $_SESSION['nombre'] = $datos['primer_nombre'] . " " . $datos['segundo_nombre'];
+        $_SESSION['apellido'] = $datos['primer_apellido'] . " " . $datos['segundo_apellido'];
+        $_SESSION['foto'] = $datos['foto'];
 
         // Verificamos que cargo tiene l usuario y asi mismo dar la respuesta a ajax para que redireccione
         if($_SESSION['cargo'] == 1){
 
-          echo "admin";
+          echo "admin/";
 
         }else if($_SESSION['cargo'] == 2){
 
-          echo "home";
+          echo "home/";
 
-          $consulta = 'SELECT director_grupo FROM docentes WHERE id = "'.$_SESSION['id'].'"';
+          $consulta = 'SELECT director FROM docente WHERE id = "'.$_SESSION['id'].'"';
 
           $results = $db->query($consulta);
 
@@ -146,14 +150,14 @@
           $db = new Conexion();
               $res = explode(".", $fileName);
               $extension = $res[count($res)-1];
-              $nombre= mb_strtolower($_SESSION['nombre'])."." . $extension; //renombrarlo como nosotros queremos
+              $nombre= strtolower($_SESSION['nombre'])."." . $extension; //renombrarlo como nosotros queremos
               $dirtemp = "public/upload/temp/".$nombre."";//Directorio temporaral para subir el fichero
 
               if (is_uploaded_file($file)) {
                   move_uploaded_file($file, $dirtemp);
                   mkdir("public/media/teachers/".$_SESSION['id']."");
                   $dir = "public/media/teachers/".$_SESSION['id']."/".$nombre."";
-                  $db->query('UPDATE usuario SET photo = "'.$dir.'" WHERE id = "'.$_SESSION['id'].'"');
+                  $db->query('UPDATE docente SET foto = "'.$dir.'" WHERE id = "'.$_SESSION['id'].'"');
                   copy($dirtemp, $dir);
                   unlink($dirtemp); //Borrar el fichero temporal
                   echo 4;
@@ -165,18 +169,6 @@
       }else {
         echo 2;
       }
-    }
-
-    public function getPhoto(){
-      $db = new Conexion();
-
-      $query = $db->query('SELECT photo FROM usuario WHERE id = "'.$_SESSION['id'].'"');
-
-      $userphoto = $db->consultaArreglo($query);
-
-      return $userphoto;
-
-      $db->close();
     }
 
     /*public function updateUser($name, $lastname){

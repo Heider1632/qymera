@@ -5,11 +5,9 @@
 	/*  schema that allow callback the functions */
 			require 'core/model/coexistence.php';
 			require 'core/model/teacher.php';
-			require 'core/model/bachelor.php';
 
 			$coexistence = new Coexistence();
 			$teacher = new Teacher();
-			$bachelor = new Bachelor();
 
 		$materias = ($teacher->getMateria());
 
@@ -45,7 +43,7 @@
 					}
 				}
 				//function add notes  the all group
-				$bachelor->putNotesList($notes, $id_grado, $id_grupo, $id_periodo, $id_materia, $id_docente);
+				$teacher->putNotesList($notes, $id_grado, $id_grupo, $id_periodo, $id_materia, $id_docente);
 				break;
 			case 'edit':
 

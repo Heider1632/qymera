@@ -15,8 +15,8 @@ function openModalDel(){
 $('#btnAddInd').click(function(){
 
   var new_indicador = $('#new_indicador').val();
-  var n = $('#n').val();
   var id_grado = $('#id_grado').val();
+  var id_grupo = $('#id_grupo').val();
   var id_materia = $('#id_materia').val();
 
   var indicador = new_indicador.replace(/\s\d\.\s*/, '');
@@ -24,7 +24,7 @@ $('#btnAddInd').click(function(){
   $.ajax({
     method: 'POST',
     url: 'indicador&action=add',
-    data: {indicador: indicador, n: n, id_grado: id_grado, id_materia: id_materia},
+    data: {indicador: indicador, id_grado: id_grado, id_grupo: id_grupo, id_materia: id_materia},
     success: function(response){
       if(response == 1){
         swal('Error', 'error al solicitar la información', 'error');
@@ -34,9 +34,9 @@ $('#btnAddInd').click(function(){
         swal('Alerta', 'El indicador ya existe', 'warning');
       }else if(response == 4){
         swal('Exito', 'Indicadir añadido', 'success');
-        location.replace('indicador');
+        location.replace('indicador/');
       }else{
-        location.replace('indicador');
+        location.replace('indicador/');
       }
     }
   });

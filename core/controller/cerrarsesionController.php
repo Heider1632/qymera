@@ -4,6 +4,6 @@
   session_start();
   session_destroy();
 
-  header('location: login');
+  header('location: http://localhost:8888/qymera/login');
 
 ?>

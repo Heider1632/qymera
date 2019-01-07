@@ -16,7 +16,7 @@
 
     <!-- modal calendar to events -->
     <div id="event-id" class="modal modal-fx-3dSignDown">
-        <div class="modal-background" style="background-image:url('public/images/hero-aside.jpg')"></div>
+        <div class="modal-background" style="background-image:url('<?php echo APP_URL; ?>public/images/hero-aside.jpg')"></div>
         <div class="modal-content">
             <!-- content -->
             <div class="form">

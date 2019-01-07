@@ -7,7 +7,6 @@ session_start();
   if(isset($_GET['view'])) {
 
   $view = explode("/", strtolower($_GET['view']));
-  if(count($view) % 2 != 1) die("Invalid path length!");
 
   $controller = $view[0];
   $my_views = array();
@@ -15,9 +14,9 @@ session_start();
     $my_views[$view[$i]] = $view[$i + 1];
   }
 
-  if((file_exists('core/controller/' . strtolower($_GET['view']) . 'Controller.php'))){
+  if((file_exists('core/controller/' . $controller . 'Controller.php'))){
 
-    include ('core/controller/' . strtolower($_GET['view']) . 'Controller.php');
+    include ('core/controller/' . $controller . 'Controller.php');
 
   }else{
 

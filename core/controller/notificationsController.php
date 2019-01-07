@@ -14,11 +14,10 @@
 			include 'views/overall/header.php';
 
 				/* template notification */
-				//include 'views/overall/notifications.php';
+				include 'views/overall/notifications.php';
 
 			/* scripts*/
 			include 'views/overall/scripts.php';
-	}
 
 	endif;
 ?>

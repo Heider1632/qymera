@@ -233,19 +233,19 @@
 
     //Insertar un indicador //
 
-     public function add_indicador($n, $new_indicador, $id_docente, $id_grado, $id_materia, $id_periodo){
+     public function add_indicador($new_indicador, $id_grado, $id_grupo, $id_materia){
 
       $db = new Conexion();
 
-				$sql = 'SELECT * FROM indicadores WHERE nombre = "'.$new_indicador.'" AND id_docente = "'.$id_docente.'" AND id_periodo = "'.$id_periodo.'" AND id_materia = "'.$id_materia.'" LIMIT 1';
+				$sql = 'SELECT * FROM indicadores WHERE nombre = "'.$new_indicador.'" AND id_docente = "'.$_SESSION['id'].'" AND id_periodo = "'.$_SESSION['id_periodo'].'" AND id_materia = "'.$id_materia.'" LIMIT 1';
 
 				$results = $db->query($sql);
 
 				if($db->rows($results) > 0){
 					echo 3;
 				}else{
-					$db->query('INSERT INTO indicadores (n, nombre, id_docente, id_grado, id_materia, id_periodo)
-					VALUES ("'.$n.'", "'.$new_indicador.'", "'.$id_docente.'", "'.$id_grado.'", "'.$id_materia.'", "'.$id_periodo.'")');
+					$db->query('INSERT INTO indicadores (nombre, id_docente, id_grado, id_grupo id_materia, id_periodo)
+					VALUES ("'.$new_indicador.'", "'.$_SESSION['id'].'", "'.$id_grado.'", "'.$id_grupo.'", "'.$id_materia.'", "'.$_SESSION['id_periodo'].'")');
 
 					echo 4;
 				}

@@ -38,21 +38,21 @@
                     </tr>
               </thead>
               <tbody>
-                      <?php foreach($grado as $g): ?>
-                        <tr>
-                        <td><?php echo $g['nombre_grado']?></td>
-                        <td><?php echo $g['nombre_grupo']?></td>
-                        <td>
-                          <button class="button is-info is-medium">
-                            <a href="unicStudent&action=view&id_grado=<?php echo $g['id_grado']?>&id_grupo=<?php echo $g['id_grupo'] ?>"><i class="fas fa-user f-3x"></i></a>
-                          </button>
+              <?php foreach($grado as $g): ?>
+              <tr>
+                  <td><?php echo $g['nombre_grado']?></td>
+                  <td><?php echo $g['nombre_grupo']?></td>
+                  <td>
+                    <button class="button is-info is-medium">
+                      <a href="unicStudent&action=view&id_grado=<?php echo $g['id_grado']?>&id_grupo=<?php echo $g['id_grupo'] ?>"><i class="fas fa-user f-3x"></i></a>
+                    </button>
 
-                          <button class="button is-info is-medium">
-                            <a href="groupStudent&action=view&id_grado=<?php echo $g['id_grado']?>&id_grupo=<?php echo $g['id_grupo'] ?>"><i class="fas fa-users f-3x"></i></a>
-                          </button>
-                        </td>
-                        </tr>
-                      <?php endforeach; ?>
+                    <button class="button is-info is-medium">
+                        <a href="groupStudent&action=view&id_grado=<?php echo $g['id_grado']?>&id_grupo=<?php echo $g['id_grupo'] ?>"><i class="fas fa-users f-3x"></i></a>
+                    </button>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
           <?php endforeach; ?>

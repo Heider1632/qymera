@@ -1,15 +1,9 @@
-<?php
-  require_once('core/model/usuario.php');
-  $user = new Usuario();
-
-  $userphoto = ($user->getPhoto());
-?>
 <!-- START NAV -->
 <nav class="navbar">
   <div class="container">
       <div class="navbar-brand">
-          <a class="navbar-item" href="../">
-              <img src="public/images/title-qymera.png" alt="Logo">
+          <a class="navbar-item" href="<?php echo APP_URL; ?>home/">
+              <img src="<?php echo APP_URL; ?>public/images/title-qymera.png" alt="Logo">
           </a>
           <span class="navbar-burger burger" data-target="navbarMenu">
           <span></span>
@@ -19,7 +13,7 @@
        </div>
        <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item is-active" href="home">
+                <a class="navbar-item is-active" href="<?php echo APP_URL; ?>home/">
                   Inicio
                 </a>
                 <?php if($_SESSION['director_grupo'] == '1'): ?>
@@ -27,14 +21,16 @@
                         Director Grupo
                     </a>
                 <?php endif; ?>
-                <a class="navbar-item" href="calendario">
+                <a class="navbar-item" href="<?php echo APP_URL; ?>calendario/">
                     Calendario
                 </a>
-                <a class="navbar-item" href="notas">
+                <a class="navbar-item" href="<?php echo APP_URL; ?>notas/">
                     Notas
                 </a>
-                <a class="navbar-item" href="periodo">
-                    Periodos
+                <a class="navbar-item" href="<?php echo APP_URL; ?>notifications/">
+                  <span class="badge is-badge-success is-badge-outlined" data-badge="8">
+                      <i class="fas fa-bell"></i>
+                  </span>
                 </a>
                 <!-- profile navbar card-->
                 <!-- dropdown -->
@@ -46,23 +42,23 @@
                         <a class="navbar-item" href="#">
                             <?php echo $_SESSION['nombre']; ?>
                         </a>
-                          <a class="navbar-item" href="perfil">
+                          <a class="navbar-item" href="<?php echo APP_URL; ?>perfil/<?php echo $_SESSION['id']; ?>">
                               <p class="lead">Perfil</p>
                           </a>
                           <a class="navbar-item">
                               Configuraciones
                           </a>
                           <hr class="navbar-divider">
-                          <a class="navbar-item" href="cerrarSesion">
+                          <a class="navbar-item" href="<?php echo APP_URL; ?>cerrarSesion/">
                               Salir
                           </a>
                         </div>
                       </div>
                       <a class="m-t-5">
-                        <span><?php if(!empty($userphoto['photo'])): ?>
-                          <img class="thumbnail" width="50" height="50" src="<?php echo $userphoto['photo'] ?>" alt="<?php $_SESION['nombre'] ?>" />
+                        <span><?php if(!empty($_SESSION['foto'])): ?>
+                          <img class="thumbnail" width="50" height="50" src="<?php echo APP_URL . $_SESSION['foto'] ?>" alt="<?php $_SESION['nombre'] ?>" />
                               <?php else: ?>
-                          <img class="thumbnail" width="50" height="50" src="public/media/user-default.png" alt="<?php $_SESION['nombre'] ?>" />
+                          <img class="thumbnail" width="50" height="50" src="<?php echo APP_URL; ?>public/media/user-default.png" alt="<?php $_SESION['nombre'] ?>" />
                               <?php endif; ?>
                         </span>
                       </a>

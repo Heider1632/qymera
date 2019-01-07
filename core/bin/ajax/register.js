@@ -1,6 +1,10 @@
 $('#register').click(function(){
 
   // Traemos los datos de los inputs
+  var first_name = $('#first_name').val();
+  var second_name = $('#second_name').val();
+  var fist_lastname = $('#first_lastname').val();
+  var second_lastname = $('#second_lastname').val();
   var email  = $('#email_reg').val();
   var clave = $('#pass_reg').val();
   var clave_2 =  $('#pass_reg_2').val();
@@ -12,7 +16,7 @@ $('#register').click(function(){
       // Recuerda que la ruta se hace como si estuvieramos en el index y no en operaciones por esa razon no utilizamos ../ para ir a controller
       url: 'core/controller/registerController.php',
       // Recuerda el primer parametro es la variable de php y el segundo es el dato que enviamos
-      data: {correo: email, clave: clave},
+      data: {correo: email, clave: clave, first_name: first_name, second_name: second_name, first_lastname: first_lastname, second_lastname: second_lastname},
       // el parametro res es la respuesta que da php mediante impresion de pantalla (echo)
       success: function(res){
 

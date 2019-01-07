@@ -1,11 +1,8 @@
 <?php
 require_once('core/model/coexistence.php');
-require_once('core/model/usuario.php');
 $coexistence = new Coexistence();
-$user = new Usuario();
 $fecha = DATE;
 $periodo = $coexistence->periodo($fecha);
-$userphoto = ($user->getPhoto());
 $_SESSION['id_periodo'] = $periodo[0]['id_periodo'];
 ?>
 <aside class="menu is-hidden-mobile is-medium">
@@ -26,19 +23,19 @@ $_SESSION['id_periodo'] = $periodo[0]['id_periodo'];
     <li>
       <a class="is-active">Indicadores</a>
       <ul>
-        <li><a href="<?php APP_URL ?>indicador">Indicadores</a></li>
-        <li><a href="<?php APP_URL ?>libraryindicators">Libreria de Indicadores</a></li>
+        <li><a href="<?php echo APP_URL; ?>indicador/">Indicadores</a></li>
+        <li><a href="<?php echo APP_URL; ?>libraryindicators/">Libreria de Indicadores</a></li>
       </ul>
     </li>
     <li>
       <a class="is-active">Estudiantes</a>
       <ul>
-        <li><a href="<?php APP_URL ?>groupStudent">Grupo</a></li>
-        <li><a href="<?php APP_URL ?>unicStudent">Individual</a></li>
+        <li><a href="<?php echo APP_URL; ?>groupStudent/">Grupo</a></li>
+        <li><a href="<?php echo APP_URL; ?>unicStudent/">Individual</a></li>
       </ul>
     </li>
-    <li><a href="<?php APP_URL ?>areaplanes">Planes de area</a></li>
-    <li><a href="<?php APP_URL ?>period">Periodo</a></li>
-    <li><a href="<?php APP_URL ?>consolide" disabled>Consolidados</a></li>
+    <li><a href="<?php echo APP_URL; ?>areaplanes/">Planes de area</a></li>
+    <li><a href="<?php echo APP_URL; ?>period/">Periodo</a></li>
+    <li><a href="<?php echo APP_URL; ?>consolide/ " disabled>Consolidados</a></li>
   </ul>
 </aside>

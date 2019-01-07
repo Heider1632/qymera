@@ -38,18 +38,40 @@
         <!-- Formulario Login -->
       <div class="form">
         <form class="register-form">
-          <div class="field">
-          <input type="input" class="input is-medium" id="name" placeholder="nombres" required/>
-          <br />&nbsp;
-          <input type="input" class="input is-medium" id="lastname" placeholder="apellidos" required/>
-          <br />&nbsp;
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                  <label class="label">Primer Nombre</label>
+                  <input class="input is-success" type="text" id="first-name" placeholder="primer nombre" required>
+                </p>
+              </div>
+              <div class="field">
+                  <label class="label">Segundo Nombre</label>
+                  <input class="input is-success" type="text" id="second-name" placeholder="segundo nombre">
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                  <label class="label">Primer Apellido</label>
+                  <input class="input is-normal" type="text" id="first-lastname" placeholder="primer apellido" required>
+                </p>
+              </div>
+              <div class="field">
+                  <label class="label">Segundo Apellido</label>
+                  <input class="input is-success" type="text" id="second-lastname" placeholder="segundo apellido" required>
+                </p>
+              </div>
+            </div>
           </div>
           <input type="text" class="input is-medium" id="email_reg" placeholder="email address"/>
           <br />&nbsp;
           <input type="password" class="input is-medium" id="pass_reg" placeholder="password"/>
           <br />&nbsp;
           <input type="password" class="input is-medium" id="pass_reg_2" placeholder="repeat password"/>
-
+          <br />&nbsp;
           <button id="register">Registrarse</button>
           <p class="message">Ya estas registrado? <a href="#">Iniciar Sesión</a></p>
         </form>
