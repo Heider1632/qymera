@@ -2,7 +2,7 @@ $('document').ready(function(){
     function hora(){
         $.ajax({
         type: 'GET',
-        url: 'core/bin/functions/hora.php',
+        url: 'http://localhost:8888/qymera/core/bin/functions/hora.php',
         before: function(){
           $('#hora').html("Hora:");
         },

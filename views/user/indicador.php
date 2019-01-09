@@ -33,15 +33,15 @@
             <!-- main indicator -->
             <?php
             $id_materia = $m['materia_id'];
-            $indicadores = ($teacher->getIndicadores($id_docente, $id_materia, $id_periodo));
+            $indicadores = $teacher->getIndicadores($id_materia);
 
             if(!empty($indicadores)): ?>
                 <table class="table is-hoverable is-narrow is-fullwidth">
                  <thead>
                     <tr>
-                     <th>#</th>
                      <th>Indicador</th>
                      <th>Grado</th>
+                     <th>Grupo</th>
                      <th>Acciones</th>
                     </tr>
                  </thead>
@@ -49,45 +49,109 @@
                  <?php
                  foreach ($indicadores as $ind): ?>
                     <tr>
-                     <td><?php echo $ind['n']; ?> </td>
                      <td><?php echo $ind['nombre']; ?></td>
                      <td><?php echo $ind['grado_nombre']; ?></td>
+                     <?php if($ind['grupo_nombre'] != 0): ?>
+                       <td><?php echo $ind['grupo_nombre']; ?></td>
+                     <?php else:?>
+                       <td>Todos</td>
+                     <?php endif;?>
                      <td>
-                       <a class="button is-small is-link" id="btnEditToggle"><i class="fas fa-edit"></i></a>
-                       <a class="button is-small is-danger" id="btnDelToggle"><i class="fas fa-trash"></i></a>
+                       <a class="button is-small is-link" onclick="openModalEdit(<?php echo $ind['id']; ?>)"><i class="fas fa-edit"></i></a>
+                       <a class="button is-small is-danger" onclick="deleteInd(<?php echo $ind['id']; ?>)"><i class="fas fa-trash"></i></a>
                      </td>
                     </tr>
                  <?php endforeach; ?>
                  </tbody>
                 </table>
-
-                <!-- form edit -->
-
-                <!-- form del -->
-                <form id="form-del">
-                  <?php $id_indicador = $_GET['id_indicador']; ?>
-                  <article class="message is-warning m-t-50">
-                    <div class="message-header">
-                      <p>Deseas Eliminar este indicador?</p>
-                      <button class="delete" aria-label="delete"></button>
-                    </div>
-                    <div class="message-body">
-                      <input type="hidden" id="id_indicador_to_del" value="<?php echo $_GET['id_indicador']?>"/>
-                      <button class="button is-danger is-fullwidth" id="btnDelInd"><i class="fas fa-trash"></i></button>
-                    </div>
-                  </article>
-                </form>
                 <?php else: ?>
                 <p class="notification is-warning" >No hay inidicadores de logros disponibles para este grado!</p>
               <?php endif; endforeach; ?>
 
-            <div id="add_ind_modal" class="modal modal-fx-fadeInScale modal-pos-bottom">
-            <div class="modal-background"></div>
-              <div class="modal-content is-tiny">
-                <header class="modal-card-head">
-                  <p class="modal-card-title">Añadir un Indicador</p>
-                </header>
-                <section class="modal-card-body">
+              <div id="edit_ind_modal" class="modal modal-fx-fadeInScale modal-pos-bottom">
+                <div class="modal-background"></div>
+                <div class="modal-content is-tiny">
+                  <?php if($_POST['edit_id_indicador']):
+                  $edit_id_indicador = $_POST['edit_id_indicador'];
+                  echo "el numero es:" . $edit_id_indicador;
+                  $edit_indicador = find_unic_indicator($edit_id_indicador); ?>
+                  <!-- form edit -->
+                  <form id="form-edit" class="form">
+                    <div class="box">
+
+                    <input type="hidden" id="edit_id_indicador" value="<?php echo $edit_indicador['id']; ?>"/>
+
+                    <div class="field">
+                      <label class="label is-centered">Materia</label>
+                      <div class="control is-fullwidth">
+                        <div class="select is-primary">
+                          <select id="edit_id_materia">
+                            <?php foreach($materias as $mt): ?>
+                              <option value="<?php echo $mt['materia_id']; ?>"><?php echo $mt['materia_nombre']; ?></option>
+                            <?php endforeach; ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Grado</label>
+                      <div class="control">
+                        <div class="select is-primary">
+                          <select id="edit_id_grado">
+                            <?php foreach($grados as $g): ?>
+                            <option value="<?php echo $g['id_grado']; ?>"><?php echo $g['grado_nombre']; ?></option>
+                            <?php endforeach; ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Grupo</label>
+                      <div class="control">
+                        <div class="select is-primary">
+                          <select id="edit_id_grupo">
+                            <?php foreach($grupos as $grupo): ?>
+                            <option value="<?php echo $grupo['id_grupo']; ?>"><?php echo $grupo['grupo_nombre']; ?></option>
+                            <?php endforeach; ?>
+                            <option value="0">todos</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Descripcion</label>
+                      <div class="control">
+                        <textarea class="textarea" id="edit_indicador" placeholder="Textarea"><?php echo $edit_indicador['nombre']; ?></textarea>
+                      </div>
+                    </div>
+
+                    <div class="field is-grouped">
+                      <div class="control">
+                        <button id="btnModInd" class="button is-success is-normal is-fullwidth"><i class="fab fa-telegram-plane"></i></button>
+                      </div>
+                      <div class="control">
+                        <button class="button is-text is-normal" id="btnCancelEdit">Cancel</button>
+                      </div>
+                    </div>
+
+                    </div>
+                  </form>
+                <?php else: ?>
+                  <div class="notification">No funciona</div>
+                <?php endif;?>
+                </div>
+                <button class="modal-close is-large" aria-label="close"></button>
+              </div>
+
+              <div id="add_ind_modal" class="modal modal-fx-fadeInScale modal-pos-bottom">
+                <div class="modal-content is-tiny">
+                  <header class="modal-card-head">
+                    <p class="modal-card-title">Añadir un Indicador</p>
+                  </header>
+                  <section class="modal-card-body">
                     <div class="field">
                       <div class="control">
                         <div class="select is-primary">
@@ -117,6 +181,7 @@
                             <?php foreach($grupos as $grupo): ?>
                             <option value="<?php echo $grupo['id_grupo']; ?>"><?php echo $grupo['grupo_nombre']; ?></option>
                             <?php endforeach; ?>
+                            <option value="0">todos</option>
                           </select>
                         </div>
                       </div>

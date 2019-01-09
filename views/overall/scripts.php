@@ -18,6 +18,7 @@
 <!-- CUSTOM CODE -->
 <script src="<?php echo APP_URL; ?>public/js/uploadFile.js"></script>
 <script src="<?php echo APP_URL; ?>public/js/uploadImage.js"></script>
+<script src="<?php echo APP_URL; ?>public/js/toggle-animations.js"></script>
 <!-- calendar js -->
 <script src="<?php echo APP_URL; ?>public/js/calendar.js"></script>
 </body>

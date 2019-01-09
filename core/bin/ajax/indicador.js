@@ -2,14 +2,17 @@ function openModalAdd(){
   $('#add_ind_modal').addClass('is-active');
 }
 
-function openModalEdit(){
-  var id_ind = $('#id_ind').val();
-  console.log("hola:" + id_ind);
+function openModalEdit(res){
   $('#edit_ind_modal').addClass('is-active');
-}
-
-function openModalDel(){
-  $('#del_ind_modal').addClass('is-active');
+  var edit_id_indicador = res;
+  $.ajax({
+    method: 'POST',
+    url: 'http://localhost:8888/qymera/indicador/',
+    data: {edit_id_indicador: edit_id_indicador},
+    success: function(response){
+      console.log(response);
+    }
+  })
 }
 
 $('#btnAddInd').click(function(){
@@ -23,7 +26,7 @@ $('#btnAddInd').click(function(){
 
   $.ajax({
     method: 'POST',
-    url: 'indicador&action=add',
+    url: 'http://localhost:8888/qymera/indicador/add/',
     data: {indicador: indicador, id_grado: id_grado, id_grupo: id_grupo, id_materia: id_materia},
     success: function(response){
       if(response == 1){
@@ -34,9 +37,10 @@ $('#btnAddInd').click(function(){
         swal('Alerta', 'El indicador ya existe', 'warning');
       }else if(response == 4){
         swal('Exito', 'Indicadir añadido', 'success');
-        location.replace('indicador/');
+        location.replace('http://localhost:8888/qymera/indicador/');
       }else{
-        location.replace('indicador/');
+        console.log(response);
+        location.replace('http://localhost:8888/qymera/indicador/');
       }
     }
   });
@@ -45,15 +49,14 @@ $('#btnAddInd').click(function(){
 
 $('#btnModInd').click(function(e){
 
-  e.preventDefault();
-
   var id_indicador = $('#edit_id_indicador').val();
-
+  var id_grado = $('#edit_id_grado').val();
+  var id_grupo = $('#edit_id_grupo').val();
   var edit_indicador = $('#edit_indicador').val();
 
   $.ajax({
     method: 'POST',
-    url: 'indicador&action=mod',
+    url: 'http://localhost:8888/qymera/indicator/edit/',
     data: {id_indicador: id_indicador, edit_indicador: edit_indicador},
     success: function(response){
       if(response == 1){
@@ -65,30 +68,6 @@ $('#btnModInd').click(function(e){
         location.href="indicador";
       }else{
         console.log(response);
-      }
-    }
-  });
-
-});
-
-$('#btnDelInd').click(function(){
-
-  var id_ind = $('#id_indicador_to_del').val();
-
-  $.ajax({
-    method: 'POST',
-    url: 'indicador&action=del',
-    data: {id_ind: id_ind},
-    success: function(response){
-      if(response == 1){
-        swal('Error', 'error al solicitar la información', 'error');
-      }else if(response == 2){
-        swal('Alerta', 'Los campos estan vacios', 'warning');
-      }else if(response == 3){
-        swal('Exito', 'Indicadir eliminado', 'success');
-        location.replace('indicador');
-      }else{
-        location.href="indicador";
       }
     }
   });

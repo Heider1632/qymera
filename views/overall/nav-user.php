@@ -40,7 +40,7 @@
                       </a>
                       <div class="navbar-dropdown">
                         <a class="navbar-item" href="#">
-                            <?php echo $_SESSION['nombre']; ?>
+                            <?php echo $_SESSION['nombre_completo']; ?>
                         </a>
                           <a class="navbar-item" href="<?php echo APP_URL; ?>perfil/<?php echo $_SESSION['id']; ?>">
                               <p class="lead">Perfil</p>

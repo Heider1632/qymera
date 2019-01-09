@@ -13,7 +13,7 @@
           <section class="hero is-primary m-b-10">
             <div class="hero-body">
                 <h1 class="title">
-                  Bienvenido docente: <?php echo $_SESSION['nombre']; ?>
+                  Bienvenido docente: <?php echo $_SESSION['nombre_completo']; ?>
                 </h1>
                 <h2 class="subtitle">
                   Debajo encontrarás informacion correspondinte actual

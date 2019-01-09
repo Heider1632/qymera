@@ -13,7 +13,7 @@ $_SESSION['id_periodo'] = $periodo[0]['id_periodo'];
   </p>
   <ul class="menu-list">
     <li class="username">
-      <a ><?php echo mb_strtoupper($_SESSION['nombre']); ?></a>
+      <a ><?php echo mb_strtoupper($_SESSION['nombre_completo']); ?></a>
     </li>
   </ul>
   <p class="menu-label">

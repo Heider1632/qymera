@@ -27,8 +27,9 @@
 
         $_SESSION['id'] = $user['id'];
         $_SESSION['cargo']  = $user['cargo'];
-        $_SESSION['nombre'] = $datos['primer_nombre'] . " " . $datos['segundo_nombre'];
-        $_SESSION['apellido'] = $datos['primer_apellido'] . " " . $datos['segundo_apellido'];
+        $_SESSION['nombres'] = $datos['primer_nombre'] . " " . $datos['segundo_nombre'];
+        $_SESSION['apellidos'] = $datos['primer_apellido'] . " " . $datos['segundo_apellido'];
+        $_SESSION['nombre_completo'] = $datos['primer_nombre'] . " " . $datos['primer_apellido'];
         $_SESSION['foto'] = $datos['foto'];
 
         // Verificamos que cargo tiene l usuario y asi mismo dar la respuesta a ajax para que redireccione
@@ -83,8 +84,9 @@
 
         $_SESSION['id'] = $user['id'];
         $_SESSION['cargo']  = $user['cargo'];
-        $_SESSION['nombre'] = $datos['primer_nombre'] . " " . $datos['segundo_nombre'];
-        $_SESSION['apellido'] = $datos['primer_apellido'] . " " . $datos['segundo_apellido'];
+        $_SESSION['nombres'] = $datos['primer_nombre'] . " " . $datos['segundo_nombre'];
+        $_SESSION['apellidos'] = $datos['primer_apellido'] . " " . $datos['segundo_apellido'];
+        $_SESSION['nombre_completo'] = $datos['primer_nombre'] . " " . $datos['primer_apellido'];
         $_SESSION['foto'] = $datos['foto'];
 
         // Verificamos que cargo tiene l usuario y asi mismo dar la respuesta a ajax para que redireccione

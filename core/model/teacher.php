@@ -150,6 +150,28 @@
 			$db->close();
 		}
 
+		public function getGrupoDesc(){
+			$db = new Conexion();
+
+			$query = 'SELECT grupo.id, grupo.nombre
+								FROM information_docente
+								INNER JOIN grupo ON information_docente.id_grupo = grupo.id
+								WHERE information_docente.id_docente = "'.$_SESSION['id'].'" GROUP BY grupo.id';
+
+			$results = $db->query($query);
+
+			while($x = $db->consultaArreglo($results)){
+				$grupoDesc[] = array(
+					'id_grupo' => $x['id'],
+					'grupo_nombre' => $x['nombre']
+				);
+			}
+
+			return $grupoDesc;
+
+			$db->close();
+		}
+
 		public function descInformation($id_grado, $id_grupo, $id_materia){
 
 			$db = new Conexion();
@@ -204,14 +226,14 @@
 
 		}
 
-		public function getIndicadores($id_docente, $id_materia, $id_periodo){
+		public function getIndicadores($id_materia){
 
 		  $db = new Conexion();
 
-		  $consulta = 'SELECT indicadores.id, indicadores.n, indicadores.nombre, grado.nombre
+		  $consulta = 'SELECT indicadores.id, indicadores.nombre, grado.nombre, indicadores.id_grupo
 		                FROM indicadores
 		                INNER JOIN grado ON indicadores.id_grado = grado.id
-		                WHERE id_docente="'.$id_docente.'" and id_materia= "'.$id_materia.'" and id_periodo="'.$id_periodo.'"';
+		                WHERE id_docente="'.$_SESSION['id'].'" and id_materia= "'.$id_materia.'" and id_periodo="1"';
 
 		  $res = $db->query($consulta);
 
@@ -219,9 +241,9 @@
 
 		    $indicators[] = array(
 					'id' => $f['id'],
-		      'n' => $f['n'],
-					'nombre' => $f[2],
-		      'grado_nombre' => $f[3],
+					'nombre' => $f[1],
+		      'grado_nombre' => $f[2],
+					'grupo_nombre' => $f[3]
 		    );
 
 		  }
@@ -244,8 +266,8 @@
 				if($db->rows($results) > 0){
 					echo 3;
 				}else{
-					$db->query('INSERT INTO indicadores (nombre, id_docente, id_grado, id_grupo id_materia, id_periodo)
-					VALUES ("'.$new_indicador.'", "'.$_SESSION['id'].'", "'.$id_grado.'", "'.$id_grupo.'", "'.$id_materia.'", "'.$_SESSION['id_periodo'].'")');
+					$db->query('INSERT INTO indicadores (nombre, id_docente, id_grado, id_grupo, id_materia, id_periodo)
+					VALUES ("'.$new_indicador.'", "'.$_SESSION['id'].'", "'.$id_grado.'", "'.$id_grupo.'", "'.$id_materia.'", "1")');
 
 					echo 4;
 				}
