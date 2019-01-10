@@ -39,7 +39,7 @@
         }else{
           echo 1;
         }
-      }else if($view[1] == 'edit'){
+      }else if($view[1] == 'mod'){
         if($_POST){
           $id_indicador = $_POST['id_indicador'];
           $edit_indicador = $_POST['edit_indicador'];

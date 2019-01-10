@@ -24,8 +24,8 @@
                 <a class="navbar-item" href="<?php echo APP_URL; ?>calendario/">
                     Calendario
                 </a>
-                <a class="navbar-item" href="<?php echo APP_URL; ?>notas/">
-                    Notas
+                <a class="navbar-item" href="<?php echo APP_URL; ?>actividades/">
+                    Actividades
                 </a>
                 <a class="navbar-item" href="<?php echo APP_URL; ?>notifications/">
                   <span class="badge is-badge-success is-badge-outlined" data-badge="8">

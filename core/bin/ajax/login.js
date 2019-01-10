@@ -8,7 +8,7 @@ $('#login').click(function(){
   $.ajax({
     method: 'POST',
     // Recuerda que la ruta se hace como si estuvieramos en el index y no en operaciones por esa razon no utilizamos ../ para ir a controller
-    url: 'login&action=go',
+    url: 'http://localhost:8888/qymera/login/go/',
     // Recuerda el primer parametro es la variable de php y el segundo es el dato que enviamos
     data: {email: email, password: password},
     // el parametro res es la respuesta que da php mediante impresion de pantalla (echo)
@@ -17,9 +17,6 @@ $('#login').click(function(){
       if(res == 'error_1'){
         swal('Error', 'Por favor ingrese todos los campos', 'error');
       }else if(res == 'error_2'){
-        // Recuerda que si no necesitas validar si es un email puedes eliminar el if de la linea 34
-        swal('Error', 'Por favor ingrese un email valido', 'warning');
-      }else if(res == 'error_3'){
         swal('Error', 'El usuario y contraseña que ingresaste es incorrecto', 'error');
       }else{
         // Redireccionamos a la página que diga corresponda el usuario
@@ -40,7 +37,7 @@ $('#tempLogin').click(function(){
   $.ajax({
     method: 'POST',
     // Recuerda que la ruta se hace como si estuvieramos en el index y no en operaciones por esa razon no utilizamos ../ para ir a controller
-    url: 'core/controller/tempLoginController.php',
+    url: 'http://localhost:8888/qymera/tempLogin',
     // Recuerda el primer parametro es la variable de php y el segundo es el dato que enviamos
     data: {token: token},
     // Esta funcion se ejecuta antes de enviar la información al archivo indicado en el parametro url

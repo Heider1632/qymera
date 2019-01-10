@@ -2,18 +2,19 @@ function openModalAdd(){
   $('#add_ind_modal').addClass('is-active');
 }
 
-function openModalEdit(res){
-  $('#edit_ind_modal').addClass('is-active');
-  var edit_id_indicador = res;
-  $.ajax({
-    method: 'POST',
-    url: 'http://localhost:8888/qymera/indicador/',
-    data: {edit_id_indicador: edit_id_indicador},
-    success: function(response){
-      console.log(response);
-    }
-  })
+function redirecEdit(res){
+  //capturo el id que me envia la funcion
+  var id_indicador = res;
+  //reemplazo la ruta
+  location.replace('http://localhost:8888/qymera/indicador/edit/' + id_indicador + '/');
 }
+
+function openModalEdit(){
+  console.log('hola');
+  //$('#edit_ind_modal').addClass('is-active');
+}
+
+
 
 $('#btnAddInd').click(function(){
 

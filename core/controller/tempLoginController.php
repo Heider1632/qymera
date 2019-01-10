@@ -9,7 +9,7 @@
       echo 'error_1';
   }else{
     # Incluimos la clase usuario
-    require_once('../model/usuario.php');
+    require_once('core/model/usuario.php');
 
     # Creamos un objeto de la clase usuario
     $usuario = new Usuario();

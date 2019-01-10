@@ -4,13 +4,13 @@
 		//cases to validate
 		switch ($_SESSION['cargo']) {
 			case '1':
-				header('location: admin');
+				header('location: http://localhost:8888/qymera/admin/');
 				break;
 			case '2':
-				header('location: home');
+				header('location: http://localhost:8888/qymera/home/');
 				break;
 			default:
-				header('location: index.php');
+				header('location: http://localhost:8888/qymera/');
 				break;
 		}
 ?>

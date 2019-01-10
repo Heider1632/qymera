@@ -19,25 +19,35 @@
 
         $user = $db->consultaArreglo($query);
 
-        $inf = $db->query('SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, foto from docente where id = "'.$user['id'].'"');
-
-        $datos = $db->consultaArreglo($inf);
-
         session_start();
 
         $_SESSION['id'] = $user['id'];
         $_SESSION['cargo']  = $user['cargo'];
-        $_SESSION['nombres'] = $datos['primer_nombre'] . " " . $datos['segundo_nombre'];
-        $_SESSION['apellidos'] = $datos['primer_apellido'] . " " . $datos['segundo_apellido'];
-        $_SESSION['nombre_completo'] = $datos['primer_nombre'] . " " . $datos['primer_apellido'];
-        $_SESSION['foto'] = $datos['foto'];
 
         // Verificamos que cargo tiene l usuario y asi mismo dar la respuesta a ajax para que redireccione
         if($_SESSION['cargo'] == 1){
+          $inf_director = $db->query('SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, foto from coordinador where id = "'.$user['id'].'"');
+
+          $datos = $db->consultaArreglo($inf_director);
+
+          $_SESSION['nombres'] = $datos['primer_nombre'] . " " . $datos['segundo_nombre'];
+          $_SESSION['apellidos'] = $datos['primer_apellido'] . " " . $datos['segundo_apellido'];
+          $_SESSION['nombre_completo'] = $datos['primer_nombre'] . " " . $datos['primer_apellido'];
+          $_SESSION['foto'] = $datos['foto'];
+
           //redirec
-          echo "admin/";
+          echo APP_URL . "admin/";
 
         }else if($_SESSION['cargo'] == 2){
+
+          $inf_docente = $db->query('SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, foto from docente where id = "'.$user['id'].'"');
+
+          $datos = $db->consultaArreglo($inf_docente);
+
+          $_SESSION['nombres'] = $datos['primer_nombre'] . " " . $datos['segundo_nombre'];
+          $_SESSION['apellidos'] = $datos['primer_apellido'] . " " . $datos['segundo_apellido'];
+          $_SESSION['nombre_completo'] = $datos['primer_nombre'] . " " . $datos['primer_apellido'];
+          $_SESSION['foto'] = $datos['foto'];
 
           $consulta = 'SELECT director FROM docente WHERE id = "'.$_SESSION['id'].'"';
 
@@ -49,7 +59,7 @@
 
           }
           //redirec
-          echo "home/";
+          echo APP_URL . "home/";
           }else{
             echo 'error';
           }
@@ -92,11 +102,11 @@
         // Verificamos que cargo tiene l usuario y asi mismo dar la respuesta a ajax para que redireccione
         if($_SESSION['cargo'] == 1){
 
-          echo "admin/";
+          echo APP_URL . "admin/";
 
         }else if($_SESSION['cargo'] == 2){
 
-          echo "home/";
+          echo APP_URL . "home/";
 
           $consulta = 'SELECT director FROM docente WHERE id = "'.$_SESSION['id'].'"';
 

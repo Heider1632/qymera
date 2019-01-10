@@ -2,8 +2,8 @@
 <nav class="navbar">
   <div class="container">
       <div class="navbar-brand">
-          <a class="navbar-item" href="../">
-              <img src="public/images/logo-sysnote.png" alt="Logo">
+          <a class="navbar-item" href="<?php echo APP_URL ?>admin/">
+              <img src="<?php echo APP_URL ?>public/images/title-qymera.png" alt="Logo">
           </a>
           <span class="navbar-burger burger" data-target="navbarMenu">
           <span></span>
@@ -13,13 +13,16 @@
        </div>
        <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item is-active" href="admin">
+                <a class="navbar-item is-active" href="<?php echo APP_URL ?>admin/">
                   Inicio
                 </a>
-                <a class="navbar-item" href="calendario">
-                    Calendario
+                <a class="navbar-item" href="<?php echo APP_URL ?>calendario/">
+                    <i class="far fa-calendar-times"></i>
                 </a>
-                <a class="navbar-item" href="cerrarSesion">
+                <a class="navbar-item" href="<?php echo APP_URL ?>config/">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <a class="navbar-item" href="<?php echo APP_URL ?>cerrarSesion/">
                     Salir
                 </a>
               </div>

@@ -11,6 +11,8 @@
       <div class="column">
           <div class="box m-t-10">
 
+            <?php var_dump($my_views);  ?>
+
           </div>
           <!-- bar to actions -->
             <?php if(3 > 5): ?>
@@ -57,7 +59,7 @@
                        <td>Todos</td>
                      <?php endif;?>
                      <td>
-                       <a class="button is-small is-link" onclick="openModalEdit(<?php echo $ind['id']; ?>)"><i class="fas fa-edit"></i></a>
+                       <a class="button is-small is-link" onclick="redirecEdit(<?php echo $ind['id']; ?>)"><i class="fas fa-edit"></i></a>
                        <a class="button is-small is-danger" onclick="deleteInd(<?php echo $ind['id']; ?>)"><i class="fas fa-trash"></i></a>
                      </td>
                     </tr>
@@ -71,15 +73,15 @@
               <div id="edit_ind_modal" class="modal modal-fx-fadeInScale modal-pos-bottom">
                 <div class="modal-background"></div>
                 <div class="modal-content is-tiny">
-                  <?php if($_POST['edit_id_indicador']):
-                  $edit_id_indicador = $_POST['edit_id_indicador'];
-                  echo "el numero es:" . $edit_id_indicador;
-                  $edit_indicador = find_unic_indicator($edit_id_indicador); ?>
+                  <?php if(!empty($my_views['edit'])):
+                  $id_indicador = $my_views['edit'];
+
+                  $edit_indicador = find_unic_indicator($id_indicador); ?>
                   <!-- form edit -->
                   <form id="form-edit" class="form">
                     <div class="box">
 
-                    <input type="hidden" id="edit_id_indicador" value="<?php echo $edit_indicador['id']; ?>"/>
+                    <input type="hidden" id="edit_id_indicador" value="<?php echo $id_indicador ?>"/>
 
                     <div class="field">
                       <label class="label is-centered">Materia</label>

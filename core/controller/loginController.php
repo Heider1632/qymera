@@ -4,9 +4,7 @@ if(isset($_SESSION['id'])){
 	header('location: redirec');
 } else {
 
-	$action = isset($_GET['action']) ? $_GET['action'] : 'view';
-
-	switch ($action) {
+	switch ($view[1]) {
 		case 'go':
 		# Leemos las variables enviadas mediante Ajax
 		$email = $_POST['email'];
@@ -17,7 +15,11 @@ if(isset($_SESSION['id'])){
 				# mostramos la respuesta de php (echo)
 				echo 'error_1';
 		}else{
-			if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			// Remove all illegal characters from email
+			$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+			filter_var($email, FILTER_VALIDATE_EMAIL);
+
 			# Incluimos la clase usuario
 			require_once 'core/model/usuario.php';
 
@@ -30,9 +32,6 @@ if(isset($_SESSION['id'])){
 			# Llamamos al metodo login para validar los datos en la base de datos
 			$usuario->login($email, $clave);
 
-			}else{
-				echo 'error_2';
-				}
 			}
 			break;
 
