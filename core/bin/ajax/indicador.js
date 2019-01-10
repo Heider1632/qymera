@@ -4,14 +4,22 @@ function openModalAdd(){
 
 function redirecEdit(res){
   //capturo el id que me envia la funcion
-  var id_indicador = res;
-  //reemplazo la ruta
-  location.replace('http://localhost:8888/qymera/indicador/edit/' + id_indicador + '/');
+  var response = res;
+  //lanzo un ajax modo asincrono
+  $.ajax({
+    method: 'POST',
+    url: 'http://localhost:8888/qymera/indicador/',
+    data: {response: response},
+    success: function(res){
+      console.log(res);
+      openModalEdit();
+    }
+  });
+
 }
 
 function openModalEdit(){
-  console.log('hola');
-  //$('#edit_ind_modal').addClass('is-active');
+  $('#edit_ind_modal').addClass('is-active');
 }
 
 

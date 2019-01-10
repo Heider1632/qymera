@@ -13,6 +13,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- no cache -->
+    <meta http-equiv="Expires" content="0">
+
+    <meta http-equiv="Last-Modified" content="0">
+
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+
+    <meta http-equiv="Pragma" content="no-cache">
+
     <!-- Util css -->
     <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>/public/css/util.css">
 

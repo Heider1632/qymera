@@ -11,8 +11,6 @@
       <div class="column">
           <div class="box m-t-10">
 
-            <?php var_dump($my_views);  ?>
-
           </div>
           <!-- bar to actions -->
             <?php if(3 > 5): ?>
@@ -73,13 +71,15 @@
               <div id="edit_ind_modal" class="modal modal-fx-fadeInScale modal-pos-bottom">
                 <div class="modal-background"></div>
                 <div class="modal-content is-tiny">
-                  <?php if(!empty($my_views['edit'])):
-                  $id_indicador = $my_views['edit'];
+                  <?php if(isset($_POST)):
+
+                  $id_indicador = $_SESSION['edit_id_indicador'];
 
                   $edit_indicador = find_unic_indicator($id_indicador); ?>
                   <!-- form edit -->
                   <form id="form-edit" class="form">
                     <div class="box">
+                      <?php echo "num: " . $id_indicador; ?>
 
                     <input type="hidden" id="edit_id_indicador" value="<?php echo $id_indicador ?>"/>
 

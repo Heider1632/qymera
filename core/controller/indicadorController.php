@@ -52,6 +52,9 @@
           echo 1;
         }
       }else{
+        if(isset($_POST['response'])):
+          $_SESSION['edit_id_indicador'] = $_POST['response'];
+        else:
         /*template indicador */
           /* header */
           include 'views/overall/header.php';
@@ -61,6 +64,7 @@
 
           /* scripts*/
           include 'views/overall/scripts.php';
+        endif;
       }
 
     endif;
