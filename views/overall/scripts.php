@@ -6,6 +6,7 @@
 <script src="<?php echo APP_URL; ?>public/js/hora.js"></script>
 <!-- ajax -->
 <script src="<?php echo APP_URL; ?>core/bin/ajax/indicador.js"></script>
+<script src="<?php echo APP_URL; ?>core/bin/ajax/notification.js"></script>
 <script src="<?php echo APP_URL; ?>core/bin/functions/refresh.js"></script>
 <!-- idioma español para el calendario -->
 <script src="<?php echo APP_URL; ?>public/js/es.js"></script>

@@ -9,11 +9,9 @@
 	$coexistence = new Coexistence();
 	$teacher = new Teacher();
 
-	$action = isset($_GET['action']) ? $_GET['action'] : 'view';
-
-	switch ($action) {
+	switch ($view[1]) {
 		case 'upload':
-		if($_POST){
+			if($_POST){
 			  $file = $_FILES['file']['tmp_name'];
 			  $fileName = $_FILES['file']['name'];
 			  $fileType = $_FILES['file']['type'];
@@ -22,11 +20,21 @@
 			  $id_matter = $_POST['id_matter'];
 
 			  $coexistence->uploadAreaPlane($fileName, $fileType, $file, $id_grade, $id_matter);
-		}else{
-			echo 1;
-		}
-		break;
-
+			}else{
+				echo 1;
+			}
+			break;
+		case 'read':
+			$id = $view[2];
+			$file = find_areaplane($id);
+			if($file[0]['ext'] == 'pdf'){
+				header('content-type: application/pdf');
+				readfile('http://localhost:8888/qymera/' . $file[0]['name']);
+			}else{
+				header('content-type: application/docx');
+				readfile('http://localhost:8888/qymera/' . $file[0]['name']);
+			}
+			break;
 		default:
 		/* areaplanes view */
 			/* header */

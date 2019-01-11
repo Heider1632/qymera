@@ -29,7 +29,11 @@
                 </a>
                 <a class="navbar-item button-badge" href="<?php echo APP_URL; ?>notifications/">
                     <i class="fas fa-bell"></i>
-                    <span class="badge alert">1</span>
+                    <span class="badge alert" id="span-notification">0</span>
+                </a>
+                <a class="navbar-item button-badge" href="<?php echo APP_URL; ?>compartir/">
+                    <i class="fas fa-mail-bulk"></i>
+                    <span class="badge alert" id="span-shared">0</span>
                 </a>
                 <!-- profile navbar card-->
                 <!-- dropdown -->

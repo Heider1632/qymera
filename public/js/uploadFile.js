@@ -37,7 +37,7 @@ Upload.prototype.doUpload = function () {
 
     $.ajax({
         method: "POST",
-        url: "areaplanes&action=upload",
+        url: "http://localhost:8888/qymera/areaplanes/upload/",
         xhr: function () {
             var myXhr = $.ajaxSettings.xhr();
             if (myXhr.upload) {

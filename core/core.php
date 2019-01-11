@@ -31,4 +31,5 @@ require('core/bin/functions/addEvent.php');
 require('core/bin/functions/delEvent.php');
 require('core/bin/functions/modEvent.php');
 require('core/bin/functions/indicators.php');
+require('core/bin/functions/find_areaplane.php');
 ?>

@@ -65,16 +65,28 @@
             <progress id="progress" class="status progress is-info" value="0" max="100">0%</progress>
           </div>
       </div>
-      <?php ?>
+      <?php $planes_area = $coexistence->getAreaPlanes(); if(!empty($planes_area)): ?>
 
-      <div class="notification is-success m-t-10">
-        <button class="delete"></button>
-        Primar lorem ipsum dolor sit amet, consectetur
-        adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Sit amet,
-        consectetur adipiscing elit
-      </div>
+        <?php foreach ($planes_area as $p): ?>
+          <div class="notification is-info">
+            <p class="title">
+              grado: <?php echo $p['nombre_grado']; ?>
+              materia: <?php echo $p['nombre_materia']; ?>
+              tipo: <?php echo $p['ext']; ?>
+              <a href="<?php echo APP_URL; ?>areaplanes/read/<?php echo $p['id']; ?>/">
+                <i class="fas fa-book"></i>
+              </a>
+            </p>
+          </div>
+        <?php endforeach; ?>
+      <?php else:?>
 
-      <?php ?>
+        <div class="notification is-warning m-t-10">
+          <button class="delete"></button>
+          Aún no han subido ningun plan de area
+        </div>
+
+      <?php endif;?>
       </div>
     </div>
   </div>

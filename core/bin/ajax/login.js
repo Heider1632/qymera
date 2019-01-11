@@ -21,6 +21,17 @@ $('#login').click(function(){
       }else{
         // Redireccionamos a la página que diga corresponda el usuario
         window.location.href= res
+
+        $.ajax({
+          method:'GET',
+          url: 'http://localhost:8888/qymera/core/bin/functions/count-notification.php',
+          success: function(res){
+            $('#span-notification').text(res);
+          },
+          error: function(error){
+            console.log(error);
+          }
+        })
       }
 
     }

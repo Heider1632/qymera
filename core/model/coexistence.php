@@ -180,7 +180,7 @@
                     // directorio especifico de el archivo de area planes
                     $dir = "public/media/areaplanes/".$id_grade."/".$nombre."";
                     copy($dirtemp, $dir);
-                    $db->query('INSERT INTO planes_area (name, id_grade, id_matter) VALUES ("'.$dir.'", "'.$id_grade.'", "'.$id_matter.'")');
+                    $db->query('INSERT INTO planes_area (name, ext, id_grado, id_materia, id_docente) VALUES ("'.$dir.'", "'.$extension.'", "'.$id_grade.'", "'.$id_matter.'", "'.$_SESSION['id'].'")');
                     unlink($dirtemp); //Borrar el fichero temporal
                     echo 5;
                     $db->close();
@@ -191,5 +191,29 @@
           } else {
             echo 2;
           }
+        }
+
+        public function getAreaPlanes(){
+          $db = new Conexion();
+
+          $sql = 'SELECT planes_area.id, name, ext, grado.nombre, materias.nombre FROM planes_area
+          INNER JOIN grado ON planes_area.id_grado = grado.id
+          INNER JOIN materias ON planes_area.id_materia = materias.id';
+
+          $results = $db->query($sql);
+
+          while($f = $db->consultaArreglo($results)){
+            $planes_area[] = array(
+              'id' => $f['id'],
+              'ext' => $f['ext'],
+              'nombre' => $f['name'],
+              'nombre_grado' => $f[3],
+              'nombre_materia' => $f[4]
+            );
+          }
+
+          return $planes_area;
+
+          $db->close();
         }
     }
