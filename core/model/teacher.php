@@ -101,7 +101,7 @@
 
       $db = new Conexion();
 
-      $consulta = 'SELECT grado.id, grado.nombre, grupo.id, grupo.namescape
+      $consulta = 'SELECT grado.id, grado.nombre, grupo.id, grupo.nombre
 										FROM information_docente
 										INNER JOIN grado ON information_docente.id_grado = grado.id
 										INNER JOIN grupo ON information_docente.id_grupo = grupo.id
@@ -113,12 +113,10 @@
       while ($fila = $db->consultaArreglo($results)) {
 
             $grado[] = array(
-
               'id_grado' => $fila[0],
-              'nombre_grado' => $fila['nombre'],
+              'nombre_grado' => $fila[1],
               'id_grupo' => $fila[2],
-              'nombre_grupo' => $fila['namescape']
-
+              'nombre_grupo' => $fila[3]
             );
       }
 

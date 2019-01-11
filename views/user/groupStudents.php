@@ -11,8 +11,9 @@
       <div class="column">
         <?php
         if($_GET):
-        $id_grado = urldecode($_GET['id_grado']);
-        $id_grupo = urldecode($_GET['id_grupo']);
+        $id_grado = $view[2];
+        $id_grupo = $view[4];
+
         $estudiantes = ($coexistence->getEstudiantes($id_grado, $id_grupo));
         if(!empty($estudiantes)): ?>
           <table class="table is-hoverable is-narrow is-fullwidth">
@@ -32,15 +33,15 @@
                 <td><?php echo $s['n']; ?></td>
                 <td>
                   <?php if(empty($s['foto'])): ?>
-                    <img src="public/media/fotos/user-default.png" width="40" height="40"></img>
+                    <img src="<?php echo APP_URL ?>public/media/user-default.png" width="40" height="40"></img>
                   <?php else: ?>
-                    <img src="public/media/fotos/<?php echo $s['foto']; ?>" width="40" height="40"></img>
+                    <img src="<?php echo APP_URL ?>public/media/students/fotos/<?php echo $s['id']; ?>/<?php echo $s['foto']; ?>" width="40" height="40"></img>
                   <?php endif; ?>
                 </td>
                 <td><?php echo $s['primer_nombre']; ?></td>
                 <td><?php echo $s['segundo_nombre']; ?></td>
                 <td><?php echo $s['primer_apellido']; ?></td>
-                <td><?php echo $s['segundo_nombre']; ?></td>
+                <td><?php echo $s['segundo_apellido']; ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>

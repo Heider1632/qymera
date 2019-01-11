@@ -6,13 +6,20 @@
     }else{
       include 'views/overall/nav-admin.php';
     }
-
-    /* information bar*/
-    include 'views/overall/bar_inf.php';
 ?>
-    <div class="container m-t-20">
-      <div id="calendar"></div>
+<div class="container is-fluid">
+  <div class="columns is-2">
+    <div class="column is-one-quarter">
+      <?php include 'views/overall/nav-aside.php'; ?>
     </div>
+    <div class="column">
+      <div class="m-t-25 m-l-20 m-r-20">
+        <!-- render calendar -->
+        <div id="calendar"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- modal calendar to events -->
     <div id="event-id" class="modal modal-fx-3dSignDown">

@@ -9,23 +9,18 @@
 		$teacher = new Teacher();
     $coexistence = new Coexistence();
 
-		$materias = ($teacher->getMateria());
+		$materias = $teacher->getMateria();
 
-    $action = isset($_GET['action']) ? $_GET['action'] : 'preview';
-
-    switch ($action) {
-      case 'view':
-      /* home view */
+    if($view[1] == 'grado' && $view[3] == 'grupo'){
+			/* home view */
         /* header */
         include 'views/overall/header.php';
 
         include 'views/user/groupStudents.php';
         /* scripts*/
         include 'views/overall/scripts.php';
-        break;
-
-      default:
-      /* home view */
+		}else{
+			/* home view */
         /* header */
         include 'views/overall/header.php';
 
@@ -39,43 +34,46 @@
                 <?php include 'views/overall/nav-aside.php'; ?>
               </div>
               <div class="column">
-                <div class="tabs is-centered m-t-20 is-large">
-                  <ul>
-                    <?php foreach ($materias as $m): ?>
-                        <form id="handleMater_<?php echo $m['materia_id']; ?>" action="#" method="post">
-                        <input type="hidden" name="id_materia" value="<?php echo $m['materia_id']?>"/>
-                        <li><a href="javascript:{}" onclick="document.getElementById('handleMater_<?php echo $m['materia_id']; ?>').submit(); return false;"><?php echo $m['materia_nombre']; ?></a></li>
-                        </form>
-                    <?php endforeach; ?>
-                  </ul>
-                </div>
-
-                <!-- divider -->
-                <?php if(isset($_POST['id_materia'])):
-                  $grados = ($teacher->getGrado($_POST['id_materia']));
-                  ?>
-                <div class="block">
-                  <?php foreach($grados as $g): ?>
-                    <p class="notification is-info">
-                          <?php echo "GRADO: " . $g['nombre_grado'] . " GRUPO: " . $g['nombre_grupo']; ?>
-
-                          <span class="icon m-l-20">
-                            <a class="button is-primary" href="groupStudent&action=view&id_grado=<?php echo urlencode($g['id_grado']); ?>&id_grupo=<?php echo urlencode($g['id_grupo']); ?>">
-                              <i class="fas fa-list-alt"></i>
-                            </a>
-                          </span>
-
-                    </p>
-                  <?php endforeach; endif; ?>
-                </div>
+								<!-- view for tablet and desktop -->
+								<!-- view for mobile -->
+								<?php foreach($materias as $matter): ?>
+								<div class="tabs is-centered m-b-20 is-boxed is-large">
+									<ul>
+											<li><a id="preview"><?php echo $matter['materia_nombre']; ?></a></li>
+									</ul>
+								</div>
+								<?php $id_materia = $matter['materia_id']; $grados = $teacher->getGrado($id_materia); ?>
+								<div id="form-preview" class="content">
+								<table class="table is-hoverable is-narrow is-fullwidth">
+										<thead>
+												<tr>
+														<th>Grado</th>
+														<th>Grupo</th>
+														<th>Accion</th>
+													</tr>
+										</thead>
+										<tbody>
+										<?php foreach($grados as $g): ?>
+										<tr>
+												<td><?php echo $g['nombre_grado']?></td>
+												<td><?php echo $g['nombre_grupo']?></td>
+												<td>
+													<button class="button is-info is-medium">
+															<a href="<?php echo APP_URL ?>groupStudent/grado/<?php echo $g['id_grado']?>/grupo/<?php echo $g['id_grupo'] ?>/"><i class="fas fa-users f-3x"></i></a>
+													</button>
+												</td>
+											</tr>
+											<?php endforeach; ?>
+											</tbody>
+									</table>
+								</div>
+								<?php endforeach; ?>
               </div>
             </div>
           </div>
         <?php
         /* scripts*/
         include 'views/overall/scripts.php';
-        break;
-    }
-
+		}
 	endif;
 ?>

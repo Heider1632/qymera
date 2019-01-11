@@ -34,7 +34,7 @@
 
             $db = new Conexion();
 
-            $consulta = 'SELECT estudiantes.id, estudiantes.n, estudiantes.foto, estudiantes.primer_nombre, estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido, grado.nombre, grupo.namescape FROM estudiantes
+            $consulta = 'SELECT estudiantes.id, estudiantes.n, estudiantes.foto, estudiantes.primer_nombre, estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido, grado.nombre, grupo.nombre FROM estudiantes
 	                INNER JOIN grado ON estudiantes.id_grado = grado.id
 	                INNER JOIN grupo ON estudiantes.id_grupo = grupo.id
 	                WHERE grado.id = "'.$id_grado.'" and grupo.id = "'.$id_grupo.'"';
@@ -50,7 +50,9 @@
           				'primer_nombre' => $fila['primer_nombre'],
           				'segundo_nombre' => $fila['segundo_nombre'],
           				'primer_apellido' => $fila['primer_apellido'],
-          				'segundo_apellido' => $fila['segundo_apellido']
+          				'segundo_apellido' => $fila['segundo_apellido'],
+                  'grado_nombre' => $fila[7],
+                  'grupo_nombre' => $fila[8]
         				);
             }
 

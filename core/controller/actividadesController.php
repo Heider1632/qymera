@@ -15,11 +15,11 @@
           break;
         default:
           //header
-          include 'public/overall/header.php';
+          include 'views/overall/header.php';
 
-            echo "hola";
+          include 'views/user/actividades.php';
           //scripts
-          include 'public/overall/scripts.php';
+          include 'views/overall/scripts.php';
           break;
       }
 

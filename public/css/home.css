@@ -121,3 +121,36 @@ html, body {
 th:hover {
   animation: shake 500ms ease-in-out forwards;
 }
+
+.content{
+  display: none;
+}
+
+.button-badge {
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  position: relative;
+  display: inline-block;
+  border-radius: .2rem;
+  transition: all ease 0.4s;
+}
+
+.button-badge:hover {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button-badge:hover > .fas{
+  color: #1779ba;
+}
+
+.badge {
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 0px;
+  right: 3px;
+  font-size: .8em;
+  width: 20px;
+  border-radius: 50%;
+  background-color: red;
+}

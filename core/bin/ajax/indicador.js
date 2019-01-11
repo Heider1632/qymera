@@ -2,6 +2,24 @@ function openModalAdd(){
   $('#add_ind_modal').addClass('is-active');
 }
 
+
+/*new Promise(function(resolve, reject) {
+
+  resolve((res) => {
+    console.log(res);
+  })
+
+  reject(() => {
+    console.error(error);
+  })
+
+}).then(function(result) {
+
+  alert(result);
+  return result * 2; // <-- (1)
+
+});*/
+
 function redirecEdit(res){
   //capturo el id que me envia la funcion
   var response = res;
@@ -82,3 +100,44 @@ $('#btnModInd').click(function(e){
   });
 
 });
+
+function deleteInd(res){
+
+  Swal({
+    position: 'bottom-end',
+    title: 'Estas seguro de eliminar este indicador?',
+    text: 'Los cambios no se podrán revertir.',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, borrar!'
+  }).then((result) => {
+    if(result.value){
+      $.ajax({
+        method: 'POST',
+        url: 'http://localhost:8888/qymera/indicador/del/',
+        data: {id_ind: res},
+        success: function(response){
+          if(response == 1){
+            swal('Error', 'error al solicitar la información', 'error');
+          }else if(response == 2){
+            swal('Alerta', 'Los campos estan vacios', 'warning');
+          }else if(response == 3){
+            swal('Exito', 'Indicadir eliminado', 'success');
+            location.replace('indicador');
+          }else{
+            location.href="indicador";
+          }
+        }
+      });
+    }else{
+      Swal({
+        position: 'bottom-end',
+        title: 'has cancelado la operación.',
+        type: 'info'
+      })
+    }
+  })
+
+}

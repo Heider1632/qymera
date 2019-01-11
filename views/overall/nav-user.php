@@ -27,10 +27,9 @@
                 <a class="navbar-item" href="<?php echo APP_URL; ?>actividades/">
                     Actividades
                 </a>
-                <a class="navbar-item" href="<?php echo APP_URL; ?>notifications/">
-                  <span class="badge is-badge-success is-badge-outlined" data-badge="8">
-                      <i class="fas fa-bell"></i>
-                  </span>
+                <a class="navbar-item button-badge" href="<?php echo APP_URL; ?>notifications/">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge alert">1</span>
                 </a>
                 <!-- profile navbar card-->
                 <!-- dropdown -->
