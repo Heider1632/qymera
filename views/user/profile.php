@@ -12,9 +12,9 @@
         <!-- form pick user -->
         <!-- img profile -->
         <?php if(!empty($_SESSION['foto'])): ?>
-          <img src="<?php echo APP_URL . $_SESSION['foto'] ?>" class="img-profile"  alt="<?php echo $_SESSION['nombre']; ?>"/>
+          <img src="<?php echo APP_URL . $_SESSION['foto']; ?>" class="img-profile"  alt="<?php echo $_SESSION['nombre_completo']; ?>"/>
         <?php else: ?>
-        <img src="<?php echo APP_URL; ?>/media/user-default.png" class="img-profile"  alt="<?php echo $_SESSION['nombre']; ?>"/>
+        <img src="<?php echo APP_URL; ?>public/media/user-default.png" class="img-profile"  alt="<?php echo $_SESSION['nombre_completo']; ?>"/>
         <?php endif; ?>
         <div class="file has-name is-info is-right">
           <label class="file-label">

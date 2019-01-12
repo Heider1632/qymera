@@ -11,11 +11,11 @@
 
     while($x = $db->consultaArreglo($results)){
       $events[] = array(
-        'id_events' => $x[0],
-        'title' => $x[1],
-        'body' => $x[2],
-        'start' => $x[3],
-        'end' => $x[4]
+        'id' => $x['id'],
+        'title' => $x['titulo'],
+        'body' => $x['cuerpo'],
+        'start' => $x['inicio'],
+        'end' => $x['finalizacion']
       );
     }
 

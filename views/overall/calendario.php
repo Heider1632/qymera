@@ -6,23 +6,23 @@
     }else{
       include 'views/overall/nav-admin.php';
     }
-?>
-<div class="container is-fluid">
-  <div class="columns is-2">
-    <div class="column is-one-quarter">
-      <?php include 'views/overall/nav-aside.php'; ?>
-    </div>
-    <div class="column">
-      <div class="m-t-25 m-l-20 m-r-20">
-        <!-- render calendar -->
-        <div id="calendar"></div>
+    ?>
+    <div class="container is-fluid">
+      <div class="columns is-2">
+        <div class="column is-one-quarter">
+          <?php include 'views/overall/nav-aside.php'; ?>
+        </div>
+        <div class="column">
+          <div class="m-t-25 m-l-20 m-r-20">
+            <!-- render calendar -->
+            <div id="calendar"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
     <!-- modal calendar to events -->
-    <div id="event-id" class="modal modal-fx-3dSignDown">
+    <div id="event-modal" class="modal modal-fx-3dSignDown">
         <div class="modal-background" style="background-image:url('<?php echo APP_URL; ?>public/images/hero-aside.jpg')"></div>
         <div class="modal-content">
             <!-- content -->
@@ -67,45 +67,3 @@
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
     </div>
-
-    <script language="javascript">
-    $('#addEvent').click(function(){
-
-      var title = $('#titulo').val();
-      var body = $('#body').val();
-      var start_date = $('#start_date').val();
-      var end_date = $('#end_date').val();
-
-      var action = 'add';
-
-      $.ajax({
-        type: 'POST',
-        url: '?view=events',
-        data: {title: title, body: body, start_date: start_date, end_date: end_date, action: action},
-        success: function(res){
-          if(res == 1){
-            setTimeout(function(){
-              swal('success', 'evento añadido', 'success');
-            }, 1000);
-
-            $("#event-id").removeClass("is-active");
-
-            location.reload();
-          }else{
-            swal('error', 'sucedio algo insesperado', 'error');
-          }
-        }
-      });
-
-    });
-
-    $('#modEvent').click(function(){
-      var id_event = $('#id_event').val();
-
-    });
-
-    $('#delEvent').click(function(){
-      var id_event = $('#id_event').val();
-
-    });
-    </script>

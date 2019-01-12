@@ -5,8 +5,8 @@
 
       $db = new Conexion();
 
-      $sql = 'INSERT INTO eventos (title, body, start, end)
-              values("'.$titulo.'", "'.$body.'", "'.$start_date.'", "'.$end_date.'")';
+      $sql = 'INSERT INTO eventos (titulo, cuerpo, inicio, finalizacion, id_docente)
+              VALUES ("'.$title.'", "'.$body.'", "'.$start_date.'", "'.$end_date.'", "'.$_SESSION['id'].'")';
 
       $results = $db->query($sql);
     }
