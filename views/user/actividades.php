@@ -31,6 +31,64 @@
             </div>
 
             <div class="field is-horizontal">
+              <div class="field-label"></div>
+              <div class="field-body">
+                <div class="field is-expanded">
+                  <div class="field has-addons">
+                    <p class="control">
+                      <a class="button is-static">
+                        Tipo
+                      </a>
+                    </p>
+                    <p class="control is-expanded">
+                      <input class="input" type="tel" placeholder="el titulo de la actividad" id="tipo">
+                    </p>
+                  </div>
+                  <p class="help">ejemplo: taller, examen, ensayo, etc.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Descripcion</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="field has-addons">
+                    <p class="control is-expanded">
+                      <textarea class="textarea is-primary is-fullwidth" rows="3" autofocus id="description"></textarea>
+                    </p>
+                  </div>
+                  <p class="help">Descripcion de la actividad</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Indicador</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <div class="field has-addons">
+                    <p class="control is-expanded">
+                      <div class="select is-fullwidth">
+                        <select class="is-hovered" id="id_indicator">
+                          <option value="0">Seleccione un indicador</option>
+                          <?php foreach($indicadores as $indicador): ?>
+                          <option value="id_indicador"><?php echo $indicador['nombre'] . "-" . $indicador['grado_nombre'] . "-" . $indicador['grupo_nombre'] ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </p>
+                  </div>
+                  <p class="help">Seleccion un indicador correspondiente a la actividad</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
               <div class="field-label is-normal">
                 <label class="label">Fechas</label>
               </div>

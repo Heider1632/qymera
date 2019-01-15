@@ -73,7 +73,7 @@
               grado: <?php echo $p['nombre_grado']; ?>
               materia: <?php echo $p['nombre_materia']; ?>
               tipo: <?php echo $p['ext']; ?>
-              <a href="<?php echo APP_URL; ?>areaplanes/read/<?php echo $p['id']; ?>/">
+              <a target="_blank" href="<?php echo APP_URL; ?>teacher/areaplanes/read/<?php echo $p['id']; ?>/">
                 <i class="fas fa-book"></i>
               </a>
             </p>

@@ -13,17 +13,8 @@
 	/* home view */
 		/* header */
 		include 'views/overall/header.php';
-
-		?>
-		<div id="home">
-		<?php
-
 		/* template home */
 		include 'views/user/home.php';
-
-		?>
-		</div>
-		<?php
 		/* scripts*/
 		include 'views/overall/scripts.php';
 

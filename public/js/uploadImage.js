@@ -33,7 +33,7 @@ UploadImageProfile.prototype.doUpload = function () {
 
     $.ajax({
         method: "POST",
-        url: "perfil&action=upload",
+        url: "http://localhost:8888/qymera/perfil/upload/",
         xhr: function () {
             var myXhr = $.ajaxSettings.xhr();
             if (myXhr.upload) {

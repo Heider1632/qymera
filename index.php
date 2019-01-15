@@ -22,13 +22,13 @@ session_start();
         include ('core/controller/default/errorController.php');
       }
       break;
-
     case 'teacher':
       if((file_exists('core/controller/'. $folder. '/' . $controller . 'Controller.php'))){
-        include ('core/controller/'. $folder. '/' . $controller . 'Controller.php');
+        include ('core/controller/'.$folder.'/' . $controller . 'Controller.php');
       }else{
         include ('core/controller/default/errorController.php');
       }
+      break;
     default:
       if((file_exists('core/controller/'. $folder. '/' . $controller . 'Controller.php'))){
         include ('core/controller/'. $folder. '/' . $controller . 'Controller.php');

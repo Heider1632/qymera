@@ -14,7 +14,7 @@
       $materias = $teacher->getMateria();
 
 
-      if($view[1] == 'add'){
+      if($view[2] == 'add'){
         if($_POST){
         $new_indicador = str_replace("0-9", "", strtolower($_POST['indicador']));
         $id_grado = $_POST['id_grado'];
@@ -28,7 +28,7 @@
         }else {
           echo 1;
         }
-      }else if($view[1] == 'del'){
+      }else if($view[2] == 'del'){
         if($_POST){
           $id_indicador = $_POST['id_ind'];
           if(!empty($id_indicador)){
@@ -39,7 +39,7 @@
         }else{
           echo 1;
         }
-      }else if($view[1] == 'mod'){
+      }else if($view[2] == 'mod'){
         if($_POST){
           $id_indicador = $_POST['id_indicador'];
           $edit_indicador = $_POST['edit_indicador'];

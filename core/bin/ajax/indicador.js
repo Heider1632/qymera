@@ -53,7 +53,7 @@ $('#btnAddInd').click(function(){
 
   $.ajax({
     method: 'POST',
-    url: 'http://localhost:8888/qymera/indicador/add/',
+    url: 'http://localhost:8888/qymera/teacher/indicador/add/',
     data: {indicador: indicador, id_grado: id_grado, id_grupo: id_grupo, id_materia: id_materia},
     success: function(response){
       if(response == 1){
@@ -64,10 +64,10 @@ $('#btnAddInd').click(function(){
         swal('Alerta', 'El indicador ya existe', 'warning');
       }else if(response == 4){
         swal('Exito', 'Indicadir añadido', 'success');
-        location.replace('http://localhost:8888/qymera/indicador/');
+        location.replace('http://localhost:8888/qymera/teacher/indicador/');
       }else{
         console.log(response);
-        location.replace('http://localhost:8888/qymera/indicador/');
+        location.replace('http://localhost:8888/qymera/teacher/indicador/');
       }
     }
   });
@@ -83,7 +83,7 @@ $('#btnModInd').click(function(e){
 
   $.ajax({
     method: 'POST',
-    url: 'http://localhost:8888/qymera/indicator/edit/',
+    url: 'http://localhost:8888/qymera/teacher/indicator/edit/',
     data: {id_indicador: id_indicador, edit_indicador: edit_indicador},
     success: function(response){
       if(response == 1){
@@ -92,7 +92,7 @@ $('#btnModInd').click(function(e){
         swal('Alerta', 'Los campos estan vacios', 'warning');
       }else if(response == 3){
         swal('Exito', 'Indicadir editado', 'success');
-        location.href="indicador";
+        location.replace('http://localhost:8888/qymera/teacher/indicador/');
       }else{
         console.log(response);
       }
@@ -116,7 +116,7 @@ function deleteInd(res){
     if(result.value){
       $.ajax({
         method: 'POST',
-        url: 'http://localhost:8888/qymera/indicador/del/',
+        url: 'http://localhost:8888/qymera/teacher/indicador/del/',
         data: {id_ind: res},
         success: function(response){
           if(response == 1){
@@ -125,9 +125,10 @@ function deleteInd(res){
             swal('Alerta', 'Los campos estan vacios', 'warning');
           }else if(response == 3){
             swal('Exito', 'Indicadir eliminado', 'success');
-            location.replace('indicador');
+            location.replace('http://localhost:8888/qymera/teacher/indicador/');
           }else{
-            location.href="indicador";
+            console.log(response);
+            location.replace('http://localhost:8888/qymera/teacher/indicador/');
           }
         }
       });

@@ -14,7 +14,7 @@ $('#register').click(function(){
       $.ajax({
       method: 'POST',
       // Recuerda que la ruta se hace como si estuvieramos en el index y no en operaciones por esa razon no utilizamos ../ para ir a controller
-      url: 'core/controller/registerController.php',
+      url: 'core/controller/default/registerController.php',
       // Recuerda el primer parametro es la variable de php y el segundo es el dato que enviamos
       data: {correo: email, clave: clave, first_name: first_name, second_name: second_name, first_lastname: first_lastname, second_lastname: second_lastname},
       // el parametro res es la respuesta que da php mediante impresion de pantalla (echo)

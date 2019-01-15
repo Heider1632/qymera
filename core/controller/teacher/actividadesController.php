@@ -1,6 +1,6 @@
 <?php
     if(!isset($_SESSION['id']) || $_SESSION['cargo'] == 1):
-      header('location: http://localhost:8888/qymera/redirec/');
+      header('location: http://localhost:8888/qymera/default/redirec/');
     else:
       require_once 'core/model/teacher.php';
       /**
@@ -12,20 +12,19 @@
        * [switch description]
        * @var [type]
        */
-      switch ($my_views[0]) {
+
+      switch($view[2]){
         case 'add':
           if($_POST){
             $title = $_POST['title'];
             $description = $_POST['description'];
             $start_date = $_POST['start_date'];
             $end_date = $_POST['end_date'];
-            $state = $_POST['state'];
-            /*if(!empty($title) || !empty($description) || !empty($start_date) || !empty($end_date) || !empty($id_indicator)){
-              $id_indicator = $_POST['id_indicator'];
-              $teacher->add_activity($title, $description, $start_date, $end_date, $id_indicator);
-            }else{
-              echo 2:
-            }*/
+            $type = $_POST['type'];
+            $id_indicator = $_POST['id_indicator'];
+
+            $teacher->add_activity($title, $description, $start_date, $end_date, $type, $id_indicator);
+
           }else {
             echo 1;
           }

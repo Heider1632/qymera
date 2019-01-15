@@ -9,7 +9,7 @@
 	$coexistence = new Coexistence();
 	$teacher = new Teacher();
 
-	switch ($view[1]) {
+	switch ($view[2]) {
 		case 'upload':
 			if($_POST){
 			  $file = $_FILES['file']['tmp_name'];
@@ -25,7 +25,7 @@
 			}
 			break;
 		case 'read':
-			$id = $view[2];
+			$id = $view[3];
 			$file = find_areaplane($id);
 			if($file[0]['ext'] == 'pdf'){
 				header('content-type: application/pdf');
