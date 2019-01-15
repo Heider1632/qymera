@@ -13,7 +13,7 @@
        </div>
        <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item is-active" href="<?php echo APP_URL; ?>home/">
+                <a class="navbar-item is-active" href="<?php echo APP_URL; ?>teacher/home/">
                   Inicio
                 </a>
                 <?php if($_SESSION['director_grupo'] == '1'): ?>
@@ -21,17 +21,17 @@
                         Director Grupo
                     </a>
                 <?php endif; ?>
-                <a class="navbar-item" href="<?php echo APP_URL; ?>calendario/">
+                <a class="navbar-item" href="<?php echo APP_URL; ?>default/calendario/">
                     Calendario
                 </a>
-                <a class="navbar-item" href="<?php echo APP_URL; ?>actividades/">
+                <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/actividades/">
                     Actividades
                 </a>
-                <a class="navbar-item button-badge" href="<?php echo APP_URL; ?>notifications/">
+                <a class="navbar-item button-badge" href="<?php echo APP_URL; ?>teacher/notifications/">
                     <i class="fas fa-bell"></i>
                     <span class="badge alert" id="span-notification">0</span>
                 </a>
-                <a class="navbar-item button-badge" href="<?php echo APP_URL; ?>compartir/">
+                <a class="navbar-item button-badge" href="<?php echo APP_URL; ?>teacher/compartir/">
                     <i class="fas fa-mail-bulk"></i>
                     <span class="badge alert" id="span-shared">0</span>
                 </a>
@@ -45,14 +45,14 @@
                         <a class="navbar-item" href="#">
                             <?php echo $_SESSION['nombre_completo']; ?>
                         </a>
-                          <a class="navbar-item" href="<?php echo APP_URL; ?>perfil/<?php echo $_SESSION['id']; ?>/">
+                          <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/perfil/<?php echo $_SESSION['id']; ?>/">
                               <p class="lead">Perfil</p>
                           </a>
                           <a class="navbar-item">
                               Configuraciones
                           </a>
                           <hr class="navbar-divider">
-                          <a class="navbar-item" href="<?php echo APP_URL; ?>cerrarSesion/">
+                          <a class="navbar-item" href="<?php echo APP_URL; ?>default/cerrarSesion/">
                               Salir
                           </a>
                         </div>

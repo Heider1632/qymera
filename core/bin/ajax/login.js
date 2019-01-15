@@ -8,7 +8,7 @@ $('#login').click(function(){
   $.ajax({
     method: 'POST',
     // Recuerda que la ruta se hace como si estuvieramos en el index y no en operaciones por esa razon no utilizamos ../ para ir a controller
-    url: 'http://localhost:8888/qymera/login/go/',
+    url: 'http://localhost:8888/qymera/default/login/go/',
     // Recuerda el primer parametro es la variable de php y el segundo es el dato que enviamos
     data: {email: email, password: password},
     // el parametro res es la respuesta que da php mediante impresion de pantalla (echo)
@@ -48,7 +48,7 @@ $('#tempLogin').click(function(){
   $.ajax({
     method: 'POST',
     // Recuerda que la ruta se hace como si estuvieramos en el index y no en operaciones por esa razon no utilizamos ../ para ir a controller
-    url: 'http://localhost:8888/qymera/tempLogin',
+    url: 'http://localhost:8888/qymera/default/tempLogin/',
     // Recuerda el primer parametro es la variable de php y el segundo es el dato que enviamos
     data: {token: token},
     // Esta funcion se ejecuta antes de enviar la información al archivo indicado en el parametro url

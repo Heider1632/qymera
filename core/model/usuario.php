@@ -3,8 +3,12 @@
   require_once('conexion.php');
 
   class Usuario{
-  //functiones del usuario...//
-
+    /**
+     * [login description]
+     * @param  [type] $email [description]
+     * @param  [type] $clave [description]
+     * @return [type]        [description]
+     */
     public function login($email, $clave){
       # Nos conectamos a la base de datos
       $db = new Conexion();
@@ -36,7 +40,7 @@
           $_SESSION['foto'] = $datos['foto'];
 
           //redirec
-          echo APP_URL . "admin/";
+          echo APP_URL . "coordinator/home/";
 
         }else if($_SESSION['cargo'] == 2){
 
@@ -58,8 +62,9 @@
             $_SESSION['director_grupo'] = $fila['director'];
 
           }
+
           //redirec
-          echo APP_URL . "home/";
+          echo APP_URL . "teacher/home/";
           }else{
             echo 'error';
           }
@@ -71,7 +76,11 @@
       # Cerramos la conexion
       $db->close();
     }
-
+    /**
+     * [tempLogin description]
+     * @param  [type] $token [description]
+     * @return [type]        [description]
+     */
     public function tempLogin($token){
       $db = new Conexion();
 
@@ -102,11 +111,12 @@
         // Verificamos que cargo tiene l usuario y asi mismo dar la respuesta a ajax para que redireccione
         if($_SESSION['cargo'] == 1){
 
-          echo APP_URL . "admin/";
+          echo APP_URL . "coordinator/home/";
 
         }else if($_SESSION['cargo'] == 2){
 
-          echo APP_URL . "home/";
+
+          echo APP_URL . "teacher/home/";
 
           $consulta = 'SELECT director FROM docente WHERE id = "'.$_SESSION['id'].'"';
 
@@ -127,8 +137,13 @@
       # Cerramos la conexion
       $db->close();
     }
-
-    public function register($email, $clave){
+    /**
+     * [register description]
+     * @param  [type] $email [description]
+     * @param  [type] $clave [description]
+     * @return [type]        [description]
+     */
+    public function register($email, $clave, $firts_name, $second_name, $firts_lastname, $second_lastname){
 
       $db = new Conexion();
 
@@ -145,13 +160,19 @@
 
         $db->query('INSERT INTO usuario (correo, clave, token) VALUES ("'.$email.'", MD5("'.$clave.'"), "'.$token.'")');
 
-        echo "login";
+        echo APP_URL . 'login/';
 
       }
 
       $db->close();
     }
-
+    /**
+     * [uploadImageProfile description]
+     * @param  [type] $fileName [description]
+     * @param  [type] $fileType [description]
+     * @param  [type] $file     [description]
+     * @return [type]           [description]
+     */
     public function uploadImageProfile($fileName, $fileType, $file){
       if ($fileName!="")
       {

@@ -34,7 +34,7 @@ class Conexion extends mysqli{
       return mysqli_fetch_array($query);
     }
     # Function que permite cerrar una conexion de MySQL
-    public function cerrar()
+    public function close()
     {
       # Accedemos al atributo de conexion y cerramos la conexion
         return mysqli_close();

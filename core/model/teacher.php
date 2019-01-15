@@ -2,7 +2,10 @@
 	require_once('conexion.php');
 
 	class Teacher{
-	// function class teacher//
+	/**
+	 * [getInfTeacher description]
+	 * @return [type] [description]
+	 */
 	public function getInfTeacher(){
 		$db = new Conexion();
 
@@ -32,7 +35,12 @@
 
 		$db->close();
 	}
-
+	/**
+	 * [updateInfTeacher description]
+	 * @param  [type] $name     [description]
+	 * @param  [type] $lastname [description]
+	 * @return [type]           [description]
+	 */
 	public function updateInfTeacher($name, $lastname){
 		$db = new Conexion();
 
@@ -43,7 +51,11 @@
 		echo 3;
 
 	}
-
+	/**
+	 * [studentDesc description]
+	 * @param  [type] $id_student [description]
+	 * @return [type]             [description]
+	 */
 	public function studentDesc($id_student){
 		$db = new Conexion();
 
@@ -66,9 +78,11 @@
 
 		$db->close();
 	}
-
-	// Obtener una materia correpondiente al docente en linea //
-    public function getMateria(){
+	/**
+	 * [getMateria description]
+	 * @return [type] [description]
+	 */
+  public function getMateria(){
 
       $db = new Conexion();
 
@@ -94,9 +108,11 @@
       $db->close();
 
     }
-
-    // obtiene los grados en los cuales el docente esta inscrito //
-
+		/**
+		 * [getGrado description]
+		 * @param  [type] $id_materia [description]
+		 * @return [type]             [description]
+		 */
     public function getGrado($id_materia){
 
       $db = new Conexion();
@@ -125,7 +141,10 @@
       $db->close();
 
     }
-
+		/**
+		 * [getGradoDesc description]
+		 * @return [type] [description]
+		 */
 		public function getGradoDesc(){
 			$db = new Conexion();
 
@@ -147,7 +166,10 @@
 
 			$db->close();
 		}
-
+		/**
+		 * [getGrupoDesc description]
+		 * @return [type] [description]
+		 */
 		public function getGrupoDesc(){
 			$db = new Conexion();
 
@@ -169,7 +191,13 @@
 
 			$db->close();
 		}
-
+		/**
+		 * [descInformation description]
+		 * @param  [type] $id_grado   [description]
+		 * @param  [type] $id_grupo   [description]
+		 * @param  [type] $id_materia [description]
+		 * @return [type]             [description]
+		 */
 		public function descInformation($id_grado, $id_grupo, $id_materia){
 
 			$db = new Conexion();
@@ -200,7 +228,12 @@
       $db->close();
 
     }
-
+		/**
+		 * [listIdStudents description]
+		 * @param  [type] $id_grado [description]
+		 * @param  [type] $id_grupo [description]
+		 * @return [type]           [description]
+		 */
 		public function listIdStudents($id_grado, $id_grupo){
 
 			$db = new Conexion();
@@ -223,7 +256,11 @@
       $db->close();
 
 		}
-
+		/**
+		 * [getIndicadores description]
+		 * @param  [type] $id_materia [description]
+		 * @return [type]             [description]
+		 */
 		public function getIndicadores($id_materia){
 
 		  $db = new Conexion();
@@ -250,10 +287,14 @@
 
 		  $db->close();
 		}
-
-    //Insertar un indicador //
-
-     public function add_indicador($new_indicador, $id_grado, $id_grupo, $id_materia){
+		/**
+		 * [add_indicador description]
+		 * @param [type] $new_indicador [description]
+		 * @param [type] $id_grado      [description]
+		 * @param [type] $id_grupo      [description]
+		 * @param [type] $id_materia    [description]
+		 */
+    public function add_indicador($new_indicador, $id_grado, $id_grupo, $id_materia){
 
       $db = new Conexion();
 
@@ -272,7 +313,12 @@
 
 				$db->close();
     }
-
+		/**
+		 * [edit_indicador description]
+		 * @param  [type] $id_indicador   [description]
+		 * @param  [type] $edit_indicador [description]
+		 * @return [type]                 [description]
+		 */
 		public function edit_indicador($id_indicador, $edit_indicador){
 			$db = new Conexion();
 			$sql = 'UPDATE indicadores SET nombre = "'.$edit_indicador.'" WHERE indicadores.id = "'.$id_indicador.'"';
@@ -281,7 +327,11 @@
 
 			$db->close();
 		}
-
+		/**
+		 * [del_indicador description]
+		 * @param  [type] $id_indicador [description]
+		 * @return [type]               [description]
+		 */
 		public function del_indicador($id_indicador){
 			$db = new Conexion();
 
@@ -293,7 +343,14 @@
 
 			$db->close();
 		}
-
+		/**
+		 * [getNotes description]
+		 * @param  [type] $id_materia  [description]
+		 * @param  [type] $id_grado    [description]
+		 * @param  [type] $id_grupo    [description]
+		 * @param  [type] $indicadores [description]
+		 * @return [type]              [description]
+		 */
 		public function getNotes($id_materia, $id_grado, $id_grupo, $indicadores){
 			$db = new Conexion();
 
@@ -318,7 +375,16 @@
 
 			$db->close();
 		}
-
+		/**
+		 * [putNotesList description]
+		 * @param  [type] $notes      [description]
+		 * @param  [type] $id_grado   [description]
+		 * @param  [type] $id_grupo   [description]
+		 * @param  [type] $id_periodo [description]
+		 * @param  [type] $id_materia [description]
+		 * @param  [type] $id_docente [description]
+		 * @return [type]             [description]
+		 */
 		public function putNotesList($notes, $id_grado, $id_grupo, $id_periodo, $id_materia, $id_docente){
 			$db = new Conexion();
 
@@ -333,7 +399,11 @@
 
 			$db->close();
 		}
-
+		/**
+		 * [editNotesList description]
+		 * @param  [type] $notes [description]
+		 * @return [type]        [description]
+		 */
 		public function editNotesList($notes){
 			$db = new Conexion();
 
@@ -346,7 +416,18 @@
 
 			$db->close();
 		}
-
+		/**
+		 * [putNote description]
+		 * @param  [type] $note           [description]
+		 * @param  [type] $id_estudiantes [description]
+		 * @param  [type] $id_indicador   [description]
+		 * @param  [type] $id_grado       [description]
+		 * @param  [type] $id_grupo       [description]
+		 * @param  [type] $id_periodo     [description]
+		 * @param  [type] $id_materia     [description]
+		 * @param  [type] $id_docente     [description]
+		 * @return [type]                 [description]
+		 */
 		public function putNote($note, $id_estudiantes, $id_indicador, $id_grado, $id_grupo, $id_periodo, $id_materia, $id_docente){
 			$db = new Conexion();
 
@@ -358,13 +439,45 @@
 
 			$db->close();
 		}
-
+		/**
+		 * [editNote description]
+		 * @param  [type] $note [description]
+		 * @param  [type] $id   [description]
+		 * @return [type]       [description]
+		 */
 		public function editNote($note, $id){
 			$db = new Conexion();
 
 			$db->query('UPDATE notas SET nota = "'.$note.'" WHERE id =  "'.$id.'"');
 
 			header('Location: notas');
+
+			$db->cerrar();
+		}
+		/**
+		 * [add_activity description]
+		 * @param [type] $title        [description]
+		 * @param [type] $description  [description]
+		 * @param [type] $start_date   [description]
+		 * @param [type] $end_date     [description]
+		 * @param [type] $state        [description]
+		 * @param [type] $id_indicator [description]
+		 */
+		public function add_activity($title, $description, $start_date, $end_date, $id_indicator){
+			$db = new Conexion();
+
+			$sql = $db->query('SELECT * FROM actividades WHERE titulo = "'.$title.'" AND id_indicador = "'.$id_indicator.'" LIMIT 1');
+
+			$exist = $db->verificarFila($sql);
+
+			if($exist > 0){
+					echo 3;
+			}else{
+				$db->query('INSERT INTO actividades (titulo, descripcion, fecha_inicio, fecha_finalizacion, estado, id_indicador)
+				VALUES ("'.$title.'", "'.$description.'", "'.$start_date.'", "'.$end_date.'", "'.$id_indicator.'")');
+
+				echo 4;
+			}
 
 			$db->close();
 		}

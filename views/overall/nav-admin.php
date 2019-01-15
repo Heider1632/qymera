@@ -13,16 +13,16 @@
        </div>
        <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item is-active" href="<?php echo APP_URL ?>admin/">
+                <a class="navbar-item is-active" href="<?php echo APP_URL ?>coordinator/home/">
                   Inicio
                 </a>
-                <a class="navbar-item" href="<?php echo APP_URL ?>calendario/">
+                <a class="navbar-item" href="<?php echo APP_URL ?>default/calendario/">
                     <i class="far fa-calendar-times"></i>
                 </a>
-                <a class="navbar-item" href="<?php echo APP_URL ?>config/">
+                <a class="navbar-item" href="<?php echo APP_URL ?>coordinator/config/">
                     <i class="fas fa-bars"></i>
                 </a>
-                <a class="navbar-item" href="<?php echo APP_URL ?>cerrarSesion/">
+                <a class="navbar-item" href="<?php echo APP_URL ?>default/cerrarSesion/">
                     Salir
                 </a>
               </div>

@@ -7,23 +7,38 @@ session_start();
   if(isset($_GET['view'])) {
 
   $view = explode("/", strtolower($_GET['view']));
-
-  $controller = $view[0];
+  $folder = $view[0];
+  $controller = $view[1];
   $my_views = array();
   for ($i = 1; $i < count($view); $i += 2) {
     $my_views[$view[$i]] = $view[$i + 1];
   }
 
-  if((file_exists('core/controller/' . $controller . 'Controller.php'))){
+  switch ($folder) {
+    case 'coordinator':
+      if((file_exists('core/controller/'. $folder. '/' . $controller . 'Controller.php'))){
+        include ('core/controller/'. $folder. '/' . $controller . 'Controller.php');
+      }else{
+        include ('core/controller/default/errorController.php');
+      }
+      break;
 
-    include ('core/controller/' . $controller . 'Controller.php');
-
-  }else{
-
-    include ('core/controller/errorController.php');
+    case 'teacher':
+      if((file_exists('core/controller/'. $folder. '/' . $controller . 'Controller.php'))){
+        include ('core/controller/'. $folder. '/' . $controller . 'Controller.php');
+      }else{
+        include ('core/controller/default/errorController.php');
+      }
+    default:
+      if((file_exists('core/controller/'. $folder. '/' . $controller . 'Controller.php'))){
+        include ('core/controller/'. $folder. '/' . $controller . 'Controller.php');
+      }else{
+        include ('core/controller/default/errorController.php');
+      }
+      break;
   }
 
 } else {
-  include ('core/controller/indexController.php');
+  include ('core/controller/default/indexController.php');
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 // isset verifica si existe una variable o eso creo xd
 if (isset($_SESSION['id'])) {
-    header('location: redirec');
+    header('location: http://localhost:8888/qymera/default/redirec/');
 }
 
 include 'views/overall/header.php';
