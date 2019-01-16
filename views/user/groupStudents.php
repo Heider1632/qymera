@@ -11,8 +11,8 @@
       <div class="column">
         <?php
         if($_GET):
-        $id_grado = $view[2];
-        $id_grupo = $view[4];
+        $id_grado = $view[3];
+        $id_grupo = $view[5];
 
         $estudiantes = ($coexistence->getEstudiantes($id_grado, $id_grupo));
         if(!empty($estudiantes)): ?>

@@ -481,6 +481,34 @@
 
 			$db->close();
 		}
+		/**
+		 * [getActivitys description]
+		 * @return [type] [description]
+		 */
+		public function getActivitys(){
+			$db = new Conexion();
+
+			$sql = 'SELECT actividades.id, actividades.titulo, actividades.descripcion, actividades.fecha_creacion, actividades.fecha_finalizacion, indicadores.nombre FROM actividades
+			INNER JOIN indicadores ON indicadores.id = actividades.id_indicador
+			WHERE id_docente = "'.$_SESSION['id'].'"';
+
+			$results = $db->query($sql);
+
+			while($f = $db->consultaArreglo($results)){
+				$activitys[] = array(
+					'id' => $f['id'],
+					'titulo' => $f['titulo'],
+					'descripcion' => $f['descripcion'],
+					'fecha_creacion' => $f['fecha_creacion'],
+					'fecha_finalizacion' => $f['fecha_finalizacion'],
+					'nombre_indicador' => $f['nombre']
+				);
+			}
+
+			return $activitys;
+
+			$db->close();
+		}
 
 	}
 ?>

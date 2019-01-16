@@ -13,6 +13,8 @@
        * @var [type]
        */
 
+       $matters = $teacher->getMateria();
+
       switch($view[2]){
         case 'add':
           if($_POST){
@@ -35,11 +37,23 @@
         case 'del':
           // code...
           break;
-        default:
+        case 'nueva':
+          $id_materia = $view[3];
+
+          $indicadores = $teacher->getIndicadores($id_materia);
           //header
           include 'views/overall/header.php';
 
           include 'views/user/actividades.php';
+          //scripts
+          include 'views/overall/scripts.php';
+          break;
+        default:
+          $activitys = $teacher->getActivitys();
+          //header
+          include 'views/overall/header.php';
+
+          include 'views/user/pre-actividad.php';
           //scripts
           include 'views/overall/scripts.php';
           break;

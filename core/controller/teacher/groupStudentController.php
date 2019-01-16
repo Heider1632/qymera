@@ -11,7 +11,7 @@
 
 		$materias = $teacher->getMateria();
 
-    if($view[1] == 'grado' && $view[3] == 'grupo'){
+    if($view[2] == 'grado' && $view[4] == 'grupo'){
 			/* home view */
         /* header */
         include 'views/overall/header.php';
@@ -34,14 +34,12 @@
                 <?php include 'views/overall/nav-aside.php'; ?>
               </div>
               <div class="column">
-								<!-- view for tablet and desktop -->
-								<!-- view for mobile -->
+								<div class="box">
 								<?php foreach($materias as $matter): ?>
-								<div class="tabs is-centered m-b-20 is-boxed is-large">
-									<ul>
-											<li><a id="preview"><?php echo $matter['materia_nombre']; ?></a></li>
-									</ul>
-								</div>
+									<div class="notification is-info m-b-20">
+										<p class="title" id="preview"><?php echo $matter['materia_nombre']; ?></p>
+									</div>
+
 								<?php $id_materia = $matter['materia_id']; $grados = $teacher->getGrado($id_materia); ?>
 								<div id="form-preview" class="content">
 								<table class="table is-hoverable is-narrow is-fullwidth">
@@ -59,7 +57,7 @@
 												<td><?php echo $g['nombre_grupo']?></td>
 												<td>
 													<button class="button is-info is-medium">
-															<a href="<?php echo APP_URL ?>groupStudent/grado/<?php echo $g['id_grado']?>/grupo/<?php echo $g['id_grupo'] ?>/"><i class="fas fa-users f-3x"></i></a>
+															<a href="<?php echo APP_URL ?>teacher/groupStudent/grado/<?php echo $g['id_grado']?>/grupo/<?php echo $g['id_grupo'] ?>/"><i class="fas fa-users f-3x"></i></a>
 													</button>
 												</td>
 											</tr>
@@ -68,7 +66,8 @@
 									</table>
 								</div>
 								<?php endforeach; ?>
-              </div>
+              	</div>
+							</div>
             </div>
           </div>
         <?php
