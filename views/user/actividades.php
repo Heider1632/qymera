@@ -22,7 +22,7 @@
                       </a>
                     </p>
                     <p class="control is-expanded">
-                      <input class="input" type="tel" placeholder="el titulo de la actividad">
+                      <input class="input" type="tel" placeholder="el titulo de la actividad" id="title">
                     </p>
                   </div>
                   <p class="help">en minusculas sin caracteres especiales.</p>
@@ -41,7 +41,7 @@
                       </a>
                     </p>
                     <p class="control is-expanded">
-                      <input class="input" type="tel" placeholder="el titulo de la actividad" id="tipo">
+                      <input class="input" type="tel" placeholder="el titulo de la actividad" id="type">
                     </p>
                   </div>
                   <p class="help">ejemplo: taller, examen, ensayo, etc.</p>
@@ -77,7 +77,7 @@
                         <select class="is-hovered" id="id_indicator">
                           <option value="0">Seleccione un indicador</option>
                           <?php foreach($indicadores as $indicador): ?>
-                          <option value="id_indicador"><?php echo $indicador['nombre'] . "-" . $indicador['grado_nombre'] . "-" . $indicador['grupo_nombre'] ?></option>
+                          <option value="<?php echo $indicador['id']; ?>"><?php echo $indicador['nombre'] . "-" . $indicador['grado_nombre'] . "-" . $indicador['grupo_nombre'] ?></option>
                           <?php endforeach; ?>
                         </select>
                       </div>

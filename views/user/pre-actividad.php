@@ -24,16 +24,36 @@
       <?php endforeach; ?>
       </div>
       <div class="notification is-primary is-centered">Actividades</div>
-        <div class="colums is-multiline">
-          <?php if(!empty($activitys)): foreach($activitys as $activity): ?>
+      <div class="columns is-desktop">
+        <?php if(!empty($activitys)): foreach($activitys as $activity): ?>
+          <div class="column">
             <div class="card">
-              <div class="card-body">
-
+              <header class="card-header">
+                <p class="card-header-title">
+                  <?php echo $activity['titulo']; ?>
+                </p>
+                <a href="#" class="card-header-icon" aria-label="more options">
+                  <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </a>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <p class="subtitle"><?php echo $activity['descripcion']; ?></p>
+                  <br>
+                  <p class="subtitle"><?php echo $activity['nombre_indicador']; ?></p>
+                  Fecha de finalizacion
+                  <time datetime="<?php echo $activity['fecha_finalizacion']; ?>"><?php echo $activity['fecha_finalizacion']; ?></time>
+                </div>
               </div>
-              <div class="card-footer">
-
-              </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item">Nota</a>
+                <a href="#" class="card-footer-item">Editar</a>
+                <a href="#" class="card-footer-item">Borrar</a>
+              </footer>
             </div>
+          </div>
           <?php endforeach; else: ?>
           <div class="notification is-warning">No hay actividades creadas</div>
           <?php endif;?>

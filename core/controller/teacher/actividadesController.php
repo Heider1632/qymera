@@ -20,12 +20,16 @@
           if($_POST){
             $title = $_POST['title'];
             $description = $_POST['description'];
+            $type = $_POST['type'];
             $start_date = $_POST['start_date'];
             $end_date = $_POST['end_date'];
-            $type = $_POST['type'];
             $id_indicator = $_POST['id_indicator'];
 
-            $teacher->add_activity($title, $description, $start_date, $end_date, $type, $id_indicator);
+            if(!empty($title) || !empty($id_indicator)){
+              $teacher->add_activity($title, $description, $type, $start_date, $end_date, $id_indicator);
+            }else{
+              echo 2;
+            }
 
           }else {
             echo 1;

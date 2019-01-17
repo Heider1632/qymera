@@ -122,10 +122,6 @@ th:hover {
   animation: shake 500ms ease-in-out forwards;
 }
 
-.content{
-  display: none;
-}
-
 .button-badge {
   text-decoration: none;
   padding: 1rem 1.5rem;

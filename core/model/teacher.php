@@ -463,7 +463,7 @@
 		 * @param [type] $state        [description]
 		 * @param [type] $id_indicator [description]
 		 */
-		public function add_activity($title, $description, $start_date, $end_date, $id_indicator){
+		public function add_activity($title, $description, $type, $start_date, $end_date, $id_indicator){
 			$db = new Conexion();
 
 			$sql = $db->query('SELECT * FROM actividades WHERE titulo = "'.$title.'" AND id_indicador = "'.$id_indicator.'" LIMIT 1');
@@ -473,8 +473,8 @@
 			if($exist > 0){
 					echo 3;
 			}else{
-				$db->query('INSERT INTO actividades (titulo, descripcion, fecha_inicio, fecha_finalizacion, estado, id_indicador)
-				VALUES ("'.$title.'", "'.$description.'", "'.$start_date.'", "'.$end_date.'", "'.$id_indicator.'")');
+				$db->query('INSERT INTO actividades (titulo, descripcion, tipo, fecha_inicio, fecha_finalizacion, id_docente, id_indicador)
+				VALUES ("'.$title.'", "'.$description.'", "'.$type.'", "'.$start_date.'", "'.$end_date.'", "'.$_SESSION['id'].'", "'.$id_indicator.'")');
 
 				echo 4;
 			}
@@ -490,7 +490,7 @@
 
 			$sql = 'SELECT actividades.id, actividades.titulo, actividades.descripcion, actividades.fecha_creacion, actividades.fecha_finalizacion, indicadores.nombre FROM actividades
 			INNER JOIN indicadores ON indicadores.id = actividades.id_indicador
-			WHERE id_docente = "'.$_SESSION['id'].'"';
+			WHERE actividades.id_docente = "'.$_SESSION['id'].'"';
 
 			$results = $db->query($sql);
 
