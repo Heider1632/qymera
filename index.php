@@ -40,12 +40,12 @@ session_start();
       if((file_exists('core/controller/' . $folder . 'Controller.php'))){
         include ('core/controller/' . $folder . 'Controller.php');
       }else{
-        include ('core/controller/indexController.php');
+        include ('core/controller/default/errorController.php');
       }
       break;
   }
 
 } else {
-  include ('core/controller/default/indexController.php');
+  include ('core/controller/indexController.php');
 }
 ?>
