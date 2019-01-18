@@ -29,11 +29,18 @@ session_start();
         include ('core/controller/default/errorController.php');
       }
       break;
-    default:
+    case 'default':
       if((file_exists('core/controller/'. $folder. '/' . $controller . 'Controller.php'))){
         include ('core/controller/'. $folder. '/' . $controller . 'Controller.php');
       }else{
         include ('core/controller/default/errorController.php');
+      }
+      break;
+    default:
+      if((file_exists('core/controller/' . $folder . 'Controller.php'))){
+        include ('core/controller/' . $folder . 'Controller.php');
+      }else{
+        include ('core/controller/indexController.php');
       }
       break;
   }

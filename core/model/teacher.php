@@ -488,7 +488,7 @@
 		public function getActivitys(){
 			$db = new Conexion();
 
-			$sql = 'SELECT actividades.id, actividades.titulo, actividades.descripcion, actividades.fecha_creacion, actividades.fecha_finalizacion, indicadores.nombre FROM actividades
+			$sql = 'SELECT actividades.id, actividades.titulo, actividades.descripcion, actividades.fecha_creacion, actividades.fecha_inicio, actividades.fecha_finalizacion, indicadores.nombre FROM actividades
 			INNER JOIN indicadores ON indicadores.id = actividades.id_indicador
 			WHERE actividades.id_docente = "'.$_SESSION['id'].'"';
 
@@ -500,6 +500,7 @@
 					'titulo' => $f['titulo'],
 					'descripcion' => $f['descripcion'],
 					'fecha_creacion' => $f['fecha_creacion'],
+					'fecha_inicio' => $f['fecha_inicio'],
 					'fecha_finalizacion' => $f['fecha_finalizacion'],
 					'nombre_indicador' => $f['nombre']
 				);

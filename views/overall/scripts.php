@@ -10,6 +10,7 @@
 <script src="<?php echo APP_URL; ?>core/bin/ajax/activity.js"></script>
 <!-- custom function -->
 <script src="<?php echo APP_URL; ?>core/bin/functions/refresh.js"></script>
+<script src="<?php echo APP_URL; ?>core/bin/functions/ago.js"></script>
 <!-- idioma español para el calendario -->
 <script src="<?php echo APP_URL; ?>public/js/es.js"></script>
 <!-- modal custom js bulma css -->

@@ -161,32 +161,32 @@
         public function uploadAreaPlane($fileName, $fileType, $file, $id_grade, $id_matter)
         {
           if ($fileName!=""){
+              $res = explode(".", $fileName);
+              $extension = $res[count($res)-1];
               //Limitar el tipo de archivo y el tamaño
-              if (!((strpos($fileType, "docx") || strpos($fileType, "pdf")))){
-                  echo 3;
+              if ($extension == "docx" || $extension == "pdf"){
+                $db = new Conexion();
+
+                    $nombre= date("YmdHis")."." . $extension; //renombrarlo como nosotros queremos
+                    $dirtemp = "public/upload/temp/".$nombre."";//Directorio temporaral para subir el fichero
+
+                    if (is_uploaded_file($file)) {
+                      //mueve el archivo a una ruta temporal
+                      move_uploaded_file($file, $dirtemp);
+                      // Estructura de la carpeta deseada
+                      mkdir("public/media/areaplanes/".$id_grade."");
+                      // directorio especifico de el archivo de area planes
+                      $dir = "public/media/areaplanes/".$id_grade."/".$nombre."";
+                      copy($dirtemp, $dir);
+                      $db->query('INSERT INTO planes_area (name, ext, id_grado, id_materia, id_docente) VALUES ("'.$dir.'", "'.$extension.'", "'.$id_grade.'", "'.$id_matter.'", "'.$_SESSION['id'].'")');
+                      unlink($dirtemp); //Borrar el fichero temporal
+                      echo 5;
+                      $db->close();
+                    }else{
+                      echo 4;
+                    }
               }else{
-              $db = new Conexion();
-
-                  $res = explode(".", $fileName);
-                  $extension = $res[count($res)-1];
-                  $nombre= date("YmdHis")."." . $extension; //renombrarlo como nosotros queremos
-                  $dirtemp = "public/upload/temp/".$nombre."";//Directorio temporaral para subir el fichero
-
-                  if (is_uploaded_file($file)) {
-                    //mueve el archivo a una ruta temporal
-                    move_uploaded_file($file, $dirtemp);
-                    // Estructura de la carpeta deseada
-                    mkdir("public/media/areaplanes/".$id_grade."");
-                    // directorio especifico de el archivo de area planes
-                    $dir = "public/media/areaplanes/".$id_grade."/".$nombre."";
-                    copy($dirtemp, $dir);
-                    $db->query('INSERT INTO planes_area (name, ext, id_grado, id_materia, id_docente) VALUES ("'.$dir.'", "'.$extension.'", "'.$id_grade.'", "'.$id_matter.'", "'.$_SESSION['id'].'")');
-                    unlink($dirtemp); //Borrar el fichero temporal
-                    echo 5;
-                    $db->close();
-                  }else{
-                    echo 4;
-                  }
+                echo 3;
               }
           } else {
             echo 2;

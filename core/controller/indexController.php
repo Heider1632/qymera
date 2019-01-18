@@ -1,18 +1,16 @@
 <?php
 // isset verifica si existe una variable o eso creo xd
-if (isset($_SESSION['id'])) {
+  if(isset($_SESSION['id'])) {
     header('location: http://localhost:8888/qymera/default/redirec/');
-}
-
-include 'views/overall/header.php';
-
-    ?>
+  }
+  include 'views/overall/header.php';
+  ?>
 	<body>
     <nav class="navbar">
       <div class="container">
           <div class="navbar-brand is-centered">
               <a class="navbar-item" href="<?php APP_URL ?>">
-                  <img src="public/images/title-qymera.png" alt="Logo">
+                  <img src="<?php echo APP_URL ?>public/images/title-qymera.png" alt="Logo">
               </a>
            </div>
       </div>
@@ -26,14 +24,11 @@ include 'views/overall/header.php';
 					</div>
 				</div>
 				<div class="column is-hidden-mobile m-t-20">
-					<img src="public/images/advisement.png" alt="publish"/>
+					<img src="<?php echo APP_URL ?>public/images/advisement.png" alt="publish"/>
 				</div>
 			</div>
 		</div>
 	</body>
 	<?php
-
-include 'views/overall/scripts.php';
-
-
+  include 'views/overall/scripts.php';
 ?>

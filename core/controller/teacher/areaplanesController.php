@@ -31,7 +31,9 @@
 				header('content-type: application/pdf');
 				readfile('http://localhost:8888/qymera/' . $file[0]['name']);
 			}else{
-				header('content-type: application/docx');
+				header('Content-disposition: inline');
+				header('Content-type: application/msword');
+				// not sure if this is the correct MIME type
 				readfile('http://localhost:8888/qymera/' . $file[0]['name']);
 			}
 			break;

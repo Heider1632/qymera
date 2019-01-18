@@ -44,7 +44,7 @@
                   <br>
                   <p class="subtitle"><?php echo $activity['nombre_indicador']; ?></p>
                   Fecha de finalizacion
-                  <time datetime="<?php echo $activity['fecha_finalizacion']; ?>"><?php echo $activity['fecha_finalizacion']; ?></time>
+                  <time onmouseover="agotime(<?php echo $activity['fecha_inicio']; ?>,<?php echo $activity['fecha_finalizacion']; ?>, event)" datetime="<?php echo $activity['fecha_finalizacion']; ?>"><?php echo $activity['fecha_finalizacion']; ?></time>
                 </div>
               </div>
               <footer class="card-footer">
