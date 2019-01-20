@@ -22,7 +22,7 @@
     <nav class="navbar">
       <div class="container">
           <div class="navbar-brand is-centered">
-              <a class="navbar-item" href="<?php APP_URL ?>">
+              <a class="navbar-item" href="<?php echo APP_URL; ?>">
                   <img src="<?php echo APP_URL ?>public/images/title-qymera.png" alt="Logo">
               </a>
            </div>
