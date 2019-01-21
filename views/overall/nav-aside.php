@@ -1,21 +1,4 @@
-<?php
-require_once('core/model/coexistence.php');
-$coexistence = new Coexistence();
-$fecha = DATE;
-$periodo = $coexistence->periodo($fecha);
-$_SESSION['id_periodo'] = $periodo[0]['id_periodo'];
-?>
 <aside class="menu is-hidden-mobile is-medium">
-  <p class="menu-label">
-    General
-    <!--<div id="hora" class="fs-20"></div>-->
-    <!--<div id="period" class="fs-20"><?php //echo $periodo[0]['nombre_periodo'] ?></div>-->
-  </p>
-  <ul class="menu-list">
-    <li class="username">
-      <a ><?php echo mb_strtoupper($_SESSION['nombre_completo']); ?></a>
-    </li>
-  </ul>
   <p class="menu-label">
     Acciones
   </p>

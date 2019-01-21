@@ -6,6 +6,7 @@
     }else{
       include 'views/overall/nav-admin.php';
     }
+    include 'views/overall/nav-tool.php';
     ?>
     <div class="container is-fluid">
       <div class="columns is-2">
