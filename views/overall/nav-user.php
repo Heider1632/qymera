@@ -35,38 +35,8 @@
                     <i class="fas fa-mail-bulk"></i>
                     <span class="badge alert" id="span-shared">0</span>
                 </a>
-                <!-- profile navbar card-->
-                <!-- dropdown -->
-                  <div class="navbar-item has-dropdown is-hoverable">
-                      <a class="navbar-link">
-                            Cuenta
-                      </a>
-                      <div class="navbar-dropdown">
-                        <a class="navbar-item" href="#">
-                            <?php echo $_SESSION['nombre_completo']; ?>
-                        </a>
-                          <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/perfil/<?php echo $_SESSION['id']; ?>/">
-                              <p class="lead">Perfil</p>
-                          </a>
-                          <a class="navbar-item">
-                              Configuraciones
-                          </a>
-                          <hr class="navbar-divider">
-                          <a class="navbar-item" href="<?php echo APP_URL; ?>default/cerrarSesion/">
-                              Salir
-                          </a>
-                        </div>
-                      </div>
-                      <a class="m-t-5">
-                        <span><?php if(!empty($_SESSION['foto'])): ?>
-                          <img class="thumbnail" width="50" height="50" src="<?php echo APP_URL . $_SESSION['foto'] ?>" alt="<?php $_SESION['nombre'] ?>" />
-                              <?php else: ?>
-                          <img class="thumbnail" width="50" height="50" src="<?php echo APP_URL; ?>public/media/user-default.png" alt="<?php $_SESION['nombre'] ?>" />
-                              <?php endif; ?>
-                        </span>
-                      </a>
-                  </div>
-              </div>
+            </div>
+          </div>
         </div>
     </nav>
 <!-- END NAV -->

@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 * {
   margin: 0;
   padding: 0;
 }
 
 html, body {
+  /* Font family */
+  font-family: 'Source Sans Pro', sans-serif;
+  /* Font Size general */
+  font-size: 18px;
   background: #C9D6FF;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
@@ -149,4 +155,17 @@ th:hover {
   width: 20px;
   border-radius: 50%;
   background-color: red;
+}
+
+#form-edit{
+  display: none; !important
+}
+
+.title{
+  display: flex;
+}
+
+.title-qymera{
+  color: #e17055;
+  border: none;
 }

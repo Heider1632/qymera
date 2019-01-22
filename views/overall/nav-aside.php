@@ -1,7 +1,4 @@
 <aside class="menu is-hidden-mobile is-medium">
-  <p class="menu-label">
-    Acciones
-  </p>
   <ul class="menu-list">
     <li>
       <a class="is-active">Indicadores</a>
@@ -17,8 +14,12 @@
         <li><a href="<?php echo APP_URL; ?>teacher/unicStudent/">Individual</a></li>
       </ul>
     </li>
-    <li><a href="<?php echo APP_URL; ?>teacher/areaplanes/">Planes de area</a></li>
-    <li><a href="<?php echo APP_URL; ?>teacher/period/">Periodo</a></li>
-    <li><a href="<?php echo APP_URL; ?>teacher/consolide/ " disabled>Consolidados</a></li>
+    <li>
+      <a class="is-active">Curriculo</a>
+      <ul>
+        <li><a href="<?php echo APP_URL; ?>teacher/areaplanes/">Planes de area</a></li>
+        <li><a href="<?php echo APP_URL; ?>teacher/consolide/">Consolidados</a></li>
+      </ul>
+    </li>
   </ul>
 </aside>

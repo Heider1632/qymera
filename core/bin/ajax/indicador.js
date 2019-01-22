@@ -2,45 +2,10 @@ function openModalAdd(){
   $('#add_ind_modal').addClass('is-active');
 }
 
-
-/*new Promise(function(resolve, reject) {
-
-  resolve((res) => {
-    console.log(res);
-  })
-
-  reject(() => {
-    console.error(error);
-  })
-
-}).then(function(result) {
-
-  alert(result);
-  return result * 2; // <-- (1)
-
-});*/
-
 function redirecEdit(res){
-  //capturo el id que me envia la funcion
-  var response = res;
-  //lanzo un ajax modo asincrono
-  $.ajax({
-    method: 'POST',
-    url: 'http://localhost:8888/qymera/indicador/',
-    data: {response: response},
-    success: function(res){
-      console.log(res);
-      openModalEdit();
-    }
-  });
+  location.href="http://localhost:8888/qymera/teacher/indicador/" + res;
 
 }
-
-function openModalEdit(){
-  $('#edit_ind_modal').addClass('is-active');
-}
-
-
 
 $('#btnAddInd').click(function(){
 
@@ -142,3 +107,24 @@ function deleteInd(res){
   })
 
 }
+
+window.onload = function() {
+  $("#form-edit").slideToggle();
+};
+
+/*new Promise(function(resolve, reject) {
+
+    resolve((res) => {
+      console.log(res);
+    })
+
+    reject(() => {
+      console.error(error);
+    })
+
+  }).then(function(result) {
+
+    alert(result);
+    return result * 2; // <-- (1)
+
+  });*/

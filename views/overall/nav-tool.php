@@ -11,12 +11,6 @@ $_SESSION['nombre_periodo'] = $periodo[0]['nombre_periodo'];
   <div class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item">
-        <i class="fas fa-user m-l-5"></i>
-        <?php echo mb_strtoupper($_SESSION['nombre_completo']); ?>
-      </a>
-    </div>
-    <div class="navbar-end">
-      <a class="navbar-item">
           Lectivo: <?php echo date('Y'); ?>
       </a>
       <a class="navbar-item m-l-20">
@@ -33,6 +27,42 @@ $_SESSION['nombre_periodo'] = $periodo[0]['nombre_periodo'];
           : <div id="hora"></div>
       </a>
     </div>
-  </div>
+    <div class="navbar-end">
+      <a class="navbar-item">
+        <i class="fas fa-user m-l-5"></i>
+        <?php echo mb_strtoupper($_SESSION['nombre_completo']); ?>
+      </a>
+      <!-- dropdown -->
+        <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+                  Cuenta
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="#">
+                  <?php echo $_SESSION['nombre_completo']; ?>
+              </a>
+              <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/perfil/<?php echo $_SESSION['id']; ?>/">
+                  <p class="lead">Perfil</p>
+              </a>
+              <a class="navbar-item">
+                  Configuraciones
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="<?php echo APP_URL; ?>default/cerrarSesion/">
+                  Salir
+              </a>
+            </div>
+          </div>
+          <!-- profile navbar card-->
+          <a class="m-t-5">
+            <span><?php if (!empty($_SESSION['foto'])): ?>
+              <img class="thumbnail" width="50" height="50" src="<?php echo APP_URL . $_SESSION['foto'] ?>" alt="<?php $_SESION['nombre'] ?>" />
+                  <?php else: ?>
+              <img class="thumbnail" width="50" height="50" src="<?php echo APP_URL; ?>public/media/user-default.png" alt="<?php $_SESION['nombre'] ?>" />
+                  <?php endif; ?>
+            </span>
+          </a>
+        </div>
+      </div>
   </div>
 </nav>
