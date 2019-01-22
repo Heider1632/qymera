@@ -4,8 +4,7 @@
     include 'views/overall/nav-user.php';
     include 'views/overall/nav-tool.php';
   ?>
-    <div class="container is-fluid">
-      <div class="columns is-2">
+    <div class="columns is-2">
         <div class="column is-one-quarter">
           <?php include 'views/overall/nav-aside.php'; ?>
         </div>
@@ -131,4 +130,3 @@
           </form>
         </div>
       </div>
-    </div>

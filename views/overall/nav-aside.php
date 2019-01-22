@@ -10,8 +10,8 @@
     <li>
       <a class="is-active">Estudiantes</a>
       <ul>
-        <li><a href="<?php echo APP_URL; ?>teacher/groupStudent/">Grupo</a></li>
-        <li><a href="<?php echo APP_URL; ?>teacher/unicStudent/">Individual</a></li>
+        <li><a href="<?php echo APP_URL; ?>teacher/grupos/">Grupos</a></li>
+        <li><a href="<?php echo APP_URL; ?>teacher/Individual/">Individual</a></li>
       </ul>
     </li>
     <li>

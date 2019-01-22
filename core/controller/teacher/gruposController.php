@@ -27,8 +27,8 @@
         /*template home */
           /* navbar interface */
           include 'views/overall/nav-user.php';
+					include 'views/overall/nav-tool.php';
           ?>
-          <div class="container is-fluid">
             <div class="columns is-2">
               <div class="column is-one-quarter">
                 <?php include 'views/overall/nav-aside.php'; ?>
@@ -36,20 +36,20 @@
               <div class="column">
 								<div class="box">
 								<?php foreach($materias as $matter): ?>
+								<div class="wrapper">
 									<div class="notification is-info m-b-20">
-										<p class="title" id="preview"><?php echo $matter['materia_nombre']; ?></p>
+										<p class="title preview"><?php echo $matter['materia_nombre']; ?></p>
 									</div>
-
-								<?php $id_materia = $matter['materia_id']; $grados = $teacher->getGrado($id_materia); ?>
-								<div id="form-preview" class="content">
-								<table class="table is-hoverable is-narrow is-fullwidth">
-										<thead>
+									<?php $id_materia = $matter['materia_id']; $grados = $teacher->getGrado($id_materia); ?>
+									<div class="content">
+										<table class="table is-hoverable is-narrow is-fullwidth">
+											<thead>
 												<tr>
 														<th>Grado</th>
 														<th>Grupo</th>
 														<th>Accion</th>
 													</tr>
-										</thead>
+											</thead>
 										<tbody>
 										<?php foreach($grados as $g): ?>
 										<tr>
@@ -65,11 +65,11 @@
 											</tbody>
 									</table>
 								</div>
+								</div>
 								<?php endforeach; ?>
               	</div>
 							</div>
             </div>
-          </div>
         <?php
         /* scripts*/
         include 'views/overall/scripts.php';
