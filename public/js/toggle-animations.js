@@ -1,9 +1,8 @@
 // hide all div containers
 $('.content').hide();
-console.log($('.preview' +  '.content'));
 
 $(".preview").click(function(e) {
-    $(this).parent().next('.content').slideToggle('slow');
+    $(this).parent().next('.contenido').slideToggle('slow');
 
     // set the current item as active
     $(this).parent().toggleClass('active');

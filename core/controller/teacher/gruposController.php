@@ -41,7 +41,7 @@
 										<p class="title preview"><?php echo $matter['materia_nombre']; ?></p>
 									</div>
 									<?php $id_materia = $matter['materia_id']; $grados = $teacher->getGrado($id_materia); ?>
-									<div class="content">
+									<div class="contenido">
 										<table class="table is-hoverable is-narrow is-fullwidth">
 											<thead>
 												<tr>

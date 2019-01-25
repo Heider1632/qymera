@@ -111,20 +111,3 @@ function deleteInd(res){
 window.onload = function() {
   $("#form-edit").slideToggle();
 };
-
-/*new Promise(function(resolve, reject) {
-
-    resolve((res) => {
-      console.log(res);
-    })
-
-    reject(() => {
-      console.error(error);
-    })
-
-  }).then(function(result) {
-
-    alert(result);
-    return result * 2; // <-- (1)
-
-  });*/

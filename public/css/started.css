@@ -1,0 +1,22 @@
+.void{
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ -webkit-transform: translate(-50%, -50%);
+}
+
+
+.button-dismiss{
+    position:absolute;
+    bottom:5px;
+    right:10px;
+}
+
+#newGroup{
+  display: none; !important
+}
+
+#newGrade{
+  display: none; !important
+}

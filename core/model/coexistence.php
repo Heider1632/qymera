@@ -1,9 +1,14 @@
 <?php
     require_once('conexion.php');
-
+    /**
+     * [Coexistence description]
+     */
     class Coexistence
     {
-        //functiones del coordinador de convivencia...//
+        /**
+         * [getPeriodos description]
+         * @return [type] [description]
+         */
         public function getPeriodos()
         {
             $db = new Conexion();

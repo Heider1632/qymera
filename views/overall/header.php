@@ -35,8 +35,10 @@
     <script src="<?php echo APP_URL; ?>public/js/fullcalendar.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>public/css/fullcalendar.min.css">
 
+    <!-- animated css -->
+    <link rel="stylesheet" type="text/css" href="<?php echo APP_URL ?>public/css/animated.css">
     <!-- bulma css-->
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css'>
+    <link rel='stylesheet prefetch' type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css'>
 
     <!-- estilos adicionales -->
         <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>public/css/home.css">
@@ -44,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>public/css/cards.css">
         <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>public/css/nofound.css">
         <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>public/css/nav-aside.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo APP_URL; ?>public/css/started.css">
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 

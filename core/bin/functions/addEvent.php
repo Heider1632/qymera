@@ -9,5 +9,7 @@
               VALUES ("'.$title.'", "'.$body.'", "'.$start_date.'", "'.$end_date.'", "'.$_SESSION['id'].'")';
 
       $results = $db->query($sql);
+
+      $db->close();
     }
 ?>

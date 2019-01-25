@@ -4,7 +4,7 @@ if(isset($_SESSION['id'])){
 	header('location: http://localhost:8888/qymera/default/redirec/');
 } else {
 
-	switch ($view[2]) {
+	switch ($view[1]) {
 		case 'go':
 		# Leemos las variables enviadas mediante Ajax
 		$email = $_POST['email'];
