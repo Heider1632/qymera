@@ -4,6 +4,10 @@
 	 * [Directivo description]
 	 */
 	class Directivo{
+	/**
+	 * [verify description]
+	 * @return [type] [description]
+	 */
 	public function verify(){
 		$db = new Conexion();
 
@@ -12,7 +16,38 @@
 		$result = $db->consultaArreglo($sql);
 
 		return $result;
-		
+
+		$db->close();
+	}
+	public function addGrade($name){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT id FROM grado WHERE nombre = "'.$name.'" LIMIT 1');
+
+		$file = $db->rows($sql);
+
+		if($file > 0){
+			echo 2;
+		}else{
+			$db->query('INSERT INTO grado SET nombre = "'.$name.'"');
+			return true;
+		}
+
+		$db->close();
+	}
+	/**
+	 * [getGroups description]
+	 * @return [type] [description]
+	 */
+	public function getGroups(){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT grado.nombre, grupo.nombre FROM grado_grupo INNER JOIN grado ON grado.id = grado_grupo.id_grado INNER JOIN grupo ON grupo.id = grado_grupo.id_grupo');
+
+		$result = $db->consultaArreglo($sql);
+
+		return $result;
+
 		$db->close();
 	}
 	/**
@@ -29,19 +64,8 @@
 		$db->close();
 	}
 
-	public function del_teacher($id_teacher){
-		$db = new Conexion();
-
-		$db->close();
-	}
 
 	public function add_materia($name){
-		$db = new Conexion();
-
-		$db->close();
-	}
-
-	public function del_materia($id_matter){
 		$db = new Conexion();
 
 		$db->close();

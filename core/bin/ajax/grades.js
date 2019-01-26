@@ -1,28 +1,51 @@
-$('#BtnAddNewGrade').click(function(e){
-  var $this = $(this);
-  $this.text('loading');
+function addGrade(event, res){
 
-  $this.addClass('is-loading');
+  var button = event.target;
+
+  button.classList.add('is-loading');
+
+  var i = documnet.createElement('i');
+
+  var name = res;
+  $.ajax({
+    method: 'POST',
+    url: 'http://localhost:8888/qymera/coordinator/home/createGrades/add/' + name + '/',
+    data: {name: name},
+    success: function(response){
+      if(response == 1){
+        swal('ERROR', 'datos no enviados' ,'error')
+      }else if(response == 2){
+        swal('Alerta', 'el grado ya existe', 'warning');
+      }else{
+        button.classList.remove('is-loading');
+        button.appendChild(i);
+
+        $('i').addClass('fas fa-check');
+      }
+    }
+  })
+}
+
+$('#BtnGroups').click(function(){
+
+  var name = $('#TxtGrade').val();
 
   $.ajax({
     method: 'POST',
-    url: '',
-    data: {},
+    url: 'http://localhost:8888/qymera/coordinator/home/createGrades/add/' + name + '/',
+    data: {name: name},
     success: function(response){
       if(response == 1){
-
+        swal('ERROR', 'datos no enviados' ,'error')
+      }else if(response == 2){
+        swal('Alerta', 'el grado ya existe', 'warning');
       }else{
-        $this.removeClass('is-loading');
-        $this.text('');
-        $this.removeClass('is-info');
-        $this.addClass('is-success');
-        $this.append( "<i class='fas fa-check'></i>" );
+        button.classList.remove('is-loading');
+        button.appendChild(i);
 
+        $('i').addClass('fas fa-check');
       }
     }
-
-
   })
 
-  e.preventDefault();
 })

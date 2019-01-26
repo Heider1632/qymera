@@ -14,7 +14,7 @@
       $db = new Conexion();
 
       // traemos el id y el nombre de la tabla usuarios donde el usuario sea igual al usuario ingresado y ademas la clave sea igual a la ingresada para ese usuario.
-      $query = $db->query('SELECT id, cargo from usuario where email="'.$email.'" and clave= "'.$clave.'"');
+      $query = $db->query('SELECT id, cargo from usuario where correo="'.$email.'" and clave= "'.$clave.'"');
 
       $verificar_usuario = $db->rows($query);
 

@@ -11,7 +11,7 @@
         <?php foreach ($grades as $grade): ?>
         <tr>
           <td><?php echo $grade['nombre']; ?></td>
-          <td><a class="button is-info is-medium" id="BtnAddNewGrade">Añadir<i class="fas fa-plus"></a></td>
+          <td><a class="button is-info is-medium" onclick="addGrade(event, <?php echo $grade['nombre']; ?>)">Añadir<i class="fas fa-plus"></a></td>
         </tr>
         <?php endforeach; ?>
       </tbody>
@@ -46,6 +46,4 @@
       <p class="message">desear importar grades? <a href="#">Importar</a></p>
     </div>
 </form>
-
 </div>
-<button class="button is-info is-medium button-dismiss" id="DismissGroups">Omitir<i class="fas fa-arrow-right"></i></button>
