@@ -39,7 +39,6 @@
 							break;
 						default:
 							$grades = $imports->importGrades();
-							var_dump($grades);
 							include 'views/coordinator/started/createGrades.php';
 						break;
 					}

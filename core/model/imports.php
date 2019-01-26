@@ -14,9 +14,9 @@ class Imports{
    * @return [type] [description]
    */
   public function importGrades(){
-    $db = new Conexion();
+    $db = new Conexion_two();
 
-    $sql = 'SELECT * FROM grado';
+    $sql = 'SELECT nombre FROM grado';
 
     $results = $db->query($sql);
 
