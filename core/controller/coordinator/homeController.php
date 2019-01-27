@@ -44,11 +44,12 @@
 					}
 					break;
 				case 'creategroups':
-					$groups = $imports->importGroups();
+					$primary_grades = $directivo->getPrimaryGrades();
+					$balechor_grades = $directivo->getBalechorGrades();
 					include 'views/coordinator/started/createGroups.php';
 					break;
 				case 'choisestudents':
-					//$groups = $directivo->getGroups();
+					$groups = $directivo->getGroups();
 					include 'views/coordinator/started/choiseGroups.php';
 					break;
 				case 'importstudents':

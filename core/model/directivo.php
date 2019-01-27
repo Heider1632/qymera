@@ -19,6 +19,10 @@
 
 		$db->close();
 	}
+	/**
+	 * [addGrade description]
+	 * @param [type] $name [description]
+	 */
 	public function addGrade($name){
 		$db = new Conexion();
 
@@ -32,6 +36,46 @@
 			$db->query('INSERT INTO grado SET nombre = "'.$name.'"');
 			return true;
 		}
+
+		$db->close();
+	}
+	/**
+	 * [getGrades description]
+	 * @return [type] [description]
+	 */
+	public function getPrimaryGrades(){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT * FROM grado WHERE nombre <= 5');
+
+		while ($f = $db->consultaArreglo($sql)) {
+			$primary_grades[] = array(
+				'id' => $f['id'],
+				'nombre' => $f['nombre']
+			);
+		}
+
+		return $primary_grades;
+
+		$db->close();
+	}
+	/**
+	 * [getBalechorGrades description]
+	 * @return [type] [description]
+	 */
+	public function getBalechorGrades(){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT * FROM grado WHERE nombre > 5');
+
+		while ($f = $db->consultaArreglo($sql)) {
+			$balechor_grades[] = array(
+				'id' => $f['id'],
+				'nombre' => $f['nombre']
+			);
+		}
+
+		return $balechor_grades;
 
 		$db->close();
 	}
