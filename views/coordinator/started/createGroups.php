@@ -11,8 +11,8 @@
       <tbody>
         <?php foreach ($groups as $group): ?>
         <tr>
-          <td><?php echo $group['grade']; ?></td>
-          <td><?php ?></td>
+          <td><?php echo $group['nombre_grado']; ?></td>
+          <td><?php echo $group['nombre_grupo']; ?></td>
           <td><button class="button is-info is-small">Añadir<i clas="fas fa-plus"></button></td>
         </tr>
         <?php endforeach; ?>
@@ -32,10 +32,13 @@
       </div>
       <div class="card-footer">
         <button class="button is-success is-fullwidth" id="BtnGroups">Enviar</button>
-        <p class="message">desear importar grupos? <a href="#">Importar</a></p>
       </div>
+    </div>
+    <div class="box">
+      <p class="message">desear importar grupos? <a href="#">Importar</a></p>
     </div>
 </form>
 
 </div>
-<button class="button is-info is-medium button-dismiss" id="DismissGroups">Omitir<i class="fas fa-arrow-right"></i></button>
+<a class="button is-info is-medium button-bottom-right" href="<?php echo APP_URL ?>coordinator/home/importStudents/">Siguiente<i class="fas fa-arrow-right"></i></button>
+<a class="button is-info is-medium button-bottom-left" href="<?php echo APP_URL ?>coordinator/home/createGrades/"><i class="fas fa-arrow-left"></i>Atrás</a>

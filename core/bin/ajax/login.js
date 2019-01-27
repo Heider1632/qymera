@@ -11,8 +11,12 @@ $('#login').click(function(){
     url: 'http://localhost:8888/qymera/login/go/',
     // Recuerda el primer parametro es la variable de php y el segundo es el dato que enviamos
     data: {email: email, password: password},
+    beforeSend: function(){
+      $('#login').addClass('is-loading');
+    },
     // el parametro res es la respuesta que da php mediante impresion de pantalla (echo)
     success: function(res){
+      $('#login').addClass('is-loading');
       // Ahora validamos la respuesta de php, si es error_1 algun campo esta vacio de lo contrario todo salio bien y redireccionaremos a donde diga php
       if(res == 'error_1'){
         swal('Error', 'Por favor ingrese todos los campos', 'error');

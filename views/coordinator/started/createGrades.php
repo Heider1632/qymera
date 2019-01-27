@@ -1,4 +1,5 @@
 <div class="void">
+  <h1 class="title m-b-50">Configuraciones para los grados</h1>
   <form id="importGrade">
     <table class="table is-hoverable is-fullwidth">
       <thead>
@@ -47,3 +48,4 @@
     </div>
 </form>
 </div>
+<a class="button is-info button-bottom-right is-medium" href="<?php echo APP_URL ?>coordinator/home/createGroups/">Siguiente<i class="fas fa-arrow-right"></i></a>

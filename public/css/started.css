@@ -7,11 +7,18 @@
 }
 
 
-.button-dismiss{
+.button-bottom-right{
     position:absolute;
     bottom:5px;
     right:10px;
 }
+
+.button-bottom-left{
+    position:absolute;
+    bottom:5px;
+    left:10px;
+}
+
 
 #newGroup{
   display: none; !important

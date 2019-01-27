@@ -44,6 +44,7 @@
 					}
 					break;
 				case 'creategroups':
+					$groups = $imports->importGroups();
 					include 'views/coordinator/started/createGroups.php';
 					break;
 				case 'choisestudents':
