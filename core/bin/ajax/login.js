@@ -13,12 +13,12 @@ $('#login').click(function(){
     data: {email: email, password: password},
     beforeSend: function(){
       // Mostramos el div con el id load mientras se espera una respuesta del servidor (el archivo solicitado en el parametro url)
-      $('#login-load').show();
+      $('#login-load').removeClass('is-hidden');
     },
     // el parametro res es la respuesta que da php mediante impresion de pantalla (echo)
     success: function(res){
       // Lo primero es ocultar el load, ya que recibimos la respuesta del servidor
-      $('#login-load').hide();
+      $('#login-load').addClass('is-hidden');
       // Ahora validamos la respuesta de php, si es error_1 algun campo esta vacio de lo contrario todo salio bien y redireccionaremos a donde diga php
       if(res == 'error_1'){
         swal('Error', 'Por favor ingrese todos los campos', 'error');
@@ -60,12 +60,12 @@ $('#tempLogin').click(function(){
     // Esta funcion se ejecuta antes de enviar la información al archivo indicado en el parametro url
     beforeSend: function(){
       // Mostramos el div con el id load mientras se espera una respuesta del servidor (el archivo solicitado en el parametro url)
-      $('#token-load').show();
+      $('#token-load').removeClass('is-hidden');
     },
     // el parametro res es la respuesta que da php mediante impresion de pantalla (echo)
     success: function(res){
       // Lo primero es ocultar el load, ya que recibimos la respuesta del servidor
-      $('#toke-load').hide();
+      $('#toke-load').addClass('is-hidden');
 
       // Ahora validamos la respuesta de php, si es error_1 algun campo esta vacio de lo contrario todo salio bien y redireccionaremos a donde diga php
       if(res == 'error_1'){

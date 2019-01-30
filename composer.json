@@ -1,0 +1,14 @@
+{
+    "authors": [
+        {
+            "name": "Heider Zapa",
+            "email": "heiderzapa78@gmail.com",
+            "homepage": "http://qymera.net/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "1.0.*",
+        "nesbot/carbon": "^2.10.1"
+    }
+}

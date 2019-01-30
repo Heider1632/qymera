@@ -169,3 +169,7 @@ th:hover {
   color: #e17055;
   border: none;
 }
+
+#token-load, #login-load{
+  display: none
+}

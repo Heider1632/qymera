@@ -82,8 +82,8 @@
           <input type="password" class="input is-medium" id="password" placeholder="password"/>
           <br />&nbsp;
           <!-- Animacion de load (solo sera visible cuando el cliente espere una respuesta del servidor )-->
-          <div class="columns" id="login-load" hidden="hidden">
-            <div class="column">
+          <div class="columns">
+            <div class="column is-hidden" id="login-load">
               <img src="<?php echo APP_URL ?>public/images/load.gif" width="100%" alt="">
               <span>Validando información...</span>
             </div>
@@ -92,8 +92,8 @@
           <hr />
           <input type="text" class="input is-medium" id="token" placeholder="token" />
           <br />&nbsp;
-          <div class="columns" id="token-load" hidden="hidden">
-            <div class="column">
+          <div class="columns">
+            <div class="column is-hidden" id="token-load">
               <img src="<?php echo APP_URL ?>public/images/load.gif" width="100%" alt="">
               <span>Validando información...</span>
             </div>

@@ -22,7 +22,7 @@ define('DATE', date('Y-m-d'));
 
 //structure//
 //Load Composer's autoloader
-/*require ('vendor/autoload.php');*/
+require('vendor/autoload.php');
 require('core/bin/functions/eliminarCaracteres.php');
 require('core/bin/functions/arrays_repetidos.php');
 //require('core/bin/functions/round.php');
