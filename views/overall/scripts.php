@@ -9,6 +9,7 @@
 <script src="<?php echo APP_URL ?>core/bin/ajax/notification.js"></script>
 <script src="<?php echo APP_URL ?>core/bin/ajax/activity.js"></script>
 <script src="<?php echo APP_URL ?>core/bin/ajax/grades.js"></script>
+<script src="<?php echo APP_URL ?>core/bin/ajax/groups.js"></script>
 <!-- custom function -->
 <script src="<?php echo APP_URL ?>core/bin/functions/refresh.js"></script>
 <script src="<?php echo APP_URL ?>core/bin/functions/ago.js"></script>

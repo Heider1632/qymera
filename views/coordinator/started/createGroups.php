@@ -14,7 +14,7 @@
           <tbody>
             <?php foreach ($primary_grades as $primary): ?>
             <tr>
-              <td><?php echo $primary['nombre']; ?></td>
+              <td class="TxtSelectGrade"><?php echo $primary['nombre']; ?></td>
               <td>
                 <div class="field">
                   <div class="control">
@@ -28,7 +28,7 @@
                   </div>
                 </div>
               </td>
-              <td><button class="button is-info is-small">Añadir<i clas="fas fa-plus"></button></td>
+              <td><a class="button is-info is-small" id="BtnAddGroup">Añadir<i clas="fas fa-plus"></a></td>
             </tr>
             <?php endforeach; ?>
           </tbody>
