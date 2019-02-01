@@ -1,5 +1,4 @@
 <?php
-
 // application core //
 
 //default zone //
