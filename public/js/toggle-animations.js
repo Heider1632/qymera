@@ -1,5 +1,5 @@
 // hide all div containers
-$('.content').hide();
+$('.contenido').hide();
 
 $(".preview").click(function(e) {
     $(this).parent().next('.contenido').slideToggle('slow');

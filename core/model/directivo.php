@@ -28,13 +28,13 @@
 
 		$sql = $db->query('SELECT id FROM grado WHERE nombre = "'.$name.'" LIMIT 1');
 
-		$file = $db->rows($sql);
+		$file = $db->verificarFila($sql);
 
 		if($file > 0){
 			echo 2;
 		}else{
 			$db->query('INSERT INTO grado SET nombre = "'.$name.'"');
-			return true;
+			echo 3;
 		}
 
 		$db->close();

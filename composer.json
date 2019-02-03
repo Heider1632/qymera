@@ -9,6 +9,7 @@
     ],
     "require": {
         "monolog/monolog": "1.0.*",
-        "nesbot/carbon": "^2.10.1"
+        "nesbot/carbon": "^2.10.1",
+        "phpoffice/phpword": "v0.13.*"
     }
 }

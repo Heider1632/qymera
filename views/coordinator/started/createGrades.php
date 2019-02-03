@@ -40,7 +40,7 @@
           </div>
       </div>
       <div class="card-footer">
-        <button class="button is-success is-fullwidth" id="BtnGroups">Enviar</button>
+        <button class="button is-success is-fullwidth" id="BtnGrade">Enviar</button>
       </div>
     </div>
     <div class="box">

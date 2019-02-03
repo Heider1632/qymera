@@ -31,7 +31,8 @@
 							if($_POST){
 
 								$name = $_POST['name'];
-								$directivo->addGrade($name);
+								echo 2;
+								//$directivo->addGrade($name);
 
 							}else {
 								echo 1;
@@ -44,9 +45,34 @@
 					}
 					break;
 				case 'creategroups':
-					$primary_grades = $directivo->getPrimaryGrades();
-					$balechor_grades = $directivo->getBalechorGrades();
-					include 'views/coordinator/started/createGroups.php';
+					switch ($view[3]) {
+						case 'add':
+							if($_POST){
+
+								$id_grade = $_POST['id_grade'];
+								$id_group = $_POST['id_group'];
+								$cod = md5($_POST['code']);
+
+								echo 2;
+
+								//$directivo->addGroup($id_grade, $id_group, $cod);
+
+							}else{
+								echo 1;
+							}
+							break;
+						case 'balechor':
+							$balechor_grades = $directivo->getBalechorGrades();
+							include 'views/coordinator/started/createBalechorGroups.php';
+							break;
+						case 'primary':
+							$primary_grades = $directivo->getPrimaryGrades();
+							include 'views/coordinator/started/createPrimaryGroups.php';
+							break;
+						default:
+							include 'views/coordinator/started/createGroups.php';
+							break;
+					}
 					break;
 				case 'choisestudents':
 					$groups = $directivo->getGroups();
