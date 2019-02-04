@@ -31,8 +31,7 @@
 							if($_POST){
 
 								$name = $_POST['name'];
-								echo 2;
-								//$directivo->addGrade($name);
+								$directivo->addGrade($name);
 
 							}else {
 								echo 1;
@@ -51,14 +50,14 @@
 
 								$id_grade = $_POST['id_grade'];
 								$id_group = $_POST['id_group'];
-								$cod = md5($_POST['code']);
+								$code = md5($_POST['code']);
 
-								echo 2;
+								echo 'error_2';
 
-								//$directivo->addGroup($id_grade, $id_group, $cod);
+								//$directivo->addGroup($id_grade, $id_group, $code);
 
 							}else{
-								echo 1;
+								echo 'error_1';
 							}
 							break;
 						case 'balechor':

@@ -3,7 +3,7 @@
     <div class="column m-t-50 animated bounceInLeft">
       <h1 class="title">Bachillerato</h1>
       <form>
-        <table class="table is-hoverable is-fullwidth">
+        <table class="table is-hoverable is-fullwidth m-t-100">
           <thead>
             <tr>
               <th>Grado</th>
@@ -12,9 +12,20 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($balechor_grades as $balechor): ?>
             <tr>
-              <td><?php echo $balechor['nombre']; ?></td>
+              <td>
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select id="TxtSelectBalechorName">
+                        <?php foreach ($balechor_grades as $balechor): ?>
+                          <option value="<?php echo $balechor['id']; ?>"><?php echo $balechor['nombre']; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </td>
               <td>
                 <div class="field">
                   <div class="control">
@@ -28,9 +39,8 @@
                   </div>
                 </div>
               </td>
-              <td><a class="button is-info is-small" onclick="addGroup(event, <?php echo $balechor['nombre']; ?>)">Añadir<i clas="fas fa-plus"></a></td>
+              <td><a class="button is-info is-medium" id="BtnAddBalechorGroup">Añadir<i clas="fas fa-plus"></a></td>
             </tr>
-            <?php endforeach; ?>
           </tbody>
         </table>
       </form>

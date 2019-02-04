@@ -1,9 +1,9 @@
 <div class="container">
   <div class="columns is-2">
-    <div class="column m-t-50">
+    <div class="column m-t-50  animated bounceInLeft">
       <h1 class="title">Primaria</h1>
       <form>
-        <table class="table is-hoverable is-fullwidth">
+        <table class="table is-hoverable is-fullwidth m-t-100">
           <thead>
             <tr>
               <th>Grado</th>
@@ -12,9 +12,20 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($primary_grades as $primary): ?>
             <tr>
-              <td class="TxtSelectPrimaryGrade"><?php echo $primary['nombre']; ?></td>
+              <td>
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select id="TxtSelectPrimaryName">
+                        <?php foreach ($primary_grades as $primary): ?>
+                          <option value="<?php echo $primary['id']; ?>"><?php echo $primary['nombre']; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </td>
               <td>
                 <div class="field">
                   <div class="control">
@@ -28,9 +39,8 @@
                   </div>
                 </div>
               </td>
-              <td><a class="button is-info is-small" onclick="addGroup(event, <?php echo $primary['nombre']; ?>)">Añadir<i clas="fas fa-plus"></a></td>
+              <td><a class="button is-info is-medium" id="BtnAddPrimaryGroup">Añadir<i clas="fas fa-plus"></a></td>
             </tr>
-            <?php endforeach; ?>
           </tbody>
         </table>
       </form>
