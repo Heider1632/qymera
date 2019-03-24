@@ -15,7 +15,7 @@ $_SESSION['nombre_periodo'] = $periodo[0]['nombre_periodo'];
       </a>
       <a class="navbar-item m-l-20">
           <i class="fas fa-globe-americas"></i>
-          Periodo: <?php echo $_SESSION['periodo_id']; ?>
+          Periodo: <?php echo $_SESSION['id_periodo']; ?>
       </a>
 
       <a class="navbar-item m-l-20">
@@ -24,7 +24,7 @@ $_SESSION['nombre_periodo'] = $periodo[0]['nombre_periodo'];
       </a>
       <a class="navbar-item">
           <i class="fas fa-hourglass-half"></i>
-          : <div id="hora"></div>
+          <div id="hora"></div>
       </a>
     </div>
     <div class="navbar-end">

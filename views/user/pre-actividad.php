@@ -31,21 +31,19 @@
             <div class="card">
               <header class="card-header">
                 <p class="card-header-title">
-                  <?php echo $activity['titulo']; ?>
+                  <?php echo $activity['title'] . " -- " . $activity['type']; ?>
                 </p>
-                <a href="#" class="card-header-icon" aria-label="more options">
-                  <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </a>
               </header>
               <div class="card-content">
                 <div class="content">
-                  <p class="subtitle"><?php echo $activity['descripcion']; ?></p>
+                  <p class="subtitle"><?php echo $activity['description']; ?></p>
                   <br>
-                  <p class="subtitle"><?php echo $activity['nombre_indicador']; ?></p>
+                  <p class="subtitle"><?php echo $activity['name_indicator']; ?></p>
                   Fecha de finalizacion
-                  <time onmouseover="agotime(<?php echo $activity['fecha_inicio']; ?>,<?php echo $activity['fecha_finalizacion']; ?>, event)" datetime="<?php echo $activity['fecha_finalizacion']; ?>"><?php echo $activity['fecha_finalizacion']; ?></time>
+                  <time onmouseover="agotime(<?php echo $activity['date_start']; ?>,<?php echo $activity['date_finish']; ?>, this)" 
+                  datetime="<?php echo $activity['date_finish']; ?>">
+                  <?php echo $activity['date_finish']; ?>
+                  </time>
                 </div>
               </div>
               <footer class="card-footer">

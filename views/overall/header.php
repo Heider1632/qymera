@@ -62,4 +62,7 @@
     <link rel="shortcut icon" href="<?php echo APP_URL; ?>public/icon/qymera.ico" type="image/x-icon">
     <link rel="icon" href="<?php echo APP_URL; ?>public/icon/qymera.ico" type="image/x-icon">
 
+    <!-- axios -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
 </head>

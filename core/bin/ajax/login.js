@@ -1,4 +1,21 @@
+//global variable
+var dinamicurl = window.location.protocol;
+
+
+if(dinamicurl == 'http:'){
+  var dinamicurl = 'http://localhost:8888/qymera/';
+}else{
+  var dinamicurl = 'https://qymera.net/';
+}
+
+/**
+ * LOGIN FUNCTION
+ */
+
 $('#login').click(function(){
+
+  //dinamic url
+  var loginurl = dinamicurl + 'login/go/';
 
   // Traemos los datos de los inputs
   var email  = $('#email').val();
@@ -8,7 +25,7 @@ $('#login').click(function(){
   $.ajax({
     method: 'POST',
     // Recuerda que la ruta se hace como si estuvieramos en el index y no en operaciones por esa razon no utilizamos ../ para ir a controller
-    url: 'http://localhost:8888/qymera/login/go/',
+    url: loginurl,
     // Recuerda el primer parametro es la variable de php y el segundo es el dato que enviamos
     data: {email: email, password: password},
     beforeSend: function(){
@@ -28,9 +45,11 @@ $('#login').click(function(){
         // Redireccionamos a la página que diga corresponda el usuario
         window.location.href= res
 
+        var notificationurl = dinamicurl + 'core/bin/functions/count-notification.php'
+
         $.ajax({
           method:'GET',
-          url: 'http://localhost:8888/qymera/core/bin/functions/count-notification.php',
+          url: notificationurl,
           success: function(res){
             $('#span-notification').text(res);
           },
@@ -45,7 +64,14 @@ $('#login').click(function(){
 
 });
 
+/**
+ * TOKEN FUNCTION
+ */
+
 $('#tempLogin').click(function(){
+
+  //dinamic temp url
+  var tempurl = dinamicurl + 'default/tempLogin/';
 
   // Traemos los datos de los inputs
   var token = $('#token').val();
@@ -54,7 +80,7 @@ $('#tempLogin').click(function(){
   $.ajax({
     method: 'POST',
     // Recuerda que la ruta se hace como si estuvieramos en el index y no en operaciones por esa razon no utilizamos ../ para ir a controller
-    url: 'http://localhost:8888/qymera/default/tempLogin/',
+    url: tempurl,
     // Recuerda el primer parametro es la variable de php y el segundo es el dato que enviamos
     data: {token: token},
     // Esta funcion se ejecuta antes de enviar la información al archivo indicado en el parametro url
@@ -65,7 +91,7 @@ $('#tempLogin').click(function(){
     // el parametro res es la respuesta que da php mediante impresion de pantalla (echo)
     success: function(res){
       // Lo primero es ocultar el load, ya que recibimos la respuesta del servidor
-      $('#toke-load').addClass('is-hidden');
+      $('#token-load').addClass('is-hidden');
 
       // Ahora validamos la respuesta de php, si es error_1 algun campo esta vacio de lo contrario todo salio bien y redireccionaremos a donde diga php
       if(res == 'error_1'){
@@ -75,6 +101,19 @@ $('#tempLogin').click(function(){
       }else{
         // Redireccionamos a la página que diga corresponda el usuario
         window.location.href= res
+
+        var notificationurl = dinamicurl + 'core/bin/functions/count-notification.php'
+
+        $.ajax({
+          method:'GET',
+          url: notificationurl,
+          success: function(res){
+            $('#span-notification').text(res);
+          },
+          error: function(error){
+            console.log(error);
+          }
+        })
       }
 
     }

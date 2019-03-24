@@ -1,6 +1,6 @@
 <?php
     if (!isset($_SESSION['id'])):
-      header('location: index.php');
+      header('location:' .APP_URL.  'default/redirec/');
     else:
 
       require 'core/model/teacher.php';
@@ -12,7 +12,6 @@
       $grupos = $teacher->getGrupoDesc();
 
       $materias = $teacher->getMateria();
-
 
       if($view[2] == 'add'){
         if($_POST){

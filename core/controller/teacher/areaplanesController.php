@@ -1,6 +1,6 @@
 <?php
 	if(!isset($_SESSION['id'])):
-		header('location: index.php');
+		header('location:' .APP_URL.  'default/redirec/');
 	else:
 	/*  schema that allow callback the functions */
 	require 'core/model/coexistence.php';

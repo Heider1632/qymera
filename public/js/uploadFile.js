@@ -1,3 +1,12 @@
+//global variable
+var protocol = window.location.protocol;
+
+if(protocol === 'http:'){
+  var $url = 'http://localhost:8888/qymera/';
+}else{
+  var $url = 'https://qymera.net/';
+}
+
 //Change id to your id
 $("#file").on("change", function (e) {
     var file = $(this)[0].files[0];
@@ -37,7 +46,7 @@ Upload.prototype.doUpload = function () {
 
     $.ajax({
         method: "POST",
-        url: "http://localhost:8888/qymera/teacher/areaplanes/upload/",
+        url: $url + "teacher/areaplanes/upload/",
         xhr: function () {
             var myXhr = $.ajaxSettings.xhr();
             if (myXhr.upload) {

@@ -19,10 +19,10 @@
 
             while ($x = $db->consultaArreglo($results)) {
                 $periodos[] = array(
-                'periodo_id' => $x[3],
+                'id' => $x[3],
                 'periodo_nombre' => $x[2],
-                'fecha_inicio_periodo' => $x[1],
-                'fecha_cierre_periodo' => $x[0]
+                'fecha_inicio_periodo' => $x[0],
+                'fecha_cierre_periodo' => $x[1]
             );
             }
 

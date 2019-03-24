@@ -9,6 +9,7 @@
         <?php include 'views/overall/nav-aside.php'; ?>
       </div>
       <div class="column">
+        <div class="container">
           <!-- bar to actions -->
             <?php if(3 > 5): ?>
               <p class="notification is-warning">El tiempo estimado para ver los indicador se ha acabado, porfavor pongase en contacto con administracion para cambiar la hora </p>
@@ -54,8 +55,15 @@
                        <td>Todos</td>
                      <?php endif;?>
                      <td>
-                       <a class="button is-small is-link" onclick="redirecEdit(<?php echo $ind['id']; ?>)"><i class="fas fa-edit"></i></a>
-                       <a class="button is-small is-danger" onclick="deleteInd(<?php echo $ind['id']; ?>)"><i class="fas fa-trash"></i></a>
+                      <!--<a class="button is-small is-link" onclick="redirecEdit(<?php echo $ind['id']; ?>)">
+                        <i class="fas fa-edit"></i>
+                      </a>-->
+                       <a class="button is-small is-danger" onclick="deleteInd(<?php echo $ind['id']; ?>)">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                      <a class="button is-small is-info" href="<?php echo APP_URL ?>teacher/indicador/<?php echo $ind['id'] ?>/">
+                        <i class="fas fa-tasks"></i>
+                      </a>
                      </td>
                     </tr>
                  <?php endforeach; ?>
@@ -191,3 +199,4 @@
           </div>
       </div>
   </div>
+</div>

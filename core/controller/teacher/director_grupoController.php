@@ -1,6 +1,6 @@
 <?php
 	if(!isset($_SESSION['id']) || $_SESSION['cargo'] == 1):
-		header('location: http://localhost:8888/qymera/redirec/');
+		header('location:' .APP_URL.  'default/redirec/');
 	else:
 	/*  schema that allow callback the functions */
 		require 'core/model/group-director.php';

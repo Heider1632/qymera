@@ -2,6 +2,30 @@
 	require_once('conexion.php');
 
 	class Teacher{
+
+	public function getValidation(){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT estado FROM usuario WHERE id = "'.$_SESSION['id'].'" LIMIT 1');
+
+		$result = $db->consultaArreglo($sql);
+
+		return $result;
+
+		$db->close();
+	}
+
+	public function changePassword($new_password){
+		$db = new Conexion();
+
+		$db->query('UPDATE usuario SET clave = "'.md5($new_password).'",  estado = "1"  
+			WHERE id = "'.$_SESSION['id'].'"');
+
+
+		echo 3;
+
+		$db->close();
+	}
 	/**
 	 * [getInfTeacher description]
 	 * @return [type] [description]
@@ -9,12 +33,12 @@
 	public function getInfTeacher(){
 		$db = new Conexion();
 
-		$sql = 'SELECT materias.id, materias.nombre, grado.id, grado.nombre, grupo.id, grupo.namescape
-								 FROM information_docente
-								 INNER JOIN materias on information_docente.id_materia = materias.id
-								 INNER JOIN grado on information_docente.id_grado = grado.id
-								 INNER JOIN grupo on information_docente.id_grupo = grupo.id
-								 WHERE information_docente.id_docente = "'.$_SESSION['id'].'"';
+		$sql = 'SELECT materias.id, materias.nombre, grado.id, grado.nombre, grupo.id, grupo.nombre
+								 FROM informacion_docente
+								 INNER JOIN materias on informacion_docente.id_materia = materias.id
+								 INNER JOIN grado on informacion_docente.id_grado = grado.id
+								 INNER JOIN grupo on informacion_docente.id_grupo = grupo.id
+								 WHERE informacion_docente.id_docente = "'.$_SESSION['id'].'"';
 
 		$results = $db->query($sql);
 
@@ -88,8 +112,8 @@
 
       $consulta = 'SELECT materias.id, materias.nombre
                       FROM materias
-                      INNER JOIN information_docente ON information_docente.id_materia = materias.id
-                      WHERE information_docente.id_docente = "'.$_SESSION['id'].'" GROUP BY id';
+                      INNER JOIN informacion_docente ON informacion_docente.id_materia = materias.id
+                      WHERE informacion_docente.id_docente = "'.$_SESSION['id'].'" GROUP BY id';
 
       $results = $db->query($consulta);
 
@@ -118,11 +142,11 @@
       $db = new Conexion();
 
       $consulta = 'SELECT grado.id, grado.nombre, grupo.id, grupo.nombre
-										FROM information_docente
-										INNER JOIN grado ON information_docente.id_grado = grado.id
-										INNER JOIN grupo ON information_docente.id_grupo = grupo.id
-										WHERE information_docente.id_docente = "'.$_SESSION['id'].'"
-										and information_docente.id_materia = "'.$id_materia.'"';
+										FROM informacion_docente
+										INNER JOIN grado ON informacion_docente.id_grado = grado.id
+										INNER JOIN grupo ON informacion_docente.id_grupo = grupo.id
+										WHERE informacion_docente.id_docente = "'.$_SESSION['id'].'"
+										and informacion_docente.id_materia = "'.$id_materia.'"';
 
       $results = $db->query($consulta);
 
@@ -149,9 +173,9 @@
 			$db = new Conexion();
 
 			$query = 'SELECT grado.id, grado.nombre
-								FROM information_docente
-								INNER JOIN grado ON information_docente.id_grado = grado.id
-								WHERE information_docente.id_docente = "'.$_SESSION['id'].'" GROUP BY grado.id ';
+								FROM informacion_docente
+								INNER JOIN grado ON informacion_docente.id_grado = grado.id
+								WHERE informacion_docente.id_docente = "'.$_SESSION['id'].'" GROUP BY grado.id ';
 
 			$results = $db->query($query);
 
@@ -174,9 +198,9 @@
 			$db = new Conexion();
 
 			$query = 'SELECT grupo.id, grupo.nombre
-								FROM information_docente
-								INNER JOIN grupo ON information_docente.id_grupo = grupo.id
-								WHERE information_docente.id_docente = "'.$_SESSION['id'].'" GROUP BY grupo.id';
+								FROM informacion_docente
+								INNER JOIN grupo ON informacion_docente.id_grupo = grupo.id
+								WHERE informacion_docente.id_docente = "'.$_SESSION['id'].'" GROUP BY grupo.id';
 
 			$results = $db->query($query);
 
@@ -204,10 +228,10 @@
 
       $consulta = 'SELECT materias.nombre, grado.nombre, grupo.namescape
 									 FROM information_docente
-									 INNER JOIN materias on information_docente.id_materia = materias.id
-									 INNER JOIN grado on information_docente.id_grado = grado.id
-									 INNER JOIN grupo on information_docente.id_grupo = grupo.id
-									 WHERE information_docente.id_docente = "'.$_SESSION['id'].'"
+									 INNER JOIN materias on informacion_docente.id_materia = materias.id
+									 INNER JOIN grado on informacion_docente.id_grado = grado.id
+									 INNER JOIN grupo on informacion_docente.id_grupo = grupo.id
+									 WHERE informacion_docente.id_docente = "'.$_SESSION['id'].'"
 									 AND information_docente.id_grado = "'.$id_grado.'"
 									 AND information_docente.id_grupo = "'.$id_grupo.'"
 									 AND information_docente.id_materia = "'.$id_materia.'"';
@@ -236,18 +260,17 @@
 		 */
 		public function listIdStudents($id_grado, $id_grupo){
 
-			$db = new Conexion();
+		$db = new Conexion();
 
-      $consulta = 'SELECT id, n FROM estudiantes
-										WHERE id_grado = "'.$id_grado.'" and id_grupo = "'.$id_grupo.'"';
+      	$consulta = 'SELECT id, n FROM estudiantes WHERE id_grado = "'.$id_grado.'" and id_grupo = "'.$id_grupo.'"';
 
-      $results = $db->query($consulta);
+      	$results = $db->query($consulta);
 
-      while ($fila = $db->consultaArreglo($results)) {
+	     while ($fila = $db->consultaArreglo($results)) {
 
             $idStudents[] = array(
-							'id_student' => $fila['id'],
-							'n' => $fila['n']
+				'id_student' => $fila['id'],
+				'n' => $fila['n']
             );
       }
 
@@ -298,7 +321,8 @@
 
       $db = new Conexion();
 
-				$sql = 'SELECT * FROM indicadores WHERE nombre = "'.$new_indicador.'" AND id_docente = "'.$_SESSION['id'].'" AND id_periodo = "'.$_SESSION['id_periodo'].'" AND id_materia = "'.$id_materia.'" LIMIT 1';
+				$sql = 'SELECT * FROM indicadores 
+				WHERE nombre = "'.$new_indicador.'" AND id_docente = "'.$_SESSION['id'].'" AND id_periodo = "'.$_SESSION['id_periodo'].'" AND id_materia = "'.$id_materia.'" LIMIT 1';
 
 				$results = $db->query($sql);
 
@@ -306,7 +330,7 @@
 					echo 3;
 				}else{
 					$db->query('INSERT INTO indicadores (nombre, id_docente, id_grado, id_grupo, id_materia, id_periodo)
-					VALUES ("'.$new_indicador.'", "'.$_SESSION['id'].'", "'.$id_grado.'", "'.$id_grupo.'", "'.$id_materia.'", "1")');
+					VALUES ("'.$new_indicador.'", "'.$_SESSION['id'].'", "'.$id_grado.'", "'.$id_grupo.'", "'.$id_materia.'", "'.$_SESSION['id_periodo'].'")');
 
 					echo 4;
 				}
@@ -473,8 +497,8 @@
 			if($exist > 0){
 					echo 3;
 			}else{
-				$db->query('INSERT INTO actividades (titulo, descripcion, tipo, fecha_inicio, fecha_finalizacion, id_docente, id_indicador)
-				VALUES ("'.$title.'", "'.$description.'", "'.$type.'", "'.$start_date.'", "'.$end_date.'", "'.$_SESSION['id'].'", "'.$id_indicator.'")');
+				$db->query('INSERT INTO actividades (nombre, tipo, descripcion, fecha_asignacion, fecha_revision, id_docente, id_indicador)
+				VALUES ("'.$title.'", "'.$type.'", "'.$description.'", "'.$start_date.'", "'.$end_date.'", "'.$_SESSION['id'].'", "'.$id_indicator.'")');
 
 				echo 4;
 			}
@@ -488,7 +512,7 @@
 		public function getActivitys(){
 			$db = new Conexion();
 
-			$sql = 'SELECT actividades.id, actividades.titulo, actividades.descripcion, actividades.fecha_creacion, actividades.fecha_inicio, actividades.fecha_finalizacion, indicadores.nombre FROM actividades
+			$sql = 'SELECT actividades.id, actividades.nombre, actividades.tipo, actividades.descripcion, actividades.fecha_asignacion, actividades.fecha_revision, indicadores.nombre FROM actividades
 			INNER JOIN indicadores ON indicadores.id = actividades.id_indicador
 			WHERE actividades.id_docente = "'.$_SESSION['id'].'"';
 
@@ -497,12 +521,12 @@
 			while($f = $db->consultaArreglo($results)){
 				$activitys[] = array(
 					'id' => $f['id'],
-					'titulo' => $f['titulo'],
-					'descripcion' => $f['descripcion'],
-					'fecha_creacion' => $f['fecha_creacion'],
-					'fecha_inicio' => $f['fecha_inicio'],
-					'fecha_finalizacion' => $f['fecha_finalizacion'],
-					'nombre_indicador' => $f['nombre']
+					'title' => $f[1],
+					'type' => $f['tipo'],
+					'description' => $f['descripcion'],
+					'date_start' => $f['fecha_asignacion'],
+					'date_finish' => $f['fecha_revision'],
+					'name_indicator' => $f[6]
 				);
 			}
 

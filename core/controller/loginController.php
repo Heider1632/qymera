@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_SESSION['id'])){
-	header('location: http://localhost:8888/qymera/default/redirec/');
+	header('location:' . APP_URL . 'default/redirec/');
 } else {
 
 	switch ($view[1]) {

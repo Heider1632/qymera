@@ -1,6 +1,8 @@
 <?php
+
 # Clase conexion: permite conectar a la base de datos y ejecutar consultas sql
 class Conexion_two extends mysqli{
+  
     # Funcion que permite conectarnos a la base de datos
     public function __construct()
     {

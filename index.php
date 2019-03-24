@@ -15,7 +15,7 @@ session_start();
   }
 
   switch ($folder) {
-    case 'coordinator':
+    case 'directivo':
       if((file_exists('core/controller/'. $folder. '/' . $controller . 'Controller.php'))){
         include ('core/controller/'. $folder. '/' . $controller . 'Controller.php');
       }else{

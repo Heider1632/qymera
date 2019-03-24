@@ -1,33 +1,29 @@
 <?php
 	if(!isset($_SESSION['id'])):
-		header('location: index.php');
+		header('location:' .APP_URL.  'default/redirec/');
 	else:
 	/*  schema that allow callback the functions */
 		require 'core/model/teacher.php';
-    require 'core/model/coexistence.php';
+    	require 'core/model/coexistence.php';
 
 		$teacher = new Teacher();
-    $coexistence = new Coexistence();
+    	$coexistence = new Coexistence();
 
 		$materias = $teacher->getMateria();
 
-    if($view[2] == 'grado' && $view[4] == 'grupo'){
-			/* home view */
-        /* header */
+		/* header */
         include 'views/overall/header.php';
 
-        include 'views/user/groupStudents.php';
-        /* scripts*/
-        include 'views/overall/scripts.php';
-		}else{
+    	if($view[2] == 'grado' && $view[4] == 'grupo'){
 			/* home view */
-        /* header */
-        include 'views/overall/header.php';
+
+        include 'views/user/groupStudents.php';
+		}else{
 
         /*template home */
           /* navbar interface */
-          include 'views/overall/nav-user.php';
-					include 'views/overall/nav-tool.php';
+          	include 'views/overall/nav-user.php';
+			include 'views/overall/nav-tool.php';
           ?>
             <div class="columns is-2">
               <div class="column is-one-quarter">
@@ -56,9 +52,11 @@
 												<td><?php echo $g['nombre_grado']?></td>
 												<td><?php echo $g['nombre_grupo']?></td>
 												<td>
-													<button class="button is-info is-medium">
-															<a href="<?php echo APP_URL ?>teacher/groupStudent/grado/<?php echo $g['id_grado']?>/grupo/<?php echo $g['id_grupo'] ?>/"><i class="fas fa-users f-3x"></i></a>
-													</button>
+												<button class="button is-info is-medium">
+													<a href="<?php echo APP_URL ?>teacher/grupos/grado/<?php echo $g['id_grado']?>/grupo/<?php echo $g['id_grupo'] ?>/">
+														<i class="fas fa-users f-3x"></i>
+													</a>
+												</button>
 												</td>
 											</tr>
 											<?php endforeach; ?>
@@ -67,12 +65,12 @@
 								</div>
 								</div>
 								<?php endforeach; ?>
-              	</div>
-							</div>
-            </div>
+              		</div>
+				</div>
+           	</div>
         <?php
-        /* scripts*/
-        include 'views/overall/scripts.php';
 		}
+		/* scripts*/
+        include 'views/overall/scripts.php';
 	endif;
 ?>
