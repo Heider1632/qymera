@@ -2,16 +2,16 @@
   /* template calendar */
     /* interface navigation*/
     if($_SESSION['cargo'] == '2'){
-      include 'views/overall/nav-user.php';
+      include 'views/overall/teacher/nav-user.php';
     }else{
-      include 'views/overall/nav-admin.php';
+      include 'views/overall/directivo/nav-directivo.php';
     }
-    include 'views/overall/nav-tool.php';
+    include 'views/overall/teacher/nav-tool.php';
     ?>
     <div class="container is-fluid">
       <div class="columns is-2">
         <div class="column is-one-quarter">
-          <?php include 'views/overall/nav-aside.php'; ?>
+          <?php include 'views/overall/teacher/nav-aside.php'; ?>
         </div>
         <div class="column">
           <div class="m-t-25 m-l-20 m-r-20">
