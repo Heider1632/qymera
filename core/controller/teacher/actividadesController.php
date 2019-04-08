@@ -13,7 +13,7 @@
        * @var [type]
        */
 
-       $matters = $teacher->getMateria();
+       $matters = $teacher->getMatters();
 
       switch($view[2]){
         case 'add':

@@ -11,14 +11,14 @@
 
       $grupos = $teacher->getGrupoDesc();
 
-      $materias = $teacher->getMateria();
+      $matters = $teacher->getMatters();
 
       if($view[2] == 'add'){
         if($_POST){
-        $new_indicador = str_replace("0-9", "", strtolower($_POST['indicador']));
-        $id_grado = $_POST['id_grado'];
-        $id_grupo = $_POST['id_grupo'];
-        $id_materia = $_POST['id_materia'];
+        $new_indicador = $_POST['indicator'];
+        $id_grado = $_POST['id_grade'];
+        $id_grupo = $_POST['id_group'];
+        $id_materia = $_POST['id_matter'];
           if(!empty($new_indicador)) {
             $teacher->add_indicador($new_indicador, $id_grado, $id_grupo, $id_materia);
           }else{

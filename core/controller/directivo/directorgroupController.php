@@ -15,7 +15,16 @@
 				include 'views/directivo/add-director-group.php';
 				break;
 			case 'edit':
-				include 'views/directivo/edit-director-group.php';
+				if($view[3] != ''){
+					//take the id for the route
+					$id = $view[3];
+
+					//$edit_director_group = $directivo->getDirectorGroupById($id);
+
+					include 'views/directivo/edit-id-director-group.php';
+				}else{
+					include 'views/directivo/edit-director-group.php';
+				}
 				break;
 			case 'delete':
 				include 'views/directivo/delete-director-group.php';

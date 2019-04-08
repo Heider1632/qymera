@@ -19,10 +19,10 @@
 
             while ($x = $db->consultaArreglo($results)) {
                 $periodos[] = array(
-                'id' => $x[3],
-                'periodo_nombre' => $x[2],
-                'fecha_inicio_periodo' => $x[0],
-                'fecha_cierre_periodo' => $x[1]
+                'id' => $x['id'],
+                'periodo_nombre' => $x['nombre'],
+                'fecha_inicio_periodo' => $x['fecha_inicio'],
+                'fecha_cierre_periodo' => $x['fecha_cierre']
             );
             }
 
@@ -90,8 +90,12 @@
             $db->close();
         }
 
-        //Obtiene los estudiantes con respecto a un filtro e bsuqueda especifico//
-
+        
+        /**
+         * [periodo description]
+         * @param  [type] $fecha [description]
+         * @return [type]        [description]
+         */
         public function periodo($fecha)
         {
             $db = new Conexion();

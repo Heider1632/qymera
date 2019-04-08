@@ -1,13 +1,13 @@
 <?php
 /*template home */
   /* navbar interface */
-  include 'views/overall/nav-user.php';
-  include 'views/overall/nav-tool.php';
+  include 'views/overall/teacher/nav-user.php';
+  include 'views/overall/teacher/nav-tool.php';
 ?>
   <div class="container is-fluid">
     <div class="columns is-2">
       <div class="column is-one-quarter">
-        <?php include 'views/overall/nav-aside.php'; ?>
+        <?php include 'views/overall/teacher/nav-aside.php'; ?>
       </div>
       <div class="column">
         <div class="tabs is-centered m-b-20 is-large">
@@ -75,15 +75,3 @@
 
       </div>
     </div>
-  </div>
-<?php
-/*template home */
-  /* navbar interface */
-  include 'html/overall/nav-user.php';
-  /*bar information */
-  include 'html/overall/bar_inf.php';
-?>
-<div class="container">
-
-  </div>
-  <div class="columns">

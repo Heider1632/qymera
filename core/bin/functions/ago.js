@@ -1,4 +1,4 @@
-function agotime(start, end, element){
+function agotime(start, end){
 	var date_start = new Date(start);
 	var date_end = new Date(end);
 	console.log(date_start + "-" + date_end);

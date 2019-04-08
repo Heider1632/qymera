@@ -1,55 +1,63 @@
 <?php
 /*template home */
   /* navbar interface */
-  include 'views/overall/nav-user.php';
-  include 'views/overall/nav-tool.php';
+  include 'views/overall/teacher/nav-user.php';
+  include 'views/overall/teacher/nav-tool.php';
 ?>
   <div class="container is-fluid">
     <div class="columns is-2">
       <div class="column is-one-quarter">
-        <?php include 'views/overall/nav-aside.php'; ?>
+        <?php include 'views/overall/teacher/nav-aside.php'; ?>
       </div>
       <div class="column">
-        <div class="tabs is-centered m-t-20 is-large">
-          <ul>
-            <?php foreach ($materias as $m): ?>
-                <form id="handleMater_<?php echo $m['materia_id']; ?>" action="#" method="post">
-                <input type="hidden" name="id_materia" value="<?php echo $m['materia_id']?>"/>
-                <li><a href="javascript:{}" onclick="document.getElementById('handleMater_<?php echo $m['materia_id']; ?>').submit(); return false;"><?php echo $m['materia_nombre']; ?></a></li>
-                </form>
-            <?php endforeach; ?>
-          </ul>
+        <div class="box">
+        <?php foreach($matters as $matter): ?>
+        <div class="wrapper">
+        <div class="notification is-info m-b-20">
+          <p 
+          class="title preview">
+            <?php echo $matter['name_matter']; ?>
+          </p>
         </div>
-
-        <!-- divider -->
-        <?php if(isset($_POST['id_materia'])):
-          $grados = ($teacher->getGrado($_POST['id_materia']));
-          ?>
-        <div class="block">
-          <?php foreach($grados as $g): ?>
-            <p class="notification is-info">
-                  <?php echo "grado: " . $g['nombre_grado'] . " grupo: " . $g['nombre_grupo']; ?>
-
-                  <span class="icon m-l-20">
-                    <a class="button is-primary" href="notas&action=viewNotes&id_grado=<?php echo urlencode($g['id_grado']); ?>&id_grupo=<?php echo urlencode($g['id_grupo']); ?>&id_materia=<?php echo urlencode($_POST['id_materia']); ?>">
-                      <i class="fas fa-list-alt"></i>
+        <?php $id_matter = $matter['id_matter']; 
+        $groups = $teacher->getGroups($id_matter);
+        ?>
+          <div class="contenido">
+            <?php if(!empty($groups)): ?>
+            <table class="table is-hoverable is-narrow is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Grado</th>
+                  <th>Grupo</th>
+                  <th>Sede</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php foreach($groups as $group): ?>
+                <tr>
+                  <td><?php echo $group['name_grade']?></td>
+                  <td><?php echo $group['name_group']?></td>
+                  <td><?php echo $group['name_sede']?></td>
+                  <td>
+                    <button class="button is-info is-medium">
+                    <a 
+                    href="<?php echo APP_URL ?>teacher/notas/preview/grade/<?php echo $group['id_grade']?>/matter/<?php echo $matter['id_matter']; ?>/group/<?php echo $group['id_group'] ?>/">
+                      <i class="fas fa-arrow-right"></i>
                     </a>
-                  </span>
-
-                  <span class="icon m-l-20">
-                    <a class="button is-primary" href="notas&action=viewAdd&id_grado=<?php echo urlencode($g['id_grado']); ?>&id_grupo=<?php echo urlencode($g['id_grupo']); ?>&id_materia=<?php echo urlencode($_POST['id_materia']); ?>">
-                      <i class="fas fa-plus-square"></i>
-                    </a>
-                  </span>
-
-                  <span class="icon m-l-20">
-                    <a class="button is-primary" href="notas&action=viewEdit&id_grado=<?php echo urlencode($g['id_grado']); ?>&id_grupo=<?php echo urlencode($g['id_grupo']); ?>&id_materia=<?php echo urlencode($_POST['id_materia']); ?>">
-                      <i class="fas fa-pen-square"></i>
-                    </a>
-                  </span>
-
-            </p>
-          <?php endforeach; endif; ?>
+                    </button>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+              </tbody>
+              </table>
+              <?php else: ?>
+                <div class="notification is-danger">Error al solicitar los datos</div>
+              <?php endif; ?>
+            </div>
+          </div>
+          <?php endforeach; ?>
+          </div>
         </div>
       </div>
     </div>

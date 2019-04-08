@@ -1,13 +1,13 @@
 <?php
 /*template home */
   /* navbar interface */
-  include 'views/overall/nav-user.php';
-  include 'views/overall/nav-tool.php';
+  include 'views/overall/teacher/nav-user.php';
+  include 'views/overall/teacher/nav-tool.php';
 ?>
   <div class="container is-fluid">
     <div class="columns is-2">
       <div class="column is-one-quarter">
-        <?php include 'views/overall/nav-aside.php'; ?>
+        <?php include 'views/overall/teacher/nav-aside.php'; ?>
       </div>
       <div class="column">
         <div class="box m-t-20">
@@ -17,8 +17,8 @@
             <div class="control">
               <div class="select is-primary is-rounded is-fullwidth">
                 <select id="id_matter">
-                  <?php $matters = $teacher->getMateria(); foreach($matters as $m): ?>
-                  <option value="<?php echo $m['materia_id'] ?>"><?php echo $m['materia_nombre'] ?></option>
+                  <?php $matters = $teacher->getMatters(); foreach($matters as $m): ?>
+                  <option value="<?php echo $m['id_matter'] ?>"><?php echo $m['name_matter'] ?></option>
                   <?php endforeach; ?>
                 </select>
               </div>

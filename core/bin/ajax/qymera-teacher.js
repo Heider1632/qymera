@@ -31,14 +31,39 @@ $('#btnActivity').click(function(e){
     data: { title: title, type: type, description: description, start_date: start_date, end_date: end_date, id_indicator: id_indicator},
     success: function(response){
       if(response == 1){
-        swal('error' , 'no se pudo enviar los datos' ,'error');
+        Swal.fire({
+          position: 'top-end',
+          type: 'error',
+          title: 'No se ha podido completar la operación',
+          showConfirmButton: true,
+        }).then( () => {
+          window.location.reload();
+        })
       }else if(response == 2){
-        swal('Advertencia' , 'algunos campos es tan vacios' ,'warning');
+        Swal.fire({
+          position: 'top-end',
+          type: 'warning',
+          title: 'Algunos campos estan vacios',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }else if(response == 3){
-        swal('Advertencia' , 'La actividad ya existe' ,'warning');
+        Swal.fire({
+          position: 'top-end',
+          type: 'warning',
+          title: 'La Actividad ya existe!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }else if (response == 4) {
-        swal('Exito' , 'Actividad creada' ,'success');
-        location.replace(url_dir + 'teacher/actividades/');
+        Swal.fire({
+          position: 'top-end',
+          type: 'success',
+          title: 'Actividad creada',
+          showConfirmButton: true,
+        }).then( () => {
+          window.location.replace(url_dir + 'teacher/actividades/');
+        })        
       }else{
         console.log(response);
       }
@@ -63,27 +88,53 @@ function redirecEdit(res){
 
 $('#btnAddInd').click(function(){
 
-  var new_indicador = $('#new_indicador').val();
-  var id_grado = $('#id_grado').val();
-  var id_grupo = $('#id_grupo').val();
-  var id_materia = $('#id_materia').val();
+  var new_indicator = $('#new_indicator').val();
+  var id_grade = $('#id_grade').val();
+  var id_group = $('#id_group').val();
+  var id_matter = $('#id_matter').val();
 
-  var indicador = new_indicador.replace(/\s\d\.\s*/, '');
+  let indicator = new_indicator.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, ' ').replace(/\d/g,'');
+
 
   $.ajax({
     method: 'POST',
     url: url_dir + 'teacher/indicador/add/',
-    data: {indicador: indicador, id_grado: id_grado, id_grupo: id_grupo, id_materia: id_materia},
+    data: {indicator: indicator, id_grade: id_grade, id_group: id_group, id_matter: id_matter},
     success: function(response){
       if(response == 1){
-        swal('Error', 'error al solicitar la información', 'error');
+        Swal.fire({
+          position: 'top-end',
+          type: 'error',
+          title: 'No se ha podido completar la operación',
+          showConfirmButton: true,
+        }).then( () => {
+          window.location.reload();
+        })
       }else if(response == 2){
-        swal('Alerta', 'Los campos estan vacios', 'warning');
+        Swal.fire({
+          position: 'top-end',
+          type: 'warning',
+          title: 'Algunos campos estan vacios',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }else if(response == 3){
-        swal('Alerta', 'El indicador ya existe', 'warning');
+        Swal.fire({
+          position: 'top-end',
+          type: 'warning',
+          title: 'El indicador ya existe!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }else if(response == 4){
-        swal('Exito', 'Indicadir añadido', 'success');
-        location.replace( url_dir + 'teacher/indicador/');
+        Swal.fire({
+          position: 'top-end',
+          type: 'success',
+          title: 'Indicadir añadido',
+          showConfirmButton: true,
+        }).then( () => {
+          window.location.replace( url_dir + 'teacher/indicador/');
+        })         
       }else{
         console.log(response);
         location.replace( url_dir + 'teacher/indicador/');
@@ -106,12 +157,31 @@ $('#btnModInd').click(function(e){
     data: {id_indicador: id_indicador, edit_indicador: edit_indicador},
     success: function(response){
       if(response == 1){
-        swal('Error', 'error al solicitar la información', 'error');
+        Swal.fire({
+          position: 'top-end',
+          type: 'error',
+          title: 'No se ha podido completar la operación',
+          showConfirmButton: true,
+        }).then( () => {
+          window.location.reload();
+        })
       }else if(response == 2){
-        swal('Alerta', 'Los campos estan vacios', 'warning');
+        Swal.fire({
+          position: 'top-end',
+          type: 'warning',
+          title: 'Algunos campos estan vacios',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }else if(response == 3){
-        swal('Exito', 'Indicadir editado', 'success');
-        location.replace(url_dir + 'teacher/indicador/');
+        Swal.fire({
+          position: 'top-end',
+          type: 'success',
+          title: 'Indicadir editado',
+          showConfirmButton: true,
+        }).then( () => {
+          window. location.replace(url_dir + 'teacher/indicador/');
+        })        
       }else{
         console.log(response);
       }
@@ -122,7 +192,7 @@ $('#btnModInd').click(function(e){
 
 function deleteInd(res){
 
-  Swal({
+  Swal.fire({
     position: 'bottom-end',
     title: 'Estas seguro de eliminar este indicador?',
     text: 'Los cambios no se podrán revertir.',
@@ -139,12 +209,31 @@ function deleteInd(res){
         data: {id_ind: res},
         success: function(response){
           if(response == 1){
-            swal('Error', 'error al solicitar la información', 'error');
+             Swal.fire({
+              position: 'top-end',
+              type: 'error',
+              title: 'No se ha podido completar la operación',
+              showConfirmButton: true,
+            }).then( () => {
+              window.location.reload();
+            })
           }else if(response == 2){
-            swal('Alerta', 'Los campos estan vacios', 'warning');
+            Swal.fire({
+              position: 'top-end',
+              type: 'warning',
+              title: 'Algunos campos estan vacios',
+              showConfirmButton: false,
+              timer: 1500
+            })
           }else if(response == 3){
-            swal('Exito', 'Indicadir eliminado', 'success');
-            location.replace(url_dir + 'teacher/indicador/');
+            Swal.fire({
+              position: 'top-end',
+              type: 'success',
+              title: 'Indicadir eliminado',
+              showConfirmButton: true,
+            }).then( () => {
+              window.location.replace(url_dir + 'teacher/indicador/');
+            })             
           }else{
             console.log(response);
             location.replace(url_dir + 'teacher/indicador/');
@@ -152,7 +241,7 @@ function deleteInd(res){
         }
       });
     }else{
-      Swal({
+      Swal.fire({
         position: 'bottom-end',
         title: 'has cancelado la operación.',
         type: 'info'
@@ -179,16 +268,34 @@ $('#BtnChangePassword').click(function(){
 		data: {new_password: new_password},
 		success: function(response){
 			if(response == 1){
-				swal('error' , 'no se pudo enviar los datos' ,'error');
+				Swal.fire({
+          position: 'top-end',
+          type: 'error',
+          title: 'No se ha podido completar la operación',
+          showConfirmButton: true,
+        }).then( () => {
+          window.location.reload();
+        })
 			}else if(response == 2){
-				swal('Advertencia' , 'algunos campos es tan vacios' ,'warning');
+				Swal.fire({
+          position: 'top-end',
+          type: 'warning',
+          title: 'Algunos campos estan vacios',
+          showConfirmButton: false,
+          timer: 1500
+        })
 			}else if(response == 3){
-				swal('Exito' , 'Contraseña Cambiada' ,'success');
+        Swal.fire({
+          position: 'top-end',
+          type: 'success',
+          title: 'Contraseña Cambiada',
+          showConfirmButton: true,
+        }).then( () => {
+          window.location.reload();
+        }) 
 			}else{
         console.error(response);
       }
-
-			location.reload();
 		}
 	})
 })
@@ -220,3 +327,59 @@ $(document).ready(function(){
     }
   });
 })
+
+/**
+ * NOTES FUNCTIONS
+ */
+
+ $('#BtnAddNote').click( function() {
+    let id_indicator = $('#TextIdIndicator').val();
+    let id_activity = $('#TextIdActivity').val();
+    let id_student = $('#TextIdStudent').val();
+
+    var inputs = document.getElementsByClassName( 'inputNote' ),
+    names  = [].map.call(inputs, function( input ) {
+        return input.value;
+    }).join( '|' );
+
+    console.log(inputs);
+
+    console.log(names);
+
+    /*$.ajax({
+      method: 'POST',
+      url: url_dir + 'teacher/notas/add/',
+      data: {id_indicador: id_indicator, id_activity: id_activity, id_student: id_student},
+      success: function(response){
+        if(response == 1){
+          Swal.fire({
+            position: 'top-end',
+            type: 'error',
+            title: 'No se ha podido completar la operación',
+            showConfirmButton: true,
+          }).then( () => {
+            window.location.reload();
+          })
+        }else if(response == 2){
+          Swal.fire({
+            position: 'top-end',
+            type: 'warning',
+            title: 'Algunos campos estan vacios',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }else if(response == 3){
+          Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: 'Nota enviada satisfactoriamente',
+            showConfirmButton: true,
+          }).then( () => {
+            window.location.replace(url_dir + "teacher/actividades/");
+          }) 
+        }else{
+          console.error(response);
+        }
+      }
+    })*/
+ })

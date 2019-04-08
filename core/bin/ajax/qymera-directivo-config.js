@@ -52,16 +52,14 @@ $('#BtnAddSede').click( (e) => {
           timer: 1500
         })
       }else if(response == 4){  
-
-         Swal.fire({
+        Swal.fire({
           position: 'top-end',
           type: 'success',
           title: 'Sede creada',
           showConfirmButton: true,
         }).then( () => {
           window.location.reload();
-        })
-        
+        })        
       }else{
         console.log(response);
       }

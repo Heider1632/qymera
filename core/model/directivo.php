@@ -579,10 +579,11 @@
 
 		$db = new Conexion();
 
-		$sql = $db->query("SELECT foto, primer_nombre, primer_apellido FROM docentes WHERE director_grupo = 1");
+		$sql = $db->query("SELECT id, foto, primer_nombre, primer_apellido FROM docentes WHERE director_grupo = 1");
 
 		while ($f = $db->consultaArreglo($sql)) {
 			$director_groups[] = array(
+				'id' => $f['id'],
 				'first_name' => $f['primer_nombre'],
 				'first_lastname' => $f['primer_apellido'],
 				'photo' => $f['foto'],
@@ -678,6 +679,26 @@
 
 		$db->close();
 
+	}
+
+	public function getDirectivoGroupById($id){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT docentes.primer_nombre, docentes.primer_apellido, 
+		(SELECT grado.nombre FROM grado WHERE grado.id = grado_grupo.id_grado) as GradoName,
+		(SELECT grupo.nombre FROM grupo WHERE grupo.id = grado_grupo.id_grupo) as GrupoName,
+		(SELECT sedes.nombre FROM sedes WHERE sedes.id = grado_grupo.id_sede) as 
+			SedeName 
+		FROM director_grupo 
+		INNER JOIN docentes ON docentes.id = director_grupo.id_docente 
+		INNER JOIN grado_grupo ON director_grupo.id_grupo = grado_grupo.codigo
+		WHERE director_grupo.id_docente = "'.$id.'"');
+
+		$director_group = $db->consultaArreglo($sql);
+
+		return $director_group;
+
+		$db->close();
 	}
 
 	}

@@ -1,22 +1,22 @@
 <?php
 /*template home */
   /* navbar interface */
-  include 'views/overall/nav-user.php';
-  include 'views/overall/nav-tool.php';
+  include 'views/overall/teacher/nav-user.php';
+  include 'views/overall/teacher/nav-tool.php';
 ?>
   <div class="container is-fluid">
     <div class="columns is-2">
       <div class="column is-one-quarter">
-        <?php include 'views/overall/nav-aside.php'; ?>
+        <?php include 'views/overall/teacher/nav-aside.php'; ?>
       </div>
       <div class="column">
       <div class="box m-t-20">
       <?php foreach ($matters as $m): ?>
       <div class="notification is-info is-flex">
-        <p class="subtitle"><?php echo $m['materia_nombre']; ?></p>
+        <p class="subtitle"><?php echo $m['name_matter']; ?></p>
 
         <span class="icon m-l-20 is-right">
-          <a class="button is-primary" href="<?php echo APP_URL . "teacher/actividades/nueva/" . $m['materia_id'] . "/";  ?>">
+          <a class="button is-primary" href="<?php echo APP_URL . "teacher/actividades/nueva/" . $m['id_matter'] . "/";  ?>">
             <i class="fas fa-plus-square"></i>
           </a>
         </span>
@@ -40,8 +40,7 @@
                   <br>
                   <p class="subtitle"><?php echo $activity['name_indicator']; ?></p>
                   Fecha de finalizacion
-                  <time onmouseover="agotime(<?php echo $activity['date_start']; ?>,<?php echo $activity['date_finish']; ?>, this)" 
-                  datetime="<?php echo $activity['date_finish']; ?>">
+                  <time onclick="agotime(<?php echo $activity['date_start']; ?>,<?php echo $activity['date_finish']; ?>, this)">
                   <?php echo $activity['date_finish']; ?>
                   </time>
                 </div>

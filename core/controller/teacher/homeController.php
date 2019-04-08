@@ -8,52 +8,48 @@
 
 		$validation = ($teacher->getValidation());
 
-		$inf_teacher = ($teacher->getInfTeacher());
+		if($validation[0] == 0){
 
-		$materias = ($teacher->getMateria());
+			switch ($view[2]) {
+				case 'post':
+					if($_POST){
 
-			if($validation[0] == 0){
+						$new_password = $_POST['new_password'];
 
-				switch ($view[2]) {
-					case 'post':
-						if($_POST){
-
-							$new_password = $_POST['new_password'];
-
-							if(empty($new_password)){
-								echo 2;
-							}else{
-								
-								$teacher->changePassword($new_password);
-							}
-							
+						if(empty($new_password)){
+							echo 2;
 						}else{
-							echo 1;
+								
+							$teacher->changePassword($new_password);
 						}
-						break;
+							
+					}else{
+						echo 1;
+					}
+					break;
 					
-					default:
-						/* header */
-						include 'views/overall/header.php';
-						/* template restart */
-						include 'views/user/restart.php';
-						/* scripts*/
-						include 'views/overall/scripts.php';
-						break;
-				}
-
-			}else{
-
-				/* home view */
-				/* header */
-				include 'views/overall/header.php';
-
-				/* template home */
-				include 'views/user/home.php';
-
-				/* scripts*/
-				include 'views/overall/scripts.php';
-
+				default:
+					/* header */
+					include 'views/overall/header.php';
+					/* template restart */
+					include 'views/user/restart.php';
+					/* scripts*/
+					include 'views/overall/scripts.php';
+					break;
 			}
+
+		}else{
+
+			/* home view */
+			/* header */
+			include 'views/overall/header.php';
+
+			/* template home */
+			include 'views/user/home.php';
+
+			/* scripts*/
+			include 'views/overall/scripts.php';
+
+		}
 	endif;
 ?>

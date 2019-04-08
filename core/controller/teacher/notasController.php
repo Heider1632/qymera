@@ -3,73 +3,56 @@
 		header('location:' .APP_URL.  'default/redirec/');
 	else:
 	/*  schema that allow callback the functions */
-			require 'core/model/coexistence.php';
-			require 'core/model/teacher.php';
+		require 'core/model/coexistence.php';
+		require 'core/model/teacher.php';
 
-			$coexistence = new Coexistence();
-			$teacher = new Teacher();
+		$coexistence = new Coexistence();
+		$teacher = new Teacher();
 
-		$materias = ($teacher->getMateria());
+		$matters = ($teacher->getMatters());
 
-		$action = isset($_GET['action']) ? $_GET['action'] : 'viewPreview';
-
-		switch ($action) {
+		switch ($view[2]) {
 			case 'add':
-			if($_GET){
-				$id_grado = urldecode($_GET['id_grado']);
-				$id_grupo = urldecode($_GET['id_grupo']);
+				if($_POST){
 
-				$estudiantes_id = ($teacher->listIdStudents($id_grado, $id_grupo));
-			}
-
-			$id_docente = $_SESSION['id'];
-			$id_materia = $_POST['id_materia'];
-			$id_periodo = $_SESSION['id_periodo'];
-
-			$indicadores = ($teacher->getIndicadores($id_docente, $id_materia, $id_periodo));
-
-			//array notes empty
-			$notes = array();
-			//bucle to add elements of array notes
-			foreach($estudiantes_id as $e){
-				$id = $e['id_student'];
-				foreach ($_POST['note'][$id] as $clave => $valor) {
-						$note = array(
-							'id' => $id,
-							'indicador' => "{$clave}",
-							'nota' => "{$valor}"
-						);
-						array_push($notes, $note);
-					}
+					echo 3;
+					
+				}else{
+					echo 1;
 				}
-				//function add notes  the all group
-				$teacher->putNotesList($notes, $id_grado, $id_grupo, $id_periodo, $id_materia, $id_docente);
 				break;
 			case 'edit':
 
 				break;
-			case 'viewAdd':
-			/* add notes view */
+			case 'preview':
 				/* header */
 				include 'views/overall/header.php';
 
-				/* template home */
-				include 'views/user/addNotes.php';
+
+				if($view[3] == 'addnote' && $view[4] == 'indicator' && $view[6] == 'group'){
+
+					$id_indicator = $view[5];
+
+					$id_group = $view[7];
+
+					//$students = ($teacher->getStudentsOfGroup($id_group));
+
+					$activitys = ($teacher->getActivitysForNotes($id_indicator));
+
+					/* template add notes */
+					include 'views/user/addNotes.php';
+					
+
+				}else if($view[3] == 'grade' && $view[5] == 'matter' && $view[7] == 'group'){
+
+					/* template select indicators */
+					include 'views/user/selectIndicators.php';
+	
+				}
 
 				/* scripts*/
 				include 'views/overall/scripts.php';
 				break;
-			case 'viewEdit':
-			/* edit notes view */
-				/* header */
-				include 'views/overall/header.php';
-
-				/* template home */
-				include 'views/user/editNotes.php';
-
-				/* scripts*/
-				include 'views/overall/scripts.php';
-			 	break;
 			case 'viewNotes':
 			/* notes view */
 				/* header */

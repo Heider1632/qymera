@@ -46,10 +46,14 @@
                     </div>
 
                     <div class="content">
-                      <a class="button is-info">
+                      <a 
+                      href="<?php echo APP_URL ?>directivo/directorgroup/edit/<?php echo $director_group['id']; ?>/" 
+                         class="button is-info">
                         <i class="fas fa-edit"></i>
                       </a>
-                      <a class="button is-danger">
+                      <a 
+                      href="<?php echo APP_URL ?>directivo/directorgroup/delete/<?php echo $director_group['id']; ?>/" 
+                      class="button is-danger">
                         <i class="fas fa-trash"></i>
                       </a>
                       
