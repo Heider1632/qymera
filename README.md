@@ -5,6 +5,7 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
+<<<<<<< HEAD
 
 
 
@@ -114,3 +115,6 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: https://raw.githubusercontent.com/othneildrew/Best-README-Template/master/screenshot.png
+=======
+> To be or not to be, that is the question.
+>>>>>>> d2ce5714046122e61e4bc9f8a548a8b01e332c90
