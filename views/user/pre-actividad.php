@@ -25,13 +25,16 @@
       <?php endforeach; ?>
       </div>
       <div class="notification is-primary is-centered">Actividades</div>
-      <div class="columns is-desktop">
+      <div class="columns is-desktop is-multiline">
         <?php if(!empty($activitys)): foreach($activitys as $activity): ?>
           <div class="column">
             <div class="card">
               <header class="card-header">
-                <p class="card-header-title">
-                  <?php echo $activity['title'] . " -- " . $activity['type']; ?>
+                <p class="card-header-title has-text-right m-l-50">
+                  <?php echo $activity['title'] ?>
+                </p>
+                <p class="card-header-title has-text-left">
+                  <?php echo $activity['type']; ?>
                 </p>
               </header>
               <div class="card-content">
@@ -46,9 +49,10 @@
                 </div>
               </div>
               <footer class="card-footer">
-                <a href="#" class="card-footer-item">Nota</a>
-                <a href="#" class="card-footer-item">Editar</a>
-                <a href="#" class="card-footer-item">Borrar</a>
+                <a href="<?php echo APP_URL ?>teacher/actividades/uploadnote/<?php echo $activity['id'] ?>/" class="card-footer-item">Nota</a>
+                <a href="<?php echo APP_URL ?>teacher/actividades/edit/<?php echo $activity['id'] ?>/" class="card-footer-item">Editar</a>
+                <a href="<?php echo APP_URL ?>teacher/actividades/delete/<?php echo $activity['id'] ?>/" class="card-footer-item">Borrar</a>
+                <a href="<?php echo APP_URL ?>teacher/actividades/uploadevidence/<?php echo $activity['id'] ?>/" class="card-footer-item">Evidencias</a>
               </footer>
             </div>
           </div>

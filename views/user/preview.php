@@ -11,6 +11,9 @@
       </div>
       <div class="column">
         <div class="box">
+          <h3 class="has-text-centered">Grupos por materias</h3>
+        </div>
+        <div class="box">
         <?php foreach($matters as $matter): ?>
         <div class="wrapper">
         <div class="notification is-info m-b-20">
@@ -37,13 +40,13 @@
               <?php foreach($groups as $group): ?>
                 <tr>
                   <td><?php echo $group['name_grade']?></td>
-                  <td><?php echo $group['name_group']?></td>
+                  <td><?php echo $group['id_group']?></td>
                   <td><?php echo $group['name_sede']?></td>
                   <td>
                     <button class="button is-info is-medium">
                     <a 
-                    href="<?php echo APP_URL ?>teacher/notas/preview/grade/<?php echo $group['id_grade']?>/matter/<?php echo $matter['id_matter']; ?>/group/<?php echo $group['id_group'] ?>/">
-                      <i class="fas fa-arrow-right"></i>
+                    href="<?php echo APP_URL ?>teacher/notas/preview/selectIndicator/grade/<?php echo $group['id_grade'] ?>/matter/<?php echo $id_matter ?>/group/<?php echo $group['id_group'] ?>/">
+                      <i class="fas fa-angle-right"></i>
                     </a>
                     </button>
                   </td>

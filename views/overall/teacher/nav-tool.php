@@ -6,7 +6,7 @@ $periodo = $coexistence->periodo($fecha);
 $_SESSION['id_periodo'] = $periodo[0]['id_periodo'];
 $_SESSION['nombre_periodo'] = $periodo[0]['nombre_periodo'];
 ?>
- <nav class="navbar" role="navigation" aria-label="main navigation">
+ <nav class="navbar m-t-55" id="nav-tool" role="navigation" aria-label="main navigation">
   <div class="container">
   <div class="navbar-menu">
     <div class="navbar-start">

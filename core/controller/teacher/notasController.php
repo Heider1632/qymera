@@ -15,7 +15,27 @@
 			case 'add':
 				if($_POST){
 
-					echo 3;
+					$id_indicator = $_POST['id_indicator'];
+					$id_activity = $_POST['id_activity'];
+					$id_student = $_POST['id_student'];
+					$id_mater = $_POST['id_matter'];
+					$id_group = $_POST['id_group'];
+					$notes = $_POST['notes'];
+
+					if(!empty($id_indicator) || !empty($id_activity) || !empty($id_student) || !empty($id_group) || !empty($id_matter) ){
+
+						for($i = 0; $i < sizeof($notes); $i++){
+							if($notes[$i] == ""){
+								echo 2;
+								exit();
+							}
+						}
+
+						$teacher->putNotesList($id_activity, $id_indicator, $id_student, $id_group, $id_matter, $notes);
+
+					}else{
+						echo 2;
+					}
 					
 				}else{
 					echo 1;
@@ -29,13 +49,15 @@
 				include 'views/overall/header.php';
 
 
-				if($view[3] == 'addnote' && $view[4] == 'indicator' && $view[6] == 'group'){
+				if($view[3] == 'addnote' && $view[4] == 'matter' &&  $view[6] == 'indicator' && $view[8] == 'group'){
 
-					$id_indicator = $view[5];
+					$id_matter = $view[5];
 
-					$id_group = $view[7];
+					$id_indicator = $view[7];
 
-					//$students = ($teacher->getStudentsOfGroup($id_group));
+					$id_group = $view[9];
+
+					$students = ($teacher->getStudentsOfGroup($id_group));
 
 					$activitys = ($teacher->getActivitysForNotes($id_indicator));
 
@@ -43,11 +65,16 @@
 					include 'views/user/addNotes.php';
 					
 
-				}else if($view[3] == 'grade' && $view[5] == 'matter' && $view[7] == 'group'){
+				}else if($view[3] == 'selectactivity' && $view[5] == 'grade' && $view[7] == 'matter' && $view[9] == 'group'){
+
+					/* template select activitys */
+					include 'views/user/selectActivitys.php';
+	
+				}else if($view[3] == 'selectindicator' && $view[4] == 'grade' && $view[6] == 'matter' && $view[8] == 'group'){
 
 					/* template select indicators */
-					include 'views/user/selectIndicators.php';
-	
+					include 'views/overall/teacher/_selectindicatorfrommatter.php';
+
 				}
 
 				/* scripts*/

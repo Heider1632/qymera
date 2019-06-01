@@ -9,7 +9,6 @@
         <?php include 'views/overall/teacher/nav-aside.php'; ?>
       </div>
       <div class="column">
-        <div class="container">
           <!-- bar to actions -->
             <?php if(3 > 5): ?>
               <p class="notification is-warning">El tiempo estimado para ver los indicador se ha acabado, porfavor pongase en contacto con administracion para cambiar la hora </p>
@@ -69,75 +68,7 @@
                  <?php endforeach; ?>
                  </tbody>
                 </table>
-                <?php if(!empty($view[2])):
-                  $id_indicador = $view[2];
-
-                  $edit_indicador = find_unic_indicator($id_indicador); ?>
-                <!-- form edit -->
-                <form id="form-edit" class="form">
-                  <div class="box">
-
-                  <input type="hidden" id="edit_id_indicador" value="<?php echo $id_indicador ?>"/>
-
-                  <div class="field">
-                    <label class="label is-centered">Materia</label>
-                    <div class="control is-fullwidth">
-                      <div class="select is-primary">
-                        <select id="edit_id_materia">
-                          <?php foreach($materias as $mt): ?>
-                            <option value="<?php echo $mt['materia_id']; ?>"><?php echo $mt['materia_nombre']; ?></option>
-                          <?php endforeach; ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">Grado</label>
-                    <div class="control">
-                      <div class="select is-primary">
-                        <select id="edit_id_grado">
-                          <?php foreach($grados as $g): ?>
-                          <option value="<?php echo $g['id_grade']; ?>"><?php echo $g['name_grade']; ?></option>
-                          <?php endforeach; ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">Grupo</label>
-                    <div class="control">
-                      <div class="select is-primary">
-                        <select id="edit_id_grupo">
-                          <?php foreach($grupos as $grupo): ?>
-                          <option value="<?php echo $grupo['id_group']; ?>"><?php echo $grupo['name_group']; ?></option>
-                          <?php endforeach; ?>
-                          <option value="0">todos</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <label class="label">Descripcion</label>
-                    <div class="control">
-                      <textarea class="textarea" id="edit_indicador" placeholder="Textarea"><?php echo $edit_indicador['nombre']; ?></textarea>
-                    </div>
-                  </div>
-
-                  <div class="field is-grouped">
-                    <div class="control">
-                      <button id="btnModInd" class="button is-success is-normal is-fullwidth"><i class="fab fa-telegram-plane"></i></button>
-                    </div>
-                    <div class="control">
-                      <button class="button is-text is-normal" id="btnCancelEdit">Cancel</button>
-                    </div>
-                  </div>
-
-                  </div>
-                </form>
-              <?php endif; else: ?>
+              <?php else: ?>
                 <p class="notification is-warning" >No hay inidicadores de logros disponibles para este grado!</p>
               <?php endif; endforeach; ?>
               <!-- FROM ADD INDICATOR -->
@@ -174,7 +105,7 @@
                         <div class="select is-primary">
                           <select id="id_group">
                             <?php foreach($grupos as $grupo): ?>
-                            <option value="<?php echo $grupo['id_group']; ?>"><?php echo $grupo['name_group']; ?></option>
+                            <option value="<?php echo $grupo['id_group']; ?>"><?php echo $grupo['id_group']; ?></option>
                             <?php endforeach; ?>
                             <option value="0">todos</option>
                           </select>
@@ -196,7 +127,6 @@
               <!-- Any other Bulma elements you want -->
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
-          </div>
       </div>
   </div>
 </div>

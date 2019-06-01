@@ -1,5 +1,5 @@
 <!-- START NAV -->
-<nav class="navbar">
+<nav class="navbar is-fixed-top nav-user">
   <div class="container">
       <div class="navbar-brand">
           <a class="navbar-item" href="<?php echo APP_URL; ?>home/">

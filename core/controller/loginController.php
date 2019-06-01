@@ -1,5 +1,11 @@
 <?php
 
+# Incluimos la clase usuario
+require_once 'core/model/usuario.php';
+
+# Creamos un objeto de la clase usuario
+$usuario = new Usuario();
+
 if(isset($_SESSION['id'])){
 	header('location:' . APP_URL . 'default/redirec/');
 } else {
@@ -20,12 +26,6 @@ if(isset($_SESSION['id'])){
 
 			filter_var($email, FILTER_VALIDATE_EMAIL);
 
-			# Incluimos la clase usuario
-			require_once 'core/model/usuario.php';
-
-			# Creamos un objeto de la clase usuario
-			$usuario = new Usuario();
-
 			# Encryptamos la $clave
 			$clave = md5($clave);
 
@@ -34,7 +34,30 @@ if(isset($_SESSION['id'])){
 
 			}
 			break;
+		case 'find':
+			if($_POST){
+				$email = $_POST['email'];
 
+				if(!empty($email)){
+
+					$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+					filter_var($email, FILTER_VALIDATE_EMAIL);
+					
+					$usuario->findUser($email);
+					
+				}else{
+					echo 2;
+				}
+
+				
+			}else{
+				echo 1;
+			}
+			break;
+		case 'reset': 
+				include 'views/overall/_resetPassword.php';
+			break;
 		default:
 			/* template login */
 			include 'views/overall/login.php';

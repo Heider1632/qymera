@@ -112,6 +112,57 @@
                     echo 1;
                 }
                 break;
+            case 'addstudent':
+                if($_POST){
+                    $first_name = $_POST['first_name'];
+                    $second_name = $_POST['second_name'];
+                    $first_lastname = $_POST['first_lastname'];
+                    $second_lastname = $_POST['second_lastname'];
+                    $id_group = $_POST['id_group'];
+
+                    if(!empty($first_lastname) && !empty($first_lastname) && !empty($id_group)){
+                        $directivo->addStudent($first_name, $second_name, $first_lastname, $second_lastname, $id_group);
+                    }else{
+                        echo 2;
+                    }
+                   
+                }else {
+                    echo 1;
+                }
+                break;
+            case 'addcharge':
+                if($_POST){
+                    $id_teacher = $_POST['id_teacher'];
+                    $id_matter = $_POST['id_matter'];
+                    $id_group = $_POST['id_group'];
+
+                    if(!empty($id_teacher) && !empty($id_matter) && !empty($id_group)){
+                        $directivo->addCharge($id_teacher, $id_matter, $id_group);
+                    }else{
+                        echo 2;
+                    }
+
+                }else{
+                    echo 1;
+                }
+                break; 
+            case 'addindicatortorepository':
+                if($_POST){
+                    $indicator = $_POST['indicator'];
+                    $author = $_POST['author'];
+                    $matter = $_POST['matter'];
+                    $period = $_POST['period'];
+                    $grade = $_POST['grade'];
+
+                    if(!empty($indicator) && !empty($author) && !empty($matter) && !empty($period) && !empty($grade)){
+                        $directivo->addIndicatorToRepository($indicator, $author, $matter, $period, $grade);
+                    }else{
+                        echo 2;
+                    }
+                }else{  
+                    echo 1;
+                }
+                break; 
             case 'reset':
                 if($_POST){
                     $directivo->reset();

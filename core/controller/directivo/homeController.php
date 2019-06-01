@@ -1,11 +1,7 @@
 <?php
 	if(!isset($_SESSION['id']) || $_SESSION['cargo'] == 2){
 		header('location: ' . APP_URL . 'default/redirec/');
-	}else{
-
-	//$date = getDateWithCarbon();
-		
-		
+	}else{		
 		require 'core/model/directivo.php';
 		$directivo = new Directivo();
 

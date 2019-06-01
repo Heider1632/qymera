@@ -38,9 +38,9 @@ $('#login').click(function(){
       $('#login-load').addClass('is-hidden');
       // Ahora validamos la respuesta de php, si es error_1 algun campo esta vacio de lo contrario todo salio bien y redireccionaremos a donde diga php
       if(res == 'error_1'){
-        swal('Error', 'Por favor ingrese todos los campos', 'error');
+        Swal.fire('Error', 'Por favor ingrese todos los campos', 'error');
       }else if(res == 'error_2'){
-        swal('Error', 'El usuario y contraseña que ingresaste es incorrecto', 'error');
+        Swal.fire('Error', 'El usuario y contraseña que ingresaste es incorrecto', 'error');
       }else{
         // Redireccionamos a la página que diga corresponda el usuario
         window.location.href= res

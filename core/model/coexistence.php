@@ -33,17 +33,13 @@
 
         //Obtiene los estudiantes con respecto a un filtro e bsuqueda especifico//
 
-        public function getEstudiantes($id_grado, $id_grupo)
+        public function getEstudiantes($id_group)
         {
-            $estudiantes = null;
 
             $db = new Conexion();
 
-            $consulta = 'SELECT estudiantes.id, estudiantes.n, estudiantes.foto, estudiantes.primer_nombre, estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido, grado.nombre, grupo.nombre FROM estudiantes
-	                INNER JOIN grado ON estudiantes.id_grado = grado.id
-	                INNER JOIN grupo ON estudiantes.id_grupo = grupo.id
-	                WHERE grado.id = "'.$id_grado.'" and grupo.id = "'.$id_grupo.'"';
-
+            $consulta = 'SELECT estudiantes.id, estudiantes.n, estudiantes.foto, estudiantes.primer_nombre, estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido FROM estudiantes
+	          WHERE id_grupo = "'.$id_group.'"';
 
             $results = $db->query($consulta);
 

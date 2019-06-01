@@ -18,6 +18,18 @@ html, body {
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+/*
+NAV 
+*/
+
+.nav-user{
+  z-index: 100;
+}
+
+.nav-tool{
+  z-index: 0;
+}
+
 .period, .time-header, .indicator-header {
   text-align: center;
   height: 50px;
@@ -158,7 +170,7 @@ th:hover {
 }
 
 #form-edit{
-  display: none; !important
+  display: none; 
 }
 
 .title{
@@ -172,4 +184,8 @@ th:hover {
 
 #token-load, #login-load{
   display: none
+}
+
+.hidden-table-indicator{
+  display: none;
 }

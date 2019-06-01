@@ -220,21 +220,74 @@
 	public function getPrimaryGroups(){
 		$db = new Conexion();
 
-		$sql = $db->query('SELECT grado.nombre, grupo.nombre, sedes.nombre FROM grado_grupo 
-			INNER JOIN grado ON grado.id = grado_grupo.id_grado 
-			INNER JOIN grupo ON grupo.id = grado_grupo.id_grupo 
-			INNER JOIN sedes ON sedes.id = grado_grupo.id_sede
-			WHERE grado.nombre <= 5');
+		$sql = $db->query('SELECT grupos.id, grado.nombre, grupo.nombre, sedes.nombre FROM grupos 
+		INNER JOIN grado ON grado.id = grupos.id_grado 
+		INNER JOIN grupo ON grupo.id = grupos.id_grupo 
+		INNER JOIN sedes ON sedes.id = grupos.id_sede
+		WHERE grado.nombre <= 5');
 
 		while($f = $db->consultaArreglo($sql)){
 			$array_primary[] = array(
-				'nombre_grado' => $f[0],
-				'nombre_grupo' => $f[1],
-				'nombre_sede' => $f[2]
+				'id_group' => $f[0],
+				'name_grade' => $f[1],
+				'name_group' => $f[2],
+				'name_sede' => $f[3]
 			);
 		}
 
 		return $array_primary;
+
+		$db->close();
+	}
+
+	/**
+	 * [getPrimaryGroupsBySedeId]
+	 * @return [type] [description]
+	 */
+	public function getPrimaryGroupsBySedeId($id){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT grupos.id, grado.nombre, grupo.nombre FROM grupos 
+		INNER JOIN grado ON grado.id = grupos.id_grado 
+		INNER JOIN grupo ON grupo.id = grupos.id_grupo 
+		WHERE grado.nombre <= 5
+		AND grupos.id_sede = (SELECT id FROM sedes WHERE id = "'.$id.'")');
+
+		while($f = $db->consultaArreglo($sql)){
+			$array_primary_by_sede[] = array(
+				'id_group' => $f[0],
+				'name_grade' => $f[1],
+				'name_group' => $f[2],
+			);
+		}
+
+		return $array_primary_by_sede;
+
+		$db->close();
+	}
+
+	/**
+	 * [getBalechorGroupsBySedeId]
+	 * @return [type] [description]
+	 */
+	public function getBalechorGroupsBySedeId($id){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT grupos.id, grado.nombre, grupo.nombre FROM grupos 
+		INNER JOIN grado ON grado.id = grupos.id_grado 
+		INNER JOIN grupo ON grupo.id = grupos.id_grupo 
+		WHERE grado.nombre > 5
+		AND grupos.id_sede = (SELECT id FROM sedes WHERE id = "'.$id.'")');
+
+		while($f = $db->consultaArreglo($sql)){
+			$array_balechor_by_sede[] = array(
+				'id_group' => $f[0],
+				'name_grade' => $f[1],
+				'name_group' => $f[2],
+			);
+		}
+
+		return $array_balechor_by_sede;
 
 		$db->close();
 	}
@@ -245,20 +298,69 @@
 	public function getBalechorGroups(){
 		$db = new Conexion();
 
-		$sql = $db->query('SELECT grado.nombre, grupo.id, sedes.nombre FROM grado_grupo 
-			INNER JOIN grado ON grado.id = grado_grupo.id_grado 
-			INNER JOIN grupo ON grupo.id = grado_grupo.id_grupo
-			INNER JOIN sedes ON sedes.id = grado_grupo.id_sede 
-			WHERE grado.nombre > 5');
+		$sql = $db->query('SELECT grupos.id, grado.nombre, grupo.id, grupo.nombre, sedes.nombre FROM grupos 
+		INNER JOIN grado ON grado.id = grupos.id_grado 
+		INNER JOIN grupo ON grupo.id = grupos.id_grupo 
+		INNER JOIN sedes ON sedes.id = grupos.id_sede
+		WHERE grado.nombre > 5');
 
 		while($f = $db->consultaArreglo($sql)){
 			$array_balechor[] = array(
-				'nombre_grado' => $f[0],
-				'nombre_grupo' => $f[1],
-				'nombre_sede' => $f[2]
+				'id_group' => $f[0],
+				'name_grade' => $f[1],
+				'id_g' => $f[2],
+				'name_group' => $f[3],
+				'name_sede' => $f[4]
 			);
 		}
 		return $array_balechor;
+
+		$db->close();
+	}
+	/**
+	 * [find_groups] description
+	 * @return [Type] description
+	 */
+	public function find_group($id_group){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT grupos.id, grado.nombre, grupo.id FROM grupos 
+		INNER JOIN grados ON grupos.id_grado = grado.id
+		INNER JOIN grupo ON grupos.id_grupo = grupo.id
+		WHERE grupo.id = "'.$id_group.'"');
+
+		while($f = $db->consultaArreglo($sql)){
+			$group[] = array(
+				'id' => $f['id'],
+				'name_grade' => $f[2],
+				'name_group' => $f[3]
+			);
+		}
+
+		return $group;
+
+		$db->close();
+	}
+
+	public function find_students_for_group($id_group){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT id, n, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido
+		FROM estudiantes
+		WHERE id_grupo = "'.$id_group.'"');
+
+		while($f = $db->consultaArreglo($sql)){
+			$list_students[] = array(
+				'id' => $x['id'],
+				'n' => $f['n'],
+				'first_name' => $f['primer_nombre'],
+				'second_name' => $f['segundo_nombre'],
+				'first_lastname' => $f['primer_apellido'],
+				'second_lastname' => $f['segundo_apellido'],
+			);
+		}
+
+		return $list_students;
 
 		$db->close();
 	}
@@ -355,6 +457,29 @@
 	}
 	/**
 	 * [getTeachers description]
+	 * @return [type] [description]
+	 */
+	public function getTeachers(){
+
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT id, primer_nombre, primer_apellido FROM docentes ');
+
+		while ($f = $db->consultaArreglo($sql)) {
+			$array_teachers[] = array(
+				'id' => $f['id'],
+				'first_name' => $f['primer_nombre'],
+				'first_lastname' => $f['primer_apellido']
+			);
+		}
+
+		return $array_teachers;
+
+		$db->close();
+
+	}
+	/**
+	 * [getPrimaryTeachers description]
 	 * @return [type] [description]
 	 */
 	public function getPrimaryTeachers(){
@@ -680,15 +805,16 @@
 		$db->close();
 
 	}
-
+	/**	
+	 * [getDirectivoGroupById Description]
+	 */
 	public function getDirectivoGroupById($id){
 		$db = new Conexion();
 
 		$sql = $db->query('SELECT docentes.primer_nombre, docentes.primer_apellido, 
 		(SELECT grado.nombre FROM grado WHERE grado.id = grado_grupo.id_grado) as GradoName,
 		(SELECT grupo.nombre FROM grupo WHERE grupo.id = grado_grupo.id_grupo) as GrupoName,
-		(SELECT sedes.nombre FROM sedes WHERE sedes.id = grado_grupo.id_sede) as 
-			SedeName 
+		(SELECT sedes.nombre FROM sedes WHERE sedes.id = grado_grupo.id_sede) as SedeName 
 		FROM director_grupo 
 		INNER JOIN docentes ON docentes.id = director_grupo.id_docente 
 		INNER JOIN grado_grupo ON director_grupo.id_grupo = grado_grupo.codigo
@@ -697,6 +823,163 @@
 		$director_group = $db->consultaArreglo($sql);
 
 		return $director_group;
+
+		$db->close();
+	}
+	/**
+	 * [addStudent Description]
+	 */
+	public function addStudent($first_name, $second_name, $first_lastname, $second_lastname, $id_group){
+
+		$db = new Conexion();
+		
+		$sql = $db->query('SELECT id FROM estudiantes WHERE 
+		primer_nombe = "'.$first_name.'" AND
+		primer_apellido = "'.$first_lastname.'" AND 
+		segundo_apelldio = "'.$second_lastname.'"');
+
+		$result = $db->rows($sql);
+
+		if($result > 0){
+			echo 3;
+		}else{
+			$find_max_registrer = $db->query('SELECT MAX(n) FROM estudiantes WHERE id_grupo = "'.$id_group.'"');
+
+			$array_max_registrer = $db->consultaArreglo($find_max_registrer);
+
+			if(empty($array_max_registrer[0])){
+				$db->query('INSERT INTO estudiantes (n, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, id_grupo)
+				VALUES("1", "'.$first_name.'", "'.$second_name.'", "'.$first_lastname.'", "'.$second_lastname.'", "'.$id_group.'")');
+
+			}else{
+
+				$num = array_map(create_function('$value', 'return (int)$value;'), $array_max_registrer);
+
+				$value = $num[0];
+
+				$n = $value + 1;
+
+				$db->query('INSERT INTO estudiantes (n, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, id_grupo)
+				VALUES("'.$n.'", "'.$first_name.'", "'.$second_name.'", "'.$first_lastname.'", "'.$second_lastname.'", "'.$id_group.'")');
+			}
+			
+			echo 4;
+		}
+
+		$db->close();
+
+	}
+	/**
+	* addCharge
+	* @return [decsription]
+	*/
+	public function addCharge($id_teacher, $id_matter, $id_group){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT * FROM informacion_docente 
+		WHERE id_docente = "'.$id_teacher.'"
+		AND id_materia = "'.$id_matter.'" 
+		AND id_grupo = "'.$id_group.'" ');
+
+		$result = $db->rows($sql);
+
+		if($result > 0){
+			echo 3;
+		}else{
+			$db->query('INSERT INTO informacion_docente (id_docente, id_materia, id_grupo)
+			VALUES("'.$id_teacher.'", "'.$id_matter.'", "'.$id_group.'")');
+			echo 4;
+		}
+
+		$db->close();
+	}
+
+	public function getPrimaryCharges(){
+
+		$db = new Conexion();
+
+		$sql = $db->query("SELECT materias.nombre, docentes.primer_nombre, docentes.primer_apellido, grado.nombre, grupo.nombre, sedes.nombre FROM informacion_docente INNER JOIN grupos ON grupos.id = informacion_docente.id_grupo INNER JOIN materias ON materias.id =informacion_docente.id_materia INNER JOIN docentes ON docentes.id = informacion_docente.id_docente INNER JOIN grado ON grado.id = grupos.id_grado INNER JOIN grupo ON grupo.id = grupos.id_grupo INNER JOIN sedes ON sedes.id = grupos.id_sede
+		WHERE grado.id <= 5");
+
+		while ($f = $db->consultaArreglo($sql)) {
+			$primary_charges[] = array(
+				'first_name' => $f['primer_nombre'],
+				'first_lastname' => $f['primer_apellido'],
+				'name_matter' => $f[0],
+				'name_grade' => $f[3],
+				'name_group' => $f[4],
+				'name_sede' => $f[5]
+			);
+		}
+
+		return $primary_charges;
+
+		$db->close();
+
+	}
+
+	public function getBalechorCharges(){
+		$db = new Conexion();
+
+		$sql = $db->query("SELECT materias.nombre, docentes.primer_nombre, docentes.primer_apellido, grado.nombre, grupo.id, sedes.nombre FROM informacion_docente INNER JOIN grupos ON grupos.id = informacion_docente.id_grupo INNER JOIN materias ON materias.id =informacion_docente.id_materia INNER JOIN docentes ON docentes.id = informacion_docente.id_docente INNER JOIN grado ON grado.id = grupos.id_grado INNER JOIN grupo ON grupo.id = grupos.id_grupo INNER JOIN sedes ON sedes.id = grupos.id_sede
+		WHERE grado.id > 5");
+
+		while ($f = $db->consultaArreglo($sql)) {
+			$balechor_charges[] = array(
+				'first_name' => $f['primer_nombre'],
+				'first_lastname' => $f['primer_apellido'],
+				'name_matter' => $f[0],
+				'name_grade' => $f[3],
+				'name_group' => $f[4],
+				'name_sede' => $f[5]
+			);
+		}
+
+		return $balechor_charges;
+
+		$db->close();
+	}
+
+	public function getIndicatorsToRepository(){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT * FROM repositorio_indicadores');
+
+		while ($f = $db->consultaArreglo($sql)) {
+			$repo_indicators[] = array(
+				'name' => $f['nombre'],
+				'author' => $f['autor'],
+				'matter' => $f['asignatura'],
+				'grade' => $f['grado'],
+				'period' => $f['periodo'],
+				'year' => $f['ano']
+			);
+		}
+
+		return $repo_indicators;
+
+		$db->close();
+	}
+
+	public function addIndicatorToRepository($indicator, $author, $matter, $period, $grade){
+		$db = new Conexion();
+
+		$sql = $db->query('SELECT id FROM repositorio_indicadores
+		WHERE author = "'.$author.'"
+		AND nombre = "'.$indicator.'" 
+		AND asignatura = "'.$matter.'" 
+		AND periodo = "'.$period.'" 
+		AND grado = "'.$grade.'" ');
+
+		$result = $db->rows($sql);
+
+		if($result > 0){
+			echo 3;
+		}else{
+			$db->query('INSERT INTO repositorio_indicadores (nombre, autor, asignatura, periodo, grado)
+			VALUES("'.$indicator.'", "'.$author.'", "'.$matter.'", "'.$period.'", "'.$grade.'")');
+			echo 4;
+		}
 
 		$db->close();
 	}

@@ -12,10 +12,13 @@
       <div class="column">
         <?php
         if($_GET):
-        $id_grado = $view[3];
-        $id_grupo = $view[5];
-
-        $estudiantes = ($coexistence->getEstudiantes($id_grado, $id_grupo));
+        $id_group = $view[2];
+        $estudiantes = ($coexistence->getEstudiantes($id_group));
+        ?>
+        <div class="box">
+          <h3 class="has-text-centered"><?php echo "GRADO: " . $view[4] . " GRUPO: " . $view[6] ?></h3>
+        </div> 
+        <?php 
         if(!empty($estudiantes)): ?>
           <table class="table is-hoverable is-narrow is-fullwidth">
             <thead>

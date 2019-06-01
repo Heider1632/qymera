@@ -10,6 +10,9 @@
         <?php include 'views/overall/teacher/nav-aside.php'; ?>
       </div>
       <div class="column">
+        <div class="box">
+          <h3 class="has-text-centered">Notas por studiante.</h3>
+        </div>
         <div class="columns is-2">
         <div class="column is-half">
           <?php if(!empty($students)): ?>
@@ -33,8 +36,9 @@
                   </figure>
                 </div>
                 <div class="media-content">
-                  <p class="title is-4">John Smith</p>
-                  <p class="subtitle is-6">@johnsmith</p>
+                  <?php $i = $view[11]; ?>
+                  <p class="title is-4"><?php echo $students[$i]['first_name']; ?></p>
+                  <p class="subtitle is-6"><?php echo $students[$i]['first_lastname']; ?></p>
                 </div>
               </div>
 
@@ -51,14 +55,15 @@
           <?php endif; ?>
         </div>
         <div class="column">
-          <div class="columns">
+        <!-- input hidden to form  -->
+        <input type="hidden" id="TextIdActivity" value="<?php echo $activity['id'] ?>" />
+        <input type="hidden" id="TextIdIndicator" value="<?php echo $id_indicator ?>" />
+        <input type="hidden" id="TextIdStudent" value="<?php echo $view[11] ?>" />
+        <input type="hidden" id="TextIdGroup" value="<?php echo $id_group ?>" />
+        <input type="hidden" id="TextIdMatter" value="<?php echo $id_matter ?>" />
             <?php foreach ($activitys as $activity): ?>
-              <div class="column">
-                <div class="card">
+                <div class="card m-b-10">
                    <header class="card-header">
-                   <input type="hidden" id="TextIdActivity" value="<?php echo $activity['id'] ?>" />
-                   <input type="hidden" id="TextIdIndicator" value="<?php echo $view[4] ?>" />
-                   <input type="hidden" id="TextIdStudent" value="<?php echo $view[8] ?>" />
                     <p class="card-header-title">
                       <?php echo $activity['title'] . "&/n" . $activity['type']; ?>
                     </p>
@@ -78,20 +83,36 @@
                       <input 
                         class="input inputNote is-info m-t-10 m-l-10 m-r-10 m-b-10 is-one-quarter" 
                         type="num"
+                        min="0"
+                        max="10"
+                        placeholder="nota"
                         required
                       />
-                      <a href="#" id="BtnAddNote" class="card-footer-item">Save</a>
                     </footer>
                 </div>
-              </div>
             <?php endforeach; ?>
-          </div>
         </div>
       </div>
+      <a class="button is-fullwidth is-primary" href="#" id="BtnAddNote">Save</a>
       <?php if(!empty($students)): ?>
-        <?php foreach($students as $student): ?>
-
-        <?php endforeach;?>
+        <?php //foreach($students as $student): ?>
+        <div class="tabs is-fullwidth">
+          <ul>
+            <li>
+              <a href="<?php echo APP_URL ?>teacher/notas/preview/addNote/matter/<?php echo $id_matter ?>/indicator/<?php echo $id_indicator ?>/group/<?php echo $id_group ?>/student/<?php echo ($view[11] - 1 > 0) ? $view[11] - 1 : 0 ?>/">
+                <span class="icon"><i class="fas fa-angle-left" aria-hidden="true"></i></span>
+                <span>Left</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo APP_URL ?>teacher/notas/preview/addNote/matter/<?php echo $id_matter ?>/indicator/<?php echo $id_indicator ?>/group/<?php  echo $id_group ?>/student/<?php echo ($view[11] + 1 < count($students)) ? $view[11] + 1 : $view[11] ?>/">
+                <span>Right</span>
+                <span class="icon"><i class="fas fa-angle-right" aria-hidden="true"></i></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <?php //endforeach;?>
       <?php else: ?>
         <div class="notification is-danger">Error no hay estudiantes una lista de estudiantes activa porfavor comuniquese con la administración.</div>
       <?php endif; ?>

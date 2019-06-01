@@ -66,7 +66,7 @@ $('#BtnAddSede').click( (e) => {
     }
   })
 
-  e.preventDefaul();
+  e.preventDefault();
 
 })
 

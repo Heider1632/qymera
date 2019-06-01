@@ -10,6 +10,9 @@
         <?php include 'views/overall/teacher/nav-aside.php'; ?>
       </div>
       <div class="column">
+        <div class="box is-info">
+          <h3 class="has-text-centered fs-20">Actividades del indicador</h3>
+        </div>
         <?php
         $id_grade = $view[4];
         $id_matter = $view[6];
@@ -23,27 +26,18 @@
             <thead>
               <tr>
                 <th>Nombre</th>
+                <th>Desctiipcion</th>
+                <th>Ponderacion</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach($indicators as $i): ?>
-                <tr>
-                  <td><?php echo $i['name_indicator']; ?></td>
-                  <td>
-                    <a 
-                      class="button" 
-                      href="<?php echo APP_URL ?>teacher/notas/preview/addNote/indicator/<?php echo $i['id_indicator']; ?>/group/<?php echo $id_group; ?>/">
-                      <i class="fas fa-plus-circle"></i>
-                    </a>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
+              
             </tbody>
           </table>
         <?php else: ?>
           <div class="notification is-warning">
-            No hay indicadores asociados al grado y materia.
+            No hay Actividades asociados al indicador.
           </div>
         <?php endif; ?>
       </div>

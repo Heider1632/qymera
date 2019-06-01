@@ -49,7 +49,14 @@
               <span>Validando información...</span>
             </div>
           </div>
-          <button type="button" id="login">Iniciar Sesión</button>
+          <button class="m-b-15" type="button" id="login">Iniciar Sesión</button>
+          <span>
+            <a
+              class="span"
+              href="<?php echo APP_URL ?>login/reset/">
+              Olvidaste tu contraseña?
+            </a>
+          </span>
           <hr />
           <input type="text" class="input is-medium" id="token" placeholder="token" />
           <br />&nbsp;

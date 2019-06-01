@@ -88,6 +88,8 @@
               </div>
             </div>
 
+            
+
             <div class="field is-horizontal">
               <div class="field-label is-normal">
                 <label class="label">Fechas</label>
@@ -104,10 +106,42 @@
                 <div class="field">
                   <div class="field has-addons">
                     <p class="control is-expanded">
-                      <input class="input" type="date" placeholder="fecha de finalizacion" id="end_date">
+                      <input class="input" type="date" placeholder="fecha de finalizacion" id="evaluate_date">
+                    </p>
+                  </div>
+                  <p class="help">Fecha de evaluacion</p>
+                </div>
+                <div class="field">
+                  <div class="field has-addons">
+                    <p class="control is-expanded">
+                      <input class="input" type="date" placeholder="fecha_inicio" id="end_date">
                     </p>
                   </div>
                   <p class="help">Fecha de finalizacion</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Ponderacion</label>
+              </div>
+              <div class="field-body">
+                <div class="field has-addons">
+                  <p class="control">
+                    <input 
+                      type="num"
+                      class="input is-danger is-fullwidth" 
+                      id="percentage"
+                      min="10"
+                      max="100"
+                    />
+                  </p>
+                  <p class="control">
+                    <a class="button is-static">
+                      %
+                    </a>
+                  </p>
                 </div>
               </div>
             </div>

@@ -29,12 +29,12 @@
 			$file = find_areaplane($id);
 			if($file[0]['ext'] == 'pdf'){
 				header('content-type: application/pdf');
-				readfile('http://localhost:8888/qymera/' . $file[0]['name']);
+				readfile(APP_URL . $file[0]['name']);
 			}else{
 				header('Content-disposition: inline');
 				header('Content-type: application/msword');
 				// not sure if this is the correct MIME type
-				readfile('http://localhost:8888/qymera/' . $file[0]['name']);
+				readfile(APP_URL . $file[0]['name']);
 			}
 			break;
 		default:

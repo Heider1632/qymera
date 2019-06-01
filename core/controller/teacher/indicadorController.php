@@ -16,15 +16,29 @@
       if($view[2] == 'add'){
         if($_POST){
         $new_indicador = $_POST['indicator'];
-        $id_grado = $_POST['id_grade'];
-        $id_grupo = $_POST['id_group'];
-        $id_materia = $_POST['id_matter'];
+        $id_grade = $_POST['id_grade'];
+        $id_group = $_POST['id_group'];
+        $id_matter = $_POST['id_matter'];
           if(!empty($new_indicador)) {
-            $teacher->add_indicador($new_indicador, $id_grado, $id_grupo, $id_materia);
+            $teacher->add_indicador($new_indicador, $id_grade, $id_group, $id_matter);
           }else{
             echo 2;
           }
         }else {
+          echo 1;
+        }
+      }else if($view[2] == 'sendrepository'){
+        if($_POST){
+          $indicator_name = $_POST['indicator'];
+          $matter = $_POST['matter'];
+          $grade = $_POST['grade'];
+
+          if(!empty($indicator_name) || !empty($matter) || !empty($grade) ){
+            $teacher->sendIndicadorToRepository();
+          }else{
+            echo 2;
+          }
+        }else{  
           echo 1;
         }
       }else if($view[2] == 'del'){

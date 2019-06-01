@@ -136,35 +136,55 @@
       # Cerramos la conexion
       $db->close();
     }
+    
     /**
-     * [register description]
+     * [findEmail description]
      * @param  [type] $email [description]
-     * @param  [type] $clave [description]
-     * @return [type]        [description]
+     *
      */
-    public function register($email, $clave, $firts_name, $second_name, $firts_lastname, $second_lastname){
-
+    public function findUser($email){
       $db = new Conexion();
 
-      // validar que el correo no existe
-      $verificarCorreo = $db->rows('SELECT id FROM usuarios WHERE email="'.$email.'" LIMIT 1');
+      $sql = $db->query('SELECT id FROM usuario WHERE correo = "'.$email.'"');
 
-      if($verificarCorreo > 0){
+      $verify_identify = $db->rows($sql);
 
-        echo 'error_3';
+      if($verify_identify > 0){
 
+        $arrayUser = $db->consultaArreglo($sql);
+
+        // Varios destinatarios
+        $para  = 'heiderzapa78@gmail.com'; // atención a la coma
+
+        $to = $arrayUser[0]['correo'];
+
+        $titulo = 'Reseteo de contraseña';
+
+        $resetURL = APP_URL . "login/resetpassword/" . $arrayUser[0]['clave'] . "/"; 
+
+        $mensaje = 'Tu link para cambiar la contraseña es' . $resetURL;
+
+        // Para enviar un correo HTML, debe establecerse la cabecera Content-type
+        $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        // Cabeceras adicionales
+        //$cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
+        //$cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
+        //$cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
+        //$cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+
+        // Enviarlo
+        mail($para, $título, $mensaje, $cabeceras);
+
+        echo 4;
       }else{
-
-        $token = md5(time());
-
-        $db->query('INSERT INTO usuario (correo, clave, token) VALUES ("'.$email.'", MD5("'.$clave.'"), "'.$token.'")');
-
-        echo APP_URL . 'login/';
-
+        echo 3;
       }
 
       $db->close();
     }
+
     /**
      * [uploadImageProfile description]
      * @param  [type] $fileName [description]
@@ -202,18 +222,5 @@
         echo 2;
       }
     }
-
-    /*public function updateUser($name, $lastname){
-      $db = new Conexion();
-
-      $sql = 'UPDATE usuario SET email = "'.$email.'", clave = "'.$password.'" WHERE id = "'.$_SESSION['id'].'"';
-
-      $db->query($sql);
-
-      $db->close();
-
-      echo 2;
-
-    }*/
   }
 ?>
