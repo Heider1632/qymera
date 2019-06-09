@@ -30,6 +30,9 @@
                 <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/notas/">
                     Notas
                 </a>
+                <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/reports/">
+                    Reportes
+                </a>
                 <a class="navbar-item button-badge" href="<?php echo APP_URL; ?>teacher/notifications/">
                     <i class="fas fa-bell"></i>
                     <span class="badge alert" id="span-notification">0</span>

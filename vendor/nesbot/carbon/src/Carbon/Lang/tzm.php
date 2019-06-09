@@ -12,6 +12,11 @@
     return $number === 1 ? 0 : 1;
 }, 'tzm');
 
+/*
+ * Authors:
+ * - Josh Soref
+ * - JD Isaacks
+ */
 return [
     'year' => 'ⴰⵙⴳⴰⵙ|:count ⵉⵙⴳⴰⵙⵏ',
     'month' => 'ⴰⵢoⵓⵔ|:count ⵉⵢⵢⵉⵔⵏ',
@@ -45,4 +50,5 @@ return [
     'weekdays_min' => ['ⴰⵙⴰⵎⴰⵙ', 'ⴰⵢⵏⴰⵙ', 'ⴰⵙⵉⵏⴰⵙ', 'ⴰⴽⵔⴰⵙ', 'ⴰⴽⵡⴰⵙ', 'ⴰⵙⵉⵎⵡⴰⵙ', 'ⴰⵙⵉⴹⵢⴰⵙ'],
     'first_day_of_week' => 6,
     'day_of_first_week_of_year' => 1,
+    'weekend' => [5, 6],
 ];

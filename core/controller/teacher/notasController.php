@@ -20,16 +20,16 @@
 					$id_student = $_POST['id_student'];
 					$id_mater = $_POST['id_matter'];
 					$id_group = $_POST['id_group'];
-					$notes = $_POST['notes'];
+					$notes = $_POST['note'];
 
 					if(!empty($id_indicator) || !empty($id_activity) || !empty($id_student) || !empty($id_group) || !empty($id_matter) ){
 
-						for($i = 0; $i < sizeof($notes); $i++){
+						/*for($i = 0; $i < sizeof($notes); $i++){
 							if($notes[$i] == ""){
 								echo 2;
 								exit();
 							}
-						}
+						}*/
 
 						$teacher->putNotesList($id_activity, $id_indicator, $id_student, $id_group, $id_matter, $notes);
 
@@ -49,17 +49,17 @@
 				include 'views/overall/header.php';
 
 
-				if($view[3] == 'addnote' && $view[4] == 'matter' &&  $view[6] == 'indicator' && $view[8] == 'group'){
+				if($view[3] == 'addnote' && $view[4] == 'matter' && $view[6] == 'activity' && $view[8] == 'group'){
 
 					$id_matter = $view[5];
 
-					$id_indicator = $view[7];
+					$id_activity = $view[7];
 
 					$id_group = $view[9];
 
 					$students = ($teacher->getStudentsOfGroup($id_group));
 
-					$activitys = ($teacher->getActivitysForNotes($id_indicator));
+					$activitys = ($teacher->getActivityForNotes($id_activity));
 
 					/* template add notes */
 					include 'views/user/addNotes.php';

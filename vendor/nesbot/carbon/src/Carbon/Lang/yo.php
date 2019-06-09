@@ -12,14 +12,26 @@
     return $number === 1 ? 0 : 1;
 }, 'yo');
 
+/*
+ * Authors:
+ * - François B
+ * - Atolagbe Abisoye
+ */
 return [
-    'year' => 'ọdún kan|ọdún :count',
-    'month' => 'osù kan|osù :count',
-    'week' => 'ọsẹ kan|ọsẹ :count',
-    'day' => 'ọjọ́ kan|ọjọ́ :count',
-    'hour' => 'wákati kan|wákati :count',
-    'minute' => 'ìsẹjú kan|ìsẹjú :count',
-    'second' => 'ìsẹjú aayá die|aayá :count',
+    'year' => 'ọdún :count',
+    'a_year' => 'ọdún kan|ọdún :count',
+    'month' => 'osù :count',
+    'a_month' => 'osù kan|osù :count',
+    'week' => 'ọsẹ :count',
+    'a_week' => 'ọsẹ kan|ọsẹ :count',
+    'day' => 'ọjọ́ :count',
+    'a_day' => 'ọjọ́ kan|ọjọ́ :count',
+    'hour' => 'wákati :count',
+    'a_hour' => 'wákati kan|wákati :count',
+    'minute' => 'ìsẹjú :count',
+    'a_minute' => 'ìsẹjú kan|ìsẹjú :count',
+    'second' => 'iaayá :count',
+    'a_second' => 'ìsẹjú aayá die|aayá :count',
     'ago' => ':time kọjá',
     'from_now' => 'ní :time',
     'diff_yesterday' => 'Àna',
@@ -48,4 +60,5 @@ return [
     'weekdays_min' => ['Àì', 'Aj', 'Ìs', 'Ọr', 'Ọb', 'Ẹt', 'Àb'],
     'first_day_of_week' => 1,
     'day_of_first_week_of_year' => 4,
+    'meridiem' => ['Àárọ̀', 'Ọ̀sán'],
 ];

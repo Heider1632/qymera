@@ -42,8 +42,6 @@ require('core/bin/functions/modEvent.php');
 require('core/bin/functions/indicators.php');
 require('core/bin/functions/find_areaplane.php');
 require('core/bin/functions/carbon.php');
-
-
-
+require('core/bin/functions/phpword.php');
 
 ?>

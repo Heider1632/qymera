@@ -9,6 +9,21 @@
  * file that was distributed with this source code.
  */
 
+/**
+ * Authors:
+ * - Wacław Jacek
+ * - François B
+ * - Tim Fish
+ * - Serhan Apaydın
+ * - Massimiliano Caniparoli
+ * - JD Isaacks
+ * - Jakub Szwacz
+ * - Jan
+ * - Paul
+ * - damlys
+ * - Marek (marast78)
+ * - Peter (UnrulyNatives)
+ */
 return [
     'year' => ':count rok|:count lata|:count lat',
     'y' => ':countr|:countl',
@@ -23,6 +38,7 @@ return [
     'minute' => ':count minuta|:count minuty|:count minut',
     'min' => ':countm',
     'second' => ':count sekunda|:count sekundy|:count sekund',
+    'a_second' => '{1}kilka sekund|:count sekunda|:count sekundy|:count sekund',
     's' => ':counts',
     'ago' => ':time temu',
     'from_now' => 'za :time',
@@ -74,12 +90,15 @@ return [
         'sameElse' => 'L',
     ],
     'ordinal' => ':number.',
-    'months' => ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'],
+    'months' => ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'],
+    'months_standalone' => ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'],
     'months_short' => ['sty', 'lut', 'mar', 'kwi', 'maj', 'cze', 'lip', 'sie', 'wrz', 'paź', 'lis', 'gru'],
+    'months_regexp' => '/DD?o?\.?(\[[^\[\]]*\]|\s)+MMMM?/',
     'weekdays' => ['niedziela', 'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota'],
     'weekdays_short' => ['ndz', 'pon', 'wt', 'śr', 'czw', 'pt', 'sob'],
     'weekdays_min' => ['Nd', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'],
     'first_day_of_week' => 1,
     'day_of_first_week_of_year' => 4,
     'list' => [', ', ' i '],
+    'meridiem' => ['przed południem', 'po południu'],
 ];

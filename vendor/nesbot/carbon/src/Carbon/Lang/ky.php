@@ -12,14 +12,40 @@
     return $number === 1 ? 0 : 1;
 }, 'ky');
 
+/*
+ * Authors:
+ * - acutexyz
+ * - Josh Soref
+ * - François B
+ * - Chyngyz Arystan uulu
+ * - Chyngyz
+ * - acutexyz
+ * - Josh Soref
+ * - François B
+ * - Chyngyz Arystan uulu
+ */
 return [
-    'year' => 'бир жыл|:count жыл',
-    'month' => 'бир ай|:count ай',
-    'week' => 'бир жума|:count жума',
-    'day' => 'бир күн|:count күн',
-    'hour' => 'бир саат|:count саат',
-    'minute' => 'бир мүнөт|:count мүнөт',
-    'second' => 'бирнече секунд|:count секунд',
+    'year' => ':count жыл',
+    'a_year' => 'бир жыл|:count жыл',
+    'y' => ':count жыл',
+    'month' => ':count ай',
+    'a_month' => 'бир ай|:count ай',
+    'm' => ':count ай',
+    'week' => ':count апта',
+    'a_week' => 'бир апта|:count апта',
+    'w' => ':count апт.',
+    'day' => ':count күн',
+    'a_day' => 'бир күн|:count күн',
+    'd' => ':count күн',
+    'hour' => ':count саат',
+    'a_hour' => 'бир саат|:count саат',
+    'h' => ':count саат.',
+    'minute' => ':count мүнөт',
+    'a_minute' => 'бир мүнөт|:count мүнөт',
+    'min' => ':count мүн.',
+    'second' => ':count секунд',
+    'a_second' => 'бирнече секунд|:count секунд',
+    's' => ':count сек.',
     'ago' => ':time мурун',
     'from_now' => ':time ичинде',
     'formats' => [
@@ -38,7 +64,7 @@ return [
         'lastWeek' => '[Өткен аптанын] dddd [күнү] [саат] LT',
         'sameElse' => 'L',
     ],
-    'ordinal' => function ($number, $period) {
+    'ordinal' => function ($number) {
         static $suffixes = [
             0 => '-чү',
             1 => '-чи',
@@ -72,4 +98,5 @@ return [
     'first_day_of_week' => 1,
     'day_of_first_week_of_year' => 1,
     'list' => ' ',
+    'meridiem' => ['таңкы', 'түштөн кийинки'],
 ];

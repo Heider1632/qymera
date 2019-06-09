@@ -61,7 +61,7 @@
         <input type="hidden" id="TextIdStudent" value="<?php echo $view[11] ?>" />
         <input type="hidden" id="TextIdGroup" value="<?php echo $id_group ?>" />
         <input type="hidden" id="TextIdMatter" value="<?php echo $id_matter ?>" />
-            <?php foreach ($activitys as $activity): ?>
+          <?php foreach ($activitys as $activity): ?>
                 <div class="card m-b-10">
                    <header class="card-header">
                     <p class="card-header-title">
@@ -95,24 +95,22 @@
       </div>
       <a class="button is-fullwidth is-primary" href="#" id="BtnAddNote">Save</a>
       <?php if(!empty($students)): ?>
-        <?php //foreach($students as $student): ?>
         <div class="tabs is-fullwidth">
           <ul>
             <li>
-              <a href="<?php echo APP_URL ?>teacher/notas/preview/addNote/matter/<?php echo $id_matter ?>/indicator/<?php echo $id_indicator ?>/group/<?php echo $id_group ?>/student/<?php echo ($view[11] - 1 > 0) ? $view[11] - 1 : 0 ?>/">
+              <a href="<?php echo APP_URL ?>teacher/notas/preview/addNote/matter/<?php echo $id_matter ?>/activity/<?php echo $id_activity ?>/group/<?php echo $id_group ?>/student/<?php echo ($view[11] - 1 > 0) ? $view[11] - 1 : 0 ?>/">
                 <span class="icon"><i class="fas fa-angle-left" aria-hidden="true"></i></span>
                 <span>Left</span>
               </a>
             </li>
             <li>
-              <a href="<?php echo APP_URL ?>teacher/notas/preview/addNote/matter/<?php echo $id_matter ?>/indicator/<?php echo $id_indicator ?>/group/<?php  echo $id_group ?>/student/<?php echo ($view[11] + 1 < count($students)) ? $view[11] + 1 : $view[11] ?>/">
+              <a href="<?php echo APP_URL ?>teacher/notas/preview/addNote/matter/<?php echo $id_matter ?>/activity/<?php echo $id_activity ?>/group/<?php  echo $id_group ?>/student/<?php echo ($view[11] + 1 < count($students)) ? $view[11] + 1 : $view[11] ?>/">
                 <span>Right</span>
                 <span class="icon"><i class="fas fa-angle-right" aria-hidden="true"></i></span>
               </a>
             </li>
           </ul>
         </div>
-        <?php //endforeach;?>
       <?php else: ?>
         <div class="notification is-danger">Error no hay estudiantes una lista de estudiantes activa porfavor comuniquese con la administración.</div>
       <?php endif; ?>

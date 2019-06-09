@@ -179,6 +179,8 @@ class CarbonInterval extends DateInterval
     }
 
     /**
+     * Set default cascading factors for ->cascade() method.
+     *
      * @param array $cascadeFactors
      */
     public static function setCascadeFactors(array $cascadeFactors)
@@ -960,6 +962,7 @@ class CarbonInterval extends DateInterval
     protected function getForHumansParameters($syntax = null, $short = false, $parts = -1, $options = null)
     {
         $join = ' ';
+        $aUnit = false;
         if (is_array($syntax)) {
             extract($syntax);
         } else {
@@ -1008,7 +1011,7 @@ class CarbonInterval extends DateInterval
             };
         }
 
-        return [$syntax, $short, $parts, $options, $join];
+        return [$syntax, $short, $parts, $options, $join, $aUnit];
     }
 
     /**
@@ -1028,6 +1031,7 @@ class CarbonInterval extends DateInterval
      *                           - 'short' entry (see below)
      *                           - 'parts' entry (see below)
      *                           - 'options' entry (see below)
+     *                           - 'aUnit' entry, prefer "an hour" over "1 hour" if true
      *                           - 'join' entry determines how to join multiple parts of the string
      *                           `  - if $join is a string, it's used as a joiner glue
      *                           `  - if $join is a callable/closure, it get the list of string and should return a string
@@ -1049,7 +1053,7 @@ class CarbonInterval extends DateInterval
      */
     public function forHumans($syntax = null, $short = false, $parts = -1, $options = null)
     {
-        [$syntax, $short, $parts, $options, $join] = $this->getForHumansParameters($syntax, $short, $parts, $options);
+        [$syntax, $short, $parts, $options, $join, $aUnit] = $this->getForHumansParameters($syntax, $short, $parts, $options);
 
         $interval = [];
         $syntax = (int) ($syntax === null ? CarbonInterface::DIFF_ABSOLUTE : $syntax);
@@ -1071,13 +1075,20 @@ class CarbonInterval extends DateInterval
             ['value' => $this->seconds,          'unit' => 'second', 'unitShort' => 's'],
         ];
 
-        $transChoice = function ($short, $unitData) use ($translator) {
+        $transChoice = function ($short, $unitData) use ($translator, $aUnit) {
             $count = $unitData['value'];
 
             if ($short) {
                 $result = $this->translate($unitData['unitShort'], [], $count, $translator);
 
                 if ($result !== $unitData['unitShort']) {
+                    return $result;
+                }
+            } elseif ($aUnit) {
+                $key = 'a_'.$unitData['unit'];
+                $result = $this->translate($key, [], $count, $translator);
+
+                if ($result !== $key) {
                     return $result;
                 }
             }
@@ -1090,6 +1101,8 @@ class CarbonInterval extends DateInterval
                 $unit = $short ? $diffIntervalData['unitShort'] : $diffIntervalData['unit'];
                 $count = $diffIntervalData['value'];
                 $interval[] = $transChoice($short, $diffIntervalData);
+            } elseif ($options & CarbonInterface::SEQUENTIAL_PARTS_ONLY && count($interval) > 0) {
+                break;
             }
 
             // break the loop after we get the required number of parts in array
@@ -1431,17 +1444,16 @@ class CarbonInterval extends DateInterval
         $result = 0;
         $cumulativeFactor = 0;
         $unitFound = false;
+        $factors = static::getFlipCascadeFactors();
 
-        foreach (static::getFlipCascadeFactors() as $source => [$target, $factor]) {
+        foreach ($factors as $source => [$target, $factor]) {
             if ($source === $realUnit) {
                 $unitFound = true;
                 $value = $this->$source;
-                if ($source === 'microseconds') {
+                if ($source === 'microseconds' && isset($factors['milliseconds'])) {
                     $value %= Carbon::MICROSECONDS_PER_MILLISECOND;
                 }
-                if ($source !== 'milliseconds') {
-                    $result += $value;
-                }
+                $result += $value;
                 $cumulativeFactor = 1;
             }
 
@@ -1467,7 +1479,13 @@ class CarbonInterval extends DateInterval
                 continue;
             }
 
-            $result = ($result + $this->$source) / $factor;
+            $value = $this->$source;
+
+            if ($source === 'microseconds' && isset($factors['milliseconds'])) {
+                $value %= Carbon::MICROSECONDS_PER_MILLISECOND;
+            }
+
+            $result = ($result + $value) / $factor;
         }
 
         if (isset($target) && !$cumulativeFactor) {

@@ -9,6 +9,11 @@
  * file that was distributed with this source code.
  */
 
+/*
+ * Authors:
+ * - Abdellah Chadidi
+ * - Atef Ben Ali (atefBB)
+ */
 // Same for long and short
 $months = [
     // @TODO add shakl to months
@@ -56,11 +61,9 @@ return [
         'lastWeek' => 'dddd [عند الساعة] LT',
         'sameElse' => 'L',
     ],
-    'meridiem' => function ($hour, $minute, $isLower) {
-        return $hour < 12 ? 'ص' : 'م';
-    },
-    'weekdays' => ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
-    'weekdays_short' => ['أحد', 'إثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+    'meridiem' => ['ص', 'م'],
+    'weekdays' => ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
+    'weekdays_short' => ['أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
     'weekdays_min' => ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س'],
     'months' => $months,
     'months_short' => $months,

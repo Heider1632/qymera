@@ -22,28 +22,61 @@ $indicators = $teacher->getIndicatorsForNotes($id_grade, $id_matter, $id_group);
     </div>
     <br>
     <?php if(!empty($indicators)): ?>
-    <table class="table is-narrow is-bordered is-fullwidth">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="box">
         <?php foreach($indicators as $i): ?>
-            <tr>
-                <td><?php echo $i['name_indicator']; ?></td>
-                <td>
+        <div class="wrapper">
+        <div class="notification is-info m-b-20">
+          <p 
+          class="title preview">
+            <?php echo $i['name_indicator']; ?>
+          </p>
+        </div>
+    <?php $id_indicator = $i['id_indicator']; 
+        $activitys = $teacher->getActivitysFromIndicatorId($id_indicator);
+    ?>
+        <div class="contenido">
+            <?php if(!empty($activitys)): ?>
+            <table class="table is-hoverable is-narrow is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Actividad</th>
+                  <th>Porcentaje</th>
+                  <th>Grado</th>
+                  <th>Grupo</th>
+                  <th>Fecha Inicio</th>
+                  <th>Fecha Evaluacion</th>
+                  <th>Fecha Final</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php foreach($activitys as $activity): ?>
+                <tr>
+                  <td><?php echo $activity['title']; ?></td>
+                  <td><?php echo $activity['percentage'] . "%"; ?></td>
+                  <td><?php echo $activity['name_grade']; ?></td>
+                  <td><?php echo $activity['id_group']; ?></td>
+                  <td><?php echo $activity['date_start']; ?></td>
+                  <td><?php echo $activity['evaluate_date']; ?></td>
+                  <td><?php echo $activity['date_finish']; ?></td>
+                  <td>
+                    <button class="button is-info is-medium">
                     <a 
-                      class="button" 
-                      href="<?php echo APP_URL ?>teacher/notas/preview/addNote/matter/<?php echo $id_matter ?>/indicator/<?php echo $i['id_indicator']; ?>/group/<?php echo $id_group; ?>/student/0/">
-                      <i class="fas fa-plus-circle"></i>
+                    href="<?php echo APP_URL ?>teacher/notas/preview/addnote/matter/<?php echo $id_matter ?>/activity/<?php echo $activity['id'] ?>/group/<?php echo $activity['id_groups'] ?>/student/0/">
+                      <i class="fas fa-angle-right"></i>
                     </a>
-                </td>
-            </tr>
+                    </button>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+              </tbody>
+              </table>
+              <?php else: ?>
+                <div class="notification is-danger">Error al solicitar los datos</div>
+              <?php endif; ?>
+            </div>
+          </div>
         <?php endforeach; ?>
-        </tbody>
-    </table>
     <?php else: ?>
     <div class="notification is-warning">
         No hay indicadores asociados al grado y materia.

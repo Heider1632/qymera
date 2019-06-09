@@ -9,6 +9,12 @@
  * file that was distributed with this source code.
  */
 
+/**
+ * Authors:
+ * - Josh Soref
+ * - François B
+ * - JD Isaacks
+ */
 return [
     'year' => 'urte bat|:count urte',
     'y' => 'Urte 1|:count urte',
@@ -55,4 +61,5 @@ return [
     'first_day_of_week' => 1,
     'day_of_first_week_of_year' => 1,
     'list' => [', ', ' eta '],
+    'meridiem' => ['g', 'a'],
 ];

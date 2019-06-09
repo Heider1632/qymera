@@ -390,7 +390,7 @@
 		    $indicators[] = array(
 				'id' => $f['id'],
 				'nombre' => $f[1],
-		      	'grado_nombre' => $f[2],
+		    'grado_nombre' => $f[2],
 				'grupo_nombre' => $f[3]
 		    );
 
@@ -703,7 +703,7 @@
 					'date_start' => $f['fecha_asignacion'],
 					'evaluate_date' => $f['fecha_revision'],
 					'date_finish' => $f['fecha_final'],
-					'percentage' => $f['podereacion'],
+					'percentage' => $f['ponderacion'],
 					'name_indicator' => $f[6]
 				);
 			}
@@ -711,6 +711,41 @@
 			return $activitys;
 
 			$db->close();
+		}
+
+		public function getActivitysFromIndicatorId($id_indicator){
+
+			$db = new Conexion();
+
+			$sql = 'SELECT actividades.id, actividades.nombre, grado.id, grado.nombre, grupo.id, actividades.fecha_asignacion, actividades.fecha_revision, actividades.fecha_final, actividades.ponderacion,
+			(SELECT id FROM grupos WHERE id_grupo = grupo.id AND id_grado = grado.id ) as GruposID
+			FROM actividades
+			INNER JOIN indicadores ON indicadores.id = actividades.id_indicador
+			INNER JOIN grado ON grado.id = indicadores.id_grado
+			INNER JOIN grupo ON grupo.id = indicadores.id_grupo
+			WHERE actividades.id_docente = "'.$_SESSION['id'].'"
+			AND actividades.id_indicador = "'.$id_indicator.'"';
+
+			$results = $db->query($sql);
+
+			while($f = $db->consultaArreglo($results)){
+				$activitys[] = array(
+					'id' => $f['id'],
+					'title' => $f[1],
+					'name_grade' => $f[3],
+					'id_group' => $f[4],
+					'date_start' => $f['fecha_asignacion'],
+					'evaluate_date' => $f['fecha_revision'],
+					'date_finish' => $f['fecha_final'],
+					'percentage' => $f['ponderacion'],
+					'id_groups' => $f[9]
+				);
+			}
+
+			return $activitys;
+
+			$db->close();
+
 		}
 
 		public function getEvidenceForActivitys($id_activity){
@@ -747,6 +782,33 @@
 			}
 
 			return $activitys_for_notes;
+
+			$db->close();
+
+		}
+
+		public function getActivityForNotes($id_activity){
+
+			$db = new Conexion();
+
+			$sql = 'SELECT actividades.id, actividades.nombre, actividades.tipo, actividades.descripcion, actividades.fecha_asignacion, actividades.fecha_revision, actividades.ponderacion FROM actividades
+			WHERE actividades.id = "'.$id_activity.'"';
+
+			$results = $db->query($sql);
+
+			while($f = $db->consultaArreglo($results)){
+				$activity_for_notes[] = array(
+					'id' => $f['id'],
+					'title' => $f[1],
+					'type' => $f['tipo'],
+					'description' => $f['descripcion'],
+					'date_start' => $f['fecha_asignacion'],
+					'date_finish' => $f['fecha_revision'],
+					'percentage' => $f['ponderacion']
+				);
+			}
+
+			return $activity_for_notes;
 
 			$db->close();
 
