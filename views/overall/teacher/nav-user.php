@@ -27,7 +27,7 @@
                 <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/actividades/">
                     Actividades
                 </a>
-                <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/notas/">
+                <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/notes/">
                     Notas
                 </a>
                 <a class="navbar-item" href="<?php echo APP_URL; ?>teacher/reports/">

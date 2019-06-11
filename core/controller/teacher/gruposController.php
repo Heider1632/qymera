@@ -4,10 +4,10 @@
 	else:
 	/*  schema that allow callback the functions */
 		require 'core/model/teacher.php';
-    require 'core/model/coexistence.php';
+    	require 'core/model/coexistence.php';
 
 		$teacher = new Teacher();
-    $coexistence = new Coexistence();
+    	$coexistence = new Coexistence();
 
 		$matters = $teacher->getMatters();
 
@@ -16,16 +16,18 @@
 		
 		  /*template home */
           /* navbar interface */
-					include 'views/overall/teacher/nav-user.php';
-					include 'views/overall/teacher/nav-tool.php';
+				include 'views/overall/teacher/nav-user.php';
+				include 'views/overall/teacher/nav-tool.php';
 
     			if($view[3] == 'grado' && $view[5] == 'grupo'){
-					/* home view */
-        		include 'views/user/groupStudents.php';
-					}else{
-						include 'views/overall/teacher/_groups.php';
+
+        			include 'views/teacher/groupStudents.php';
+
+				}else{
+
+					include 'views/overall/teacher/_groups.php';
            
-					}
+				}
 		/* scripts*/
         include 'views/overall/scripts.php';
 	endif;

@@ -29,14 +29,11 @@
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img 
-                      src="https://bulma.io/images/placeholders/96x96.png" 
-                      alt="Placeholder image"
-                    >
+                    <i class="fas fa-user fa-3x"></i>
                   </figure>
                 </div>
                 <div class="media-content">
-                  <?php $i = $view[11]; ?>
+                  <?php $i = $view[13]; ?>
                   <p class="title is-4"><?php echo $students[$i]['first_name']; ?></p>
                   <p class="subtitle is-6"><?php echo $students[$i]['first_lastname']; ?></p>
                 </div>
@@ -56,55 +53,77 @@
         </div>
         <div class="column">
         <!-- input hidden to form  -->
-        <input type="hidden" id="TextIdActivity" value="<?php echo $activity['id'] ?>" />
+        <input type="hidden" id="TextIdActivity" value="<?php echo $view[9] ?>" />
         <input type="hidden" id="TextIdIndicator" value="<?php echo $id_indicator ?>" />
-        <input type="hidden" id="TextIdStudent" value="<?php echo $view[11] ?>" />
+        <input type="hidden" id="TextIdStudent" value="<?php echo $students[$view[13]]['id'] ?>" />
         <input type="hidden" id="TextIdGroup" value="<?php echo $id_group ?>" />
         <input type="hidden" id="TextIdMatter" value="<?php echo $id_matter ?>" />
           <?php foreach ($activitys as $activity): ?>
                 <div class="card m-b-10">
-                   <header class="card-header">
-                    <p class="card-header-title">
-                      <?php echo $activity['title'] . "&/n" . $activity['type']; ?>
-                    </p>
-                    </header>
-                    <div class="card-content">
-                      <div class="content">
-                        <?php echo $activity['description']; ?>
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img 
+                        src="https://bulma.io/images/placeholders/1280x960.png" 
+                        alt="Placeholder image"
+                      >
+                    </figure>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+
+                      <div class="media-left">
+                        <figure class="image is-48x48">
+                          <i class="fas fa-clipboard-list fa-3x"></i>
+                        </figure>
+                      </div>
+                      <div class="media-content">
+                        
+                        <p class="title is-4"><?php echo $activity['title']; ?></p>
+                        <p class="subtitle is-6"><?php echo $activity['type'];  ?></p>
+                      </div>
+                    </div>
+
+                    <div class="content">
+
+                    <?php echo $activity['description']; ?>
+                      
                         <time>
                           <?php echo $acitvity['date_start']; ?>
                         </time>
                         <time>
                           <?php echo $acitvity['date_finish']; ?>
                         </time>
-                      </div>
                     </div>
-                    <footer class="card-footer">
+
+
+                   <footer class="card-footer">
                       <input 
-                        class="input inputNote is-info m-t-10 m-l-10 m-r-10 m-b-10 is-one-quarter" 
+                        class="input is-info m-t-10 m-l-10 m-r-10 m-b-10 is-one-quarter" 
                         type="num"
                         min="0"
                         max="10"
+                        id="TextNote"
                         placeholder="nota"
                         required
                       />
-                    </footer>
+                  </footer>
+                  </div>
                 </div>
             <?php endforeach; ?>
         </div>
       </div>
-      <a class="button is-fullwidth is-primary" href="#" id="BtnAddNote">Save</a>
+      <a class="button is-fullwidth is-primary" id="BtnAddUnicNote">Save</a>
       <?php if(!empty($students)): ?>
         <div class="tabs is-fullwidth">
           <ul>
             <li>
-              <a href="<?php echo APP_URL ?>teacher/notas/preview/addNote/matter/<?php echo $id_matter ?>/activity/<?php echo $id_activity ?>/group/<?php echo $id_group ?>/student/<?php echo ($view[11] - 1 > 0) ? $view[11] - 1 : 0 ?>/">
+              <a href="<?php echo APP_URL ?>teacher/notes/type/unic/preview/addNote/matter/<?php echo $id_matter ?>/activity/<?php echo $id_activity ?>/group/<?php echo $id_group ?>/student/<?php echo ($view[13] - 1 > 0) ? $view[13] - 1 : 0 ?>/">
                 <span class="icon"><i class="fas fa-angle-left" aria-hidden="true"></i></span>
                 <span>Left</span>
               </a>
             </li>
             <li>
-              <a href="<?php echo APP_URL ?>teacher/notas/preview/addNote/matter/<?php echo $id_matter ?>/activity/<?php echo $id_activity ?>/group/<?php  echo $id_group ?>/student/<?php echo ($view[11] + 1 < count($students)) ? $view[11] + 1 : $view[11] ?>/">
+              <a href="<?php echo APP_URL ?>teacher/notes/type/unic/preview/addNote/matter/<?php echo $id_matter ?>/activity/<?php echo $id_activity ?>/group/<?php  echo $id_group ?>/student/<?php echo ($view[13] + 1 < count($students)) ? $view[13] + 1 : $view[13] ?>/">
                 <span>Right</span>
                 <span class="icon"><i class="fas fa-angle-right" aria-hidden="true"></i></span>
               </a>

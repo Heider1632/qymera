@@ -500,12 +500,13 @@ $(document).ready(function(){
  * NOTES FUNCTIONS
  */
 
- $('#BtnAddNote').click( function() {
-    let id_indicator = $('#TextIdIndicator').val();
+ $('#BtnAddListNote').click( function() {
+
     let id_activity = $('#TextIdActivity').val();
     let id_group = $('#TextIdGroup').val();
-    let id_student = $('#TextIdStudent').val();
     let id_matter = $('#TextIdMatter').val();
+    let id_students = [];
+
 
     var inputs = document.getElementsByClassName( 'inputNote' ),
     names = [].map.call(inputs, function( input ) {
@@ -514,10 +515,69 @@ $(document).ready(function(){
 
     let notes = names.split('|');
 
+    $('input.inputIds').each(function() {
+      id_students.push($(this).val()); 
+    });
+  
     $.ajax({
       method: 'POST',
-      url: url_dir + 'teacher/notas/add/',
-      data: {id_activity: id_activity, id_indicador: id_indicator, id_matter: id_matter, id_group: id_group, id_student: id_student, notes: notes},
+      url: url_dir + 'teacher/notes/addlist/',
+      data: {id_activity: id_activity, id_matter: id_matter, id_group: id_group, id_students: id_students, notes: notes},
+      success: function(response){
+        if(response == 1){
+          Swal.fire({
+            position: 'top-end',
+            type: 'error',
+            title: 'No se ha podido completar la operación',
+            showConfirmButton: true,
+          }).then( () => {
+            window.location.reload();
+          })
+        }else if(response == 2){
+          Swal.fire({
+            position: 'top-end',
+            type: 'warning',
+            title: 'Algunos campos estan vacios',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }else if(response == 3){
+          Swal.fire({
+            position: 'top-end',
+            type: 'warning',
+            title: 'Algunas notas se encuentran repetidas porfavor revise de nuevo',
+            showConfirmButton: true,
+          }).then( () => {
+            window.location.reload();
+          }) 
+        }else if(response == 4){
+          Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: 'Notas enviadas satisfactoriamente',
+            showConfirmButton: true,
+          }).then( () => {
+            window.location.replace(url_dir + "teacher/actividades/");
+          }) 
+        }else{
+          console.error(response);
+        }
+      }
+    }) 
+ })
+
+ $('#BtnAddUnicNote').click( function() {
+
+    let id_activity = $('#TextIdActivity').val();
+    let id_group = $('#TextIdGroup').val();
+    let id_matter = $('#TextIdMatter').val();
+    let id_student = $('#TextIdStudent').val();
+    let note = $('#TextNote').val();
+
+    $.ajax({
+      method: 'POST',
+      url: url_dir + 'teacher/notes/addunic/',
+      data: {id_activity: id_activity, id_group: id_group, id_matter: id_matter, id_student: id_student, note: note},
       success: function(response){
         if(response == 1){
           Swal.fire({

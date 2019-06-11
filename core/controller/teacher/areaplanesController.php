@@ -43,7 +43,7 @@
 			include 'views/overall/header.php';
 
 				/* template areaplanes */
-				include 'views/user/areaplanes.php';
+				include 'views/teacher/areaplanes.php';
 
 			/* scripts*/
 			include 'views/overall/scripts.php';

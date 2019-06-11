@@ -12,19 +12,13 @@
 		/* header */
 		include 'views/overall/header.php';
 
-		?>
-		<div id="app">
-		<?php
 
 		/* template home */
-		include 'views/user/director.php';
+		include 'views/teacher/director.php';
 
 		/* scripts*/
 		include 'views/overall/scripts.php';
 
-		?>
-		</div>
-		<?php
 
 	endif;
 ?>

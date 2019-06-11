@@ -1,7 +1,7 @@
 <?php 
-$id_grade = $view[5];
-$id_matter = $view[7];
-$id_group = $view[9];
+$id_grade = $view[7];
+$id_matter = $view[9];
+$id_group = $view[11];
 
 $indicators = $teacher->getIndicatorsForNotes($id_grade, $id_matter, $id_group);
 ?>
@@ -11,8 +11,8 @@ $indicators = $teacher->getIndicatorsForNotes($id_grade, $id_matter, $id_group);
   /* navbar interface */
   include 'views/overall/teacher/nav-user.php';
   include 'views/overall/teacher/nav-tool.php';
-?>
-<div class="columns is-2">
+  ?>
+  <div class="columns is-2">
     <div class="column is-one-quarter">
         <?php include 'views/overall/teacher/nav-aside.php'; ?>
     </div>
@@ -27,13 +27,13 @@ $indicators = $teacher->getIndicatorsForNotes($id_grade, $id_matter, $id_group);
         <div class="wrapper">
         <div class="notification is-info m-b-20">
           <p 
-          class="title preview">
+            class="title preview">
             <?php echo $i['name_indicator']; ?>
           </p>
         </div>
-    <?php $id_indicator = $i['id_indicator']; 
-        $activitys = $teacher->getActivitysFromIndicatorId($id_indicator);
-    ?>
+        <?php $id_indicator = $i['id_indicator']; 
+          $activitys = $teacher->getActivitysFromIndicatorId($id_indicator);
+        ?>
         <div class="contenido">
             <?php if(!empty($activitys)): ?>
             <table class="table is-hoverable is-narrow is-fullwidth">
@@ -62,7 +62,7 @@ $indicators = $teacher->getIndicatorsForNotes($id_grade, $id_matter, $id_group);
                   <td>
                     <button class="button is-info is-medium">
                     <a 
-                    href="<?php echo APP_URL ?>teacher/notas/preview/addnote/matter/<?php echo $id_matter ?>/activity/<?php echo $activity['id'] ?>/group/<?php echo $activity['id_groups'] ?>/student/0/">
+                    href="<?php echo APP_URL ?>teacher/notes/type/<?php echo $view[3] ?>/preview/addnote/matter/<?php echo $id_matter ?>/activity/<?php echo $activity['id'] ?>/group/<?php echo $activity['id_groups'] ?>/student/0/">
                       <i class="fas fa-angle-right"></i>
                     </a>
                     </button>

@@ -23,9 +23,6 @@
 				/* header */
 				include 'html/overall/header.php';
 
-				?>
-				<div id="app">
-				<?php
 
 				/* template students */
 				include 'html/user/estudiantes.php';
@@ -33,9 +30,6 @@
 				/* scripts*/
 				include 'html/overall/scripts.php';
 
-				?>
-				</div>
-				<?php
 
 		}else{
 			$_GET['view'] = '?view=error';

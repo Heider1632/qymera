@@ -45,7 +45,7 @@
                   <td>
                     <button class="button is-info is-medium">
                     <a 
-                    href="<?php echo APP_URL ?>teacher/notas/preview/selectIndicator/grade/<?php echo $group['id_grade'] ?>/matter/<?php echo $id_matter ?>/group/<?php echo $group['id_group'] ?>/">
+                    href="<?php echo APP_URL ?>teacher/notes/type/list/preview/selectindicator/grade/<?php echo $group['id_grade'] ?>/matter/<?php echo $id_matter ?>/group/<?php echo $group['id_group'] ?>/">
                       <i class="fas fa-angle-right"></i>
                     </a>
                     </button>

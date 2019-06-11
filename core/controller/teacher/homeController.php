@@ -32,7 +32,7 @@
 					/* header */
 					include 'views/overall/header.php';
 					/* template restart */
-					include 'views/user/restart.php';
+					include 'views/teacher/restart.php';
 					/* scripts*/
 					include 'views/overall/scripts.php';
 					break;
@@ -45,7 +45,7 @@
 			include 'views/overall/header.php';
 
 			/* template home */
-			include 'views/user/home.php';
+			include 'views/teacher/home.php';
 
 			/* scripts*/
 			include 'views/overall/scripts.php';

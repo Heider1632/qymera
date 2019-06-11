@@ -4,10 +4,10 @@
 	else:
 	/*  schema that allow callback the functions */
 		require 'core/model/teacher.php';
-    require 'core/model/coexistence.php';
+    	require 'core/model/coexistence.php';
 
 		$teacher = new Teacher();
-    $coexistence = new Coexistence();
+    	$coexistence = new Coexistence();
 
 		$materias = $teacher->getMatters();
 
@@ -19,7 +19,7 @@
 
 		if($view[3] == 'grado' && $view[5] == 'grupo' && $view[7] == 'n') {
 
-				include 'views/user/unicStudent.php';
+				include 'views/teacher/unicStudent.php';
 		}else{		
 
 				include 'views/overall/teacher/_individual.php';

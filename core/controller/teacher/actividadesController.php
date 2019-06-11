@@ -96,7 +96,7 @@
           //header
           include 'views/overall/header.php';
 
-          include 'views/user/actividades.php';
+          include 'views/teacher/actividades.php';
           //scripts
           include 'views/overall/scripts.php';
           break;
@@ -105,7 +105,7 @@
           //header
           include 'views/overall/header.php';
 
-          include 'views/user/pre-actividad.php';
+          include 'views/teacher/_preActividad.php';
           //scripts
           include 'views/overall/scripts.php';
           break;

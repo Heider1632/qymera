@@ -73,7 +73,7 @@
           include 'views/overall/header.php';
 
             /* template inidicator*/
-            include 'views/user/indicador.php';
+            include 'views/teacher/indicador.php';
 
           /* scripts*/
           include 'views/overall/scripts.php';

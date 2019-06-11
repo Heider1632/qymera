@@ -22,7 +22,7 @@
 				include 'views/overall/header.php';
 
 				/* template preview notes */
-				include 'views/user/reports.php';
+				include 'views/teacher/reports.php';
 
 				/* scripts*/
 				include 'views/overall/scripts.php';

@@ -21,8 +21,7 @@
                     href="<?php echo APP_URL ?>teacher/reports/simplereport/"
                     class="button is-fullwidth is-primary"
                     >
-                    <i class="fas fa-send"></i>
-                    Ir
+                    <i class="fas fa-download"></i>
                 </a>
             </div>
             <div class="column">
@@ -30,8 +29,7 @@
                     href="<?php echo APP_URL ?>teacher/reports/simplyreport/"
                     class="button is-fullwidth is-primary"
                     >
-                    <i class="fas fa-send"></i>
-                    Ir
+                    <i class="fas fa-download"></i>
                 </a>
             </div>
         </div>

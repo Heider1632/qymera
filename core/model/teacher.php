@@ -523,7 +523,7 @@
 		 * @param  [type] $indicadores [description]
 		 * @return [type]              [description]
 		 */
-		public function getNotes($id_materia, $id_grado, $id_grupo, $indicadores){
+		public function getNotes($id_matter, $id_group ){
 			$db = new Conexion();
 
 			for ($i=0; $i < count($indicadores); $i++) {
@@ -557,14 +557,44 @@
 		 * @param  [type] $id_docente [description]
 		 * @return [type]             [description]
 		 */
-		public function putNotesList($id_activity, $id_indicator, $id_matter, $id_group, $id_student, $notes){
+		public function putListNotes($id_activity, $id_matter, $id_group, $id_students, $notes){
 			$db = new Conexion();
 
-			foreach ($notes as $n) {
+			for ($i=0; $i < sizeof($notes); $i++) { 
+
+
+				for ($i=0; $i < sizeof($id_students); $i++) { 
+					
+					$sql = $db->query('SELECT * FROM notas WHERE 
+					id_actividad = "'.$id_activity.'"" AND valoracion = "'.$notes[$i].'"
+					AND id_grupo = "'.$id_group.'" AND id_materia = "'.$id_matter.'"
+					AND id_estudiante = "'.$id_students[$i].'" ');
+
+					$verify_note = $db->rows($sql);k
+
+					if($verify_note > 0){
+						echo 3; 
+						exit();
+					}
+
+					$db->query('INSERT INTO notas (id_actividad, id_materia, id_grupo, id_estudiante, valoracion) 
+					VALUES 
+					("'.$id_activity.'", "'.$id_matter.'", "'.$id_group.'", "'.$id_students[$i].'", "'.$notes[$i].'")');
+ 				}
+			}
+
+			echo 4;
+
+			$db->close();
+		}
+
+		public function putUnicNote($id_activity, $id_matter, $id_group, $id_student, $note){
+			$db = new Conexion();
+
 
 				$sql = $db->query('SELECT * FROM notas WHERE 
-				id_actividad = '.$id_activity.' AND valoracion = '.$n.'
-				AND id_grupo = '.$id_group.' AND id_materia = '.$id_matter.' AND id_indicador = '.$id_indicator.'
+				id_actividad = '.$id_activity.' AND valoracion = '.$note.'
+				AND id_grupo = '.$id_group.' AND id_materia = '.$id_matter.'
 				AND id_estudiante = '.$id_student.'');
 
 				$verify_note = $db->rows($sql);
@@ -574,9 +604,9 @@
 					exit();
 				}
 
-				$db->query('INSERT INTO notas (id_actividad, id_indicador, id_materia, id_grupo, id_estudiante, valoracion) VALUES ("'.$id_activity.'", "'.$id_indicator.'", '.$id_matter.', "'.$id_group.'", "'.$id_student.'", "'.$n.'")');
-
-			}
+				$db->query('INSERT INTO notas (id_actividad, id_grupo, id_materia, id_estudiante, valoracion)  
+					VALUES 
+					("'.$id_activity.'", "'.$id_matter.'", "'.$id_group.'", "'.$id_student.'", "'.$note.'")');
 
 			echo 4;
 
@@ -587,7 +617,7 @@
 		 * @param  [type] $notes [description]
 		 * @return [type]        [description]
 		 */
-		public function editNotesList($notes){
+		public function editListNotes($notes){
 			$db = new Conexion();
 
 			foreach($notes as $note){
@@ -600,35 +630,12 @@
 			$db->close();
 		}
 		/**
-		 * [putNote description]
-		 * @param  [type] $note           [description]
-		 * @param  [type] $id_estudiantes [description]
-		 * @param  [type] $id_indicador   [description]
-		 * @param  [type] $id_grado       [description]
-		 * @param  [type] $id_grupo       [description]
-		 * @param  [type] $id_periodo     [description]
-		 * @param  [type] $id_materia     [description]
-		 * @param  [type] $id_docente     [description]
-		 * @return [type]                 [description]
-		 */
-		public function putNote($note, $id_estudiantes, $id_indicador, $id_grado, $id_grupo, $id_periodo, $id_materia, $id_docente){
-			$db = new Conexion();
-
-				$db->query('INSERT INTO notas (nota, id_indicador, id_periodo, id_estudiante, id_grado, id_grupo, id_materia, id_docente)
-				VALUES("'.$note.'", "'.$id_indicador.'", "'.$id_periodo.'", "'.$id_estudiante.'". "'.$id_grado.'". "'.$id_grupo.'", '.$id_materia.', "'.$id_docente.'")
-				');
-
-			header('Location: notas');
-
-			$db->close();
-		}
-		/**
 		 * [editNote description]
 		 * @param  [type] $note [description]
 		 * @param  [type] $id   [description]
 		 * @return [type]       [description]
 		 */
-		public function editNote($note, $id){
+		public function editUnicNote($note, $id){
 			$db = new Conexion();
 
 			$db->query('UPDATE notas SET nota = "'.$note.'" WHERE id =  "'.$id.'"');
@@ -730,7 +737,7 @@
 
 			while($f = $db->consultaArreglo($results)){
 				$activitys[] = array(
-					'id' => $f['id'],
+					'id' => $f[0],
 					'title' => $f[1],
 					'name_grade' => $f[3],
 					'id_group' => $f[4],

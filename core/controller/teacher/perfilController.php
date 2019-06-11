@@ -52,7 +52,7 @@
 				include 'views/overall/header.php';
 
 				/* template profile */
-				include 'views/user/profile.php';
+				include 'views/teacher/profile.php';
 
 				/* scripts*/
 				include 'views/overall/scripts.php';
